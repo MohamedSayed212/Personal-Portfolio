@@ -11,6 +11,12 @@ export default {
         xl: "1200px",
         "2xl": "1400px",
       },
+
+      colors: {
+        primary: "#262626",
+        secondary: "#d4d4d4",
+        secondaryHover: "#f5f5f5",
+      },
     },
   },
   plugins: [],
