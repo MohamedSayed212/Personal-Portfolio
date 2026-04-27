@@ -2,12 +2,12 @@ import heroPortrait from "../assets/hero-portrait.png";
 
 function Hero() {
   return (
-    <section id="home" className="pt-[60px] pb-20">
+    <section id="home" className="pt-[150px] pb-20">
       <div className="container flex flex-col items-center gap-6 lg:flex-row lg:justify-between">
         {/* Left */}
         <div className="max-w-2xl text-center lg:text-left">
           {/* Role Badge */}
-          <span className="mb-5 inline-block rounded-full border border-white/10 bg-white/5 px-5 py-2 text-base font-medium text-white">
+          <span className="mb-8 inline-block rounded-full border border-white/10 bg-white/5 px-5 py-2 text-base font-medium text-white">
             Front-End Developer • React
           </span>
 
@@ -42,12 +42,14 @@ function Hero() {
         </div>
 
         {/* Right */}
-        <div className="w-full max-w-sm">
-          <div className="rounded-3xl border border-white/5 bg-white/5 p-2 shadow-md">
+        <div className="w-full max-w-[360px] md:max-w-[400px]">
+          <div className="relative rounded-[40px] border border-white/10 bg-white/[0.04] p-2 shadow-xl shadow-black/30">
+            <div className="pointer-events-none absolute inset-0 rounded-[40px] bg-white/10 opacity-10 blur-2xl"></div>
+
             <img
               src={heroPortrait}
               alt="Mohamed portrait"
-              className="h-[460px] w-full rounded-2xl object-cover object-top"
+              className="relative h-[500px] w-full rounded-[32px] object-cover object-[center_25%]"
             />
           </div>
         </div>

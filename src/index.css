@@ -8,6 +8,11 @@
   box-sizing: border-box;
 }
 
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 32px;
+}
+
 body {
   background-color: #121212;
 }
