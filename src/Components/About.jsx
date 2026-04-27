@@ -21,8 +21,7 @@ function About() {
             </span>
 
             <h2 className="max-w-4xl text-4xl font-bold leading-tight text-white md:text-5xl">
-              Front-End Developer building clean, responsive React applications
-              .
+              Front-End Developer building clean, responsive React applications.
             </h2>
           </div>
 

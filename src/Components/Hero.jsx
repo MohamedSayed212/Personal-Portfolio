@@ -2,7 +2,7 @@ import heroPortrait from "../assets/hero-portrait.png";
 
 function Hero() {
   return (
-    <section id="home" className="pt-[150px] pb-20">
+    <section id="home" className="pt-[200px] pb-20">
       <div className="container flex flex-col items-center gap-6 lg:flex-row lg:justify-between">
         {/* Left */}
         <div className="max-w-2xl text-center lg:text-left">
@@ -24,17 +24,17 @@ function Hero() {
           </p>
 
           {/* Buttons */}
-          <div className="mt-6 flex flex-col gap-4 sm:flex-row">
+          <div className="mt-6 grid w-full grid-cols-2 gap-4">
             <a
               href="#projects"
-              className="rounded-xl bg-white px-6 py-3 font-semibold text-black transition hover:opacity-90"
+              className="rounded-xl bg-white px-6 py-3 text-center font-semibold text-black transition hover:opacity-90"
             >
               View Projects
             </a>
 
             <a
               href="#contact"
-              className="rounded-xl border border-white/20 px-6 py-3 font-semibold text-white transition hover:bg-white/10"
+              className="rounded-xl border border-white/20 px-6 py-3 text-center font-semibold text-white transition hover:bg-white/10"
             >
               Contact Me
             </a>
