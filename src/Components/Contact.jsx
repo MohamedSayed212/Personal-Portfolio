@@ -4,16 +4,10 @@ import { FaGithub, FaLinkedin, FaEnvelope } from "react-icons/fa";
 import { FaLocationDot } from "react-icons/fa6";
 import SectionAnimation from "./SectionAnimation";
 
-/* =========================
-   EDIT YOUR INFO HERE
-========================= */
 const CONTACT_EMAIL = "mohamedsayed.dev01@gmail.com";
 const GITHUB_URL = "https://github.com/MohamedSayed212";
 const LINKEDIN_URL = "https://www.linkedin.com/in/mohamed-sayed-dev/";
 
-/* =========================
-   EMAILJS CONFIG
-========================= */
 const EMAILJS_SERVICE_ID = "service_s34g4ue";
 const EMAILJS_TEMPLATE_ID = "template_f4idfxp";
 const EMAILJS_PUBLIC_KEY = "YJwhF4O0_KFjgmmxV";
@@ -53,7 +47,6 @@ function Contact() {
     <SectionAnimation>
       <section id="contact" className="section-padding">
         <div className="container">
-          {/* ================= HEADER ================= */}
           <div className="mb-10 max-w-2xl sm:mb-12">
             <span className="mb-4 inline-block rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm font-medium text-white sm:px-5">
               Contact
@@ -69,7 +62,6 @@ function Contact() {
             </p>
           </div>
 
-          {/* ================= CONTENT ================= */}
           <div className="grid gap-6 lg:grid-cols-2 lg:gap-10">
             {/* LEFT SIDE: Contact info */}
             <div className="space-y-5 sm:space-y-6">
