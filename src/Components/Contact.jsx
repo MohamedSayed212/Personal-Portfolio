@@ -1,14 +1,16 @@
 import { useRef, useState } from "react";
 import emailjs from "@emailjs/browser";
 import { FaGithub, FaLinkedin, FaEnvelope } from "react-icons/fa";
+import { FaLocationDot } from "react-icons/fa6";
+
 import SectionAnimation from "./SectionAnimation";
 
 /* =========================
    EDIT YOUR INFO HERE
 ========================= */
 const CONTACT_EMAIL = "mohamedsayed.dev01@gmail.com";
-const GITHUB_URL = "https://github.com/yourusername";
-const LINKEDIN_URL = "https://linkedin.com/in/yourusername";
+const GITHUB_URL = "https://github.com/MohamedSayed212";
+const LINKEDIN_URL = "https://www.linkedin.com/in/mohamed-sayed-dev/";
 
 /* =========================
    EMAILJS CONFIG
@@ -51,7 +53,7 @@ function Contact() {
   return (
     <SectionAnimation>
       <section id="contact" className="py-16 sm:py-20 lg:py-24">
-        <div className="container mx-auto px-4 sm:px-6">
+        <div className="lg:container mx-auto px-4 sm:px-6">
           {/* ================= HEADER ================= */}
           <div className="mb-10 max-w-2xl sm:mb-12">
             <span className="mb-4 inline-block rounded-full border border-white/10 bg-white/5 px-5 py-2 text-sm font-medium text-white">
@@ -89,8 +91,9 @@ function Contact() {
               <div className="rounded-2xl border border-white/10 bg-white/5 p-5 sm:p-6">
                 <p className="text-sm text-gray-400">Location</p>
 
-                <p className="mt-3 text-base font-semibold text-white sm:text-lg">
-                  Remote / Available Worldwide
+                <p className="mt-3 flex items-center gap-3 text-base font-semibold text-white sm:text-lg">
+                  <FaLocationDot className="shrink-0 text-gray-400" />
+                  Cairo, Egypt | Open to Remote Opportunities
                 </p>
               </div>
 

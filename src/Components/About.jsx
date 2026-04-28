@@ -13,7 +13,7 @@ function About() {
   return (
     <SectionAnimation>
       <section id="about" className="py-20">
-        <div className="container mx-auto px-6">
+        <div className="lg:container mx-auto px-6">
           {/* Header */}
           <div className="mb-12">
             <span className="mb-4 inline-block rounded-full border border-white/10 bg-white/5 px-5 py-2 text-sm font-medium text-white">
@@ -28,10 +28,9 @@ function About() {
           {/* Main Text */}
           <div className="mb-8 w-full rounded-3xl border border-white/10 bg-white/5 p-8">
             <p className="text-lg leading-8 text-gray-400">
-              I’m a self-taught front-end developer specializing in React and
-              modern UI development. I build responsive, user-friendly web
-              applications with a strong focus on clean design and smooth user
-              experience.
+              I’m a front-end developer specializing in React and modern UI
+              development. I build responsive, user-friendly web applications
+              with a strong focus on clean design and smooth user experience.
             </p>
 
             <p className="mt-4 text-lg leading-8 text-gray-400">

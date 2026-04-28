@@ -25,7 +25,7 @@ function Skills() {
   return (
     <SectionAnimation>
       <section id="skills" className="py-20">
-        <div className="container">
+        <div className="lg:container">
           {/* Header */}
           <div className="mb-10">
             <span className="mb-6 inline-block rounded-full border border-white/10 bg-white/5 px-5 py-2 text-md font-medium text-white">
