@@ -12,20 +12,18 @@ function About() {
 
   return (
     <SectionAnimation>
-      <section id="about" className="section-padding">
-        <div className="container">
-          {/* Header */}
-          <div className="mb-10 sm:mb-12">
+      <section id="about" className="py-16 xs:px-3 sm:py-20 md:py-24 xl:py-28">
+        <div className="mx-auto w-full px-4 sm:px-6 md:px-8 xl:max-w-[1180px] 2xl:max-w-[1320px]">
+          <div className="mb-10  sm:mb-12 text-left">
             <span className="mb-4 inline-block rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm font-medium text-white sm:px-5">
               About Me
             </span>
 
-            <h2 className="max-w-4xl text-2xl font-bold leading-tight text-white sm:text-3xl md:text-4xl lg:text-5xl">
+            <h2 className="mx-auto max-w-4xl text-2xl font-bold leading-tight text-white sm:text-3xl md:mx-0 md:text-4xl lg:text-5xl">
               Front-End Developer building clean, responsive React applications.
             </h2>
           </div>
 
-          {/* Main Text */}
           <div className="mb-6 w-full rounded-3xl border border-white/10 bg-white/5 p-5 sm:mb-8 sm:p-8">
             <p className="text-base leading-7 text-gray-400 sm:text-lg sm:leading-8">
               I’m a self-taught front-end developer specializing in React and
@@ -48,7 +46,6 @@ function About() {
             </p>
           </div>
 
-          {/* What I'm looking for */}
           <div className="w-full rounded-3xl border border-white/10 bg-white/5 p-5 sm:p-8">
             <h3 className="mb-4 text-xl font-bold text-white sm:text-2xl">
               What I’m looking for

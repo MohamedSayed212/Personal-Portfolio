@@ -18,7 +18,6 @@ function Contact() {
   const [status, setStatus] = useState("");
   const [isSending, setIsSending] = useState(false);
 
-  // Send form data to your Gmail using EmailJS
   const sendEmail = (e) => {
     e.preventDefault();
 
@@ -45,120 +44,126 @@ function Contact() {
 
   return (
     <SectionAnimation>
-      <section id="contact" className="section-padding">
-        <div className="container">
-          <div className="mb-10 max-w-2xl sm:mb-12">
+      {/* ================= SECTION ================= */}
+      <section
+        id="contact"
+        className=" xs:px-5 sm:py-10 md:mt-[20px] md:mb-[20px] "
+      >
+        {/* ================= CONTAINER ================= */}
+        <div className="mx-auto w-full max-w-[1320px] px-4 sm:px-6 md:px-8">
+          {/* ================= HEADER ================= */}
+          <div className="mb-10 max-w-2xl  sm:mb-12 text-left">
             <span className="mb-4 inline-block rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm font-medium text-white sm:px-5">
               Contact
             </span>
 
-            <h2 className="text-3xl font-bold leading-tight text-white sm:text-4xl md:text-5xl">
+            <h2 className="text-3xl font-bold text-white sm:text-4xl md:text-5xl">
               Let’s work together
             </h2>
 
-            <p className="mt-4 text-base leading-7 text-gray-400 sm:text-lg sm:leading-8">
-              Have a project in mind or just want to connect? Feel free to reach
-              out. I’m open to remote opportunities and collaborations.
+            <p className="mt-4 text-base text-gray-400 sm:text-lg">
+              Have a project in mind or just want to connect? I’m open to remote
+              opportunities.
             </p>
           </div>
 
-          <div className="grid gap-6 lg:grid-cols-2 lg:gap-10">
-            {/* LEFT SIDE: Contact info */}
-            <div className="space-y-5 sm:space-y-6">
-              {/* Email card */}
-              <div className="rounded-2xl border border-white/10 bg-white/5 p-5 sm:p-6">
+          {/* ================= MAIN GRID ================= */}
+          <div className="grid gap-6 md:gap-8 lg:grid-cols-2">
+            {/* ================= LEFT SIDE ================= */}
+            <div className="space-y-5">
+              {/* EMAIL CARD */}
+              <div className="rounded-2xl border border-white/10 bg-white/5 p-5">
                 <p className="text-sm text-gray-400">Email</p>
 
                 <a
                   href={`mailto:${CONTACT_EMAIL}`}
-                  className="mt-3 flex items-center gap-3 break-all text-base font-semibold text-white transition hover:text-gray-300 sm:text-lg"
+                  className="mt-3 flex items-center gap-3 text-base font-semibold text-white hover:text-gray-300"
                 >
-                  <FaEnvelope className="shrink-0 text-gray-400" />
+                  <FaEnvelope className="text-gray-400" />
                   {CONTACT_EMAIL}
                 </a>
               </div>
 
-              {/* Location card */}
-              <div className="rounded-2xl border border-white/10 bg-white/5 p-5 sm:p-6">
+              {/* LOCATION CARD */}
+              <div className="rounded-2xl border border-white/10 bg-white/5 p-5">
                 <p className="text-sm text-gray-400">Location</p>
 
-                <p className="mt-3 flex items-center gap-3 text-base font-semibold text-white sm:text-lg">
-                  <FaLocationDot className="shrink-0 text-gray-400" />
-                  Cairo, Egypt | Open to Remote Opportunities
+                <p className="mt-3 flex items-center gap-3 text-base font-semibold text-white">
+                  <FaLocationDot className="text-gray-400" />
+                  Cairo, Egypt | Remote Ready
                 </p>
               </div>
 
-              {/* Social links */}
-              <div className="grid gap-3 xs:grid-cols-2 lg:max-w-[360px]">
+              {/* ================= SOCIAL BUTTONS  ================= */}
+
+              <div className="grid grid-cols-2 gap-3">
                 <a
                   href={GITHUB_URL}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center justify-center gap-3 rounded-2xl border border-white/10 bg-white/5 p-4 text-sm font-semibold text-gray-300 transition hover:-translate-y-[2px] hover:bg-white/10 hover:text-white sm:p-5 sm:text-base"
+                  className="flex items-center justify-center gap-2 rounded-2xl border border-white/10 bg-white/5 px-4 py-4 text-white transition hover:-translate-y-[1px] hover:bg-white/10"
                 >
-                  <FaGithub className="text-xl" />
-                  <span>GitHub</span>
+                  <FaGithub />
+                  GitHub
                 </a>
 
                 <a
                   href={LINKEDIN_URL}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center justify-center gap-3 rounded-2xl border border-white/10 bg-white/5 p-4 text-sm font-semibold text-gray-300 transition hover:-translate-y-[2px] hover:bg-white/10 hover:text-white sm:p-5 sm:text-base"
+                  className="flex items-center justify-center gap-2 rounded-2xl border border-white/10 bg-white/5 px-4 py-4 text-white transition hover:-translate-y-[1px] hover:bg-white/10"
                 >
-                  <FaLinkedin className="text-xl" />
-                  <span>LinkedIn</span>
+                  <FaLinkedin />
+                  LinkedIn
                 </a>
               </div>
             </div>
 
-            {/* RIGHT SIDE: Contact form */}
+            {/* ================= FORM ================= */}
             <form
               ref={formRef}
               onSubmit={sendEmail}
-              className="space-y-4 rounded-2xl border border-white/10 bg-white/5 p-5 sm:p-6"
+              className="space-y-4 rounded-2xl border border-white/10 bg-white/5 p-2 sm:p-4"
             >
-              {/* Name input */}
+              {/* NAME */}
               <input
                 type="text"
                 name="user_name"
                 placeholder="Your Name"
                 required
-                className="w-full rounded-xl border border-white/10 bg-black/20 px-4 py-3 text-white outline-none transition placeholder:text-gray-500 focus:border-white/30 focus:ring-1 focus:ring-white/20 sm:py-4"
+                className="w-full rounded-xl border border-white/10 bg-black/20 px-4 py-4 text-white placeholder:text-gray-500 focus:border-white/30 focus:ring-1 focus:ring-white/20"
               />
 
-              {/* Email input */}
+              {/* EMAIL */}
               <input
                 type="email"
                 name="user_email"
                 placeholder="Your Email"
                 required
-                className="w-full rounded-xl border border-white/10 bg-black/20 px-4 py-3 text-white outline-none transition placeholder:text-gray-500 focus:border-white/30 focus:ring-1 focus:ring-white/20 sm:py-4"
+                className="w-full rounded-xl border border-white/10 bg-black/20 px-4 py-4 text-white placeholder:text-gray-500 focus:border-white/30 focus:ring-1 focus:ring-white/20"
               />
 
-              {/* Message input */}
+              {/* MESSAGE */}
               <textarea
                 name="message"
                 rows="5"
                 placeholder="Your Message"
                 required
-                className="min-h-[150px] w-full resize-none rounded-xl border border-white/10 bg-black/20 px-4 py-3 text-white outline-none transition placeholder:text-gray-500 focus:border-white/30 focus:ring-1 focus:ring-white/20"
+                className="min-h-[140px] w-full resize-none rounded-xl border border-white/10 bg-black/20 px-4 py-3 text-white placeholder:text-gray-500 focus:border-white/30 focus:ring-1 focus:ring-white/20"
               />
 
-              {/* Submit button */}
+              {/* BUTTON */}
               <button
                 type="submit"
                 disabled={isSending}
-                className="w-full rounded-xl bg-white px-6 py-3 font-semibold text-black transition hover:scale-[1.01] hover:opacity-90 disabled:cursor-not-allowed disabled:scale-100 disabled:opacity-60 sm:py-4"
+                className="w-full rounded-xl bg-white px-6 py-3 font-semibold text-black transition hover:opacity-90 disabled:opacity-60"
               >
                 {isSending ? "Sending..." : "Send Message"}
               </button>
 
-              {/* Status message */}
+              {/* STATUS */}
               {status && (
-                <p className="text-center text-sm font-medium text-gray-300">
-                  {status}
-                </p>
+                <p className="text-center text-sm text-gray-300">{status}</p>
               )}
             </form>
           </div>
