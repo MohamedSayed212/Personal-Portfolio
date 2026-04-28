@@ -2,7 +2,6 @@ import { useRef, useState } from "react";
 import emailjs from "@emailjs/browser";
 import { FaGithub, FaLinkedin, FaEnvelope } from "react-icons/fa";
 import { FaLocationDot } from "react-icons/fa6";
-
 import SectionAnimation from "./SectionAnimation";
 
 /* =========================
@@ -52,11 +51,11 @@ function Contact() {
 
   return (
     <SectionAnimation>
-      <section id="contact" className="py-16 sm:py-20 lg:py-24">
-        <div className="lg:container mx-auto px-4 sm:px-6">
+      <section id="contact" className="section-padding">
+        <div className="container">
           {/* ================= HEADER ================= */}
           <div className="mb-10 max-w-2xl sm:mb-12">
-            <span className="mb-4 inline-block rounded-full border border-white/10 bg-white/5 px-5 py-2 text-sm font-medium text-white">
+            <span className="mb-4 inline-block rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm font-medium text-white sm:px-5">
               Contact
             </span>
 
@@ -98,12 +97,12 @@ function Contact() {
               </div>
 
               {/* Social links */}
-              <div className="grid max-w-[300px] gap-3 sm:grid-cols-2">
+              <div className="grid gap-3 xs:grid-cols-2 lg:max-w-[360px]">
                 <a
                   href={GITHUB_URL}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center gap-3 rounded-2xl border border-white/10 bg-white/5 p-5 text-base font-semibold text-gray-300 transition hover:-translate-y-[2px] hover:bg-white/10 hover:text-white"
+                  className="flex items-center justify-center gap-3 rounded-2xl border border-white/10 bg-white/5 p-4 text-sm font-semibold text-gray-300 transition hover:-translate-y-[2px] hover:bg-white/10 hover:text-white sm:p-5 sm:text-base"
                 >
                   <FaGithub className="text-xl" />
                   <span>GitHub</span>
@@ -113,7 +112,7 @@ function Contact() {
                   href={LINKEDIN_URL}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="flex items-center gap-3 rounded-2xl border border-white/10 bg-white/5 p-5 text-base font-semibold text-gray-300 transition hover:-translate-y-[2px] hover:bg-white/10 hover:text-white"
+                  className="flex items-center justify-center gap-3 rounded-2xl border border-white/10 bg-white/5 p-4 text-sm font-semibold text-gray-300 transition hover:-translate-y-[2px] hover:bg-white/10 hover:text-white sm:p-5 sm:text-base"
                 >
                   <FaLinkedin className="text-xl" />
                   <span>LinkedIn</span>
