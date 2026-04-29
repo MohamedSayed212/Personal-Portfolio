@@ -1,16 +1,47 @@
-# React + Vite
+# Mohamed Sayed - Personal Portfolio
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+This is my personal portfolio website built to showcase my frontend development skills, projects, and experience.
 
-Currently, two official plugins are available:
+## Live Demo
+https://personal-portfolio-omega-nine-78.vercel.app/
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## About Me
+I am a Junior Frontend Developer passionate about building responsive and user-friendly web applications using modern technologies like React and JavaScript. I am currently seeking internship and junior opportunities.
 
-## React Compiler
+## Tech Stack
+- React.js
+- JavaScript (ES6+)
+- HTML5
+- CSS3
+- Tailwind CSS
+- Vite
 
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
+## Features
+- Responsive design (mobile, tablet, desktop)
+- Projects showcase section
+- Clean and simple UI
+- Contact section
+- Fast performance using Vite
 
-## Expanding the ESLint configuration
+## Projects Included
+- E-Commerce Website
+- Movie App
+- Personal Portfolio
 
-If you are developing a production application, we recommend using TypeScript with type-aware lint rules enabled. Check out the [TS template](https://github.com/vitejs/vite/tree/main/packages/create-vite/template-react-ts) for information on how to integrate TypeScript and [`typescript-eslint`](https://typescript-eslint.io) in your project.
+## Screenshots
+Add screenshots of your portfolio here.
+
+## Installation
+
+git clone https://github.com/MohamedSayed212/Personal-Portfolio.git  
+cd Personal-Portfolio  
+npm install  
+npm run dev  
+
+## Contact
+Email: mohamedsayed.dev01@gmail.com  
+LinkedIn: (add your LinkedIn link)  
+GitHub: https://github.com/MohamedSayed212  
+
+## Support
+If you like this project, consider giving it a star.
