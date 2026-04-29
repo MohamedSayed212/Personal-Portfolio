@@ -28,20 +28,7 @@ I am a Junior Frontend Developer passionate about building responsive and user-f
 - Movie App
 - Personal Portfolio
 
-## Screenshots
-Add screenshots of your portfolio here.
 
-## Installation
 
-git clone https://github.com/MohamedSayed212/Personal-Portfolio.git  
-cd Personal-Portfolio  
-npm install  
-npm run dev  
 
-## Contact
-Email: mohamedsayed.dev01@gmail.com  
-LinkedIn: (add your LinkedIn link)  
-GitHub: https://github.com/MohamedSayed212  
 
-## Support
-If you like this project, consider giving it a star.
