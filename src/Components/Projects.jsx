@@ -29,7 +29,7 @@ function Projects() {
         "A responsive personal portfolio built with React and Tailwind CSS to showcase my projects, skills, and contact information.",
       image: portfolioImage,
       tech: ["React", "Tailwind CSS"],
-      live: "YOUR_PORTFOLIO_LIVE_LINK",
+      live: "https://personal-portfolio-omega-nine-78.vercel.app",
       github: "https://github.com/MohamedSayed212/Personal-Portfolio",
     },
   ];
