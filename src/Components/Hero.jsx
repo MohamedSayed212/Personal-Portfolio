@@ -45,14 +45,14 @@ function Hero() {
           </h1>
 
           {/* TEXT */}
-          <p className="mx-auto mt-5 max-w-xl text-base leading-relaxed text-gray-400 sm:text-lg md:text-xl lg:mx-0">
+          <p className="mx-auto mt-5   max-w-[720px] text-base leading-relaxed text-gray-400 sm:text-lg md:text-xl lg:mx-0">
             I build responsive interfaces with clean design, smooth UX, and
             <span className="font-semibold text-white"> React</span>-based
             applications.
           </p>
 
           {/* BUTTONS */}
-          <div className="mx-auto mt-7 grid w-full max-w-xl grid-cols-2 gap-3 lg:mx-0">
+          <div className="mx-auto mt-7 grid w-full  max-w-[720px] grid-cols-2 gap-3 lg:mx-0">
             <a
               href="#projects"
               className="rounded-xl bg-white px-6 py-3.5 text-center text-base font-semibold text-black transition hover:opacity-90"
