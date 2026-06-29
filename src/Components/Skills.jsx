@@ -7,7 +7,13 @@ import {
   FaGithub,
 } from "react-icons/fa";
 
-import { SiTailwindcss } from "react-icons/si";
+import {
+  SiTailwindcss,
+  SiNextdotjs,
+  SiTypescript,
+  SiSupabase,
+  SiFramer,
+} from "react-icons/si";
 import SectionAnimation from "./SectionAnimation";
 
 function Skills() {
@@ -19,6 +25,10 @@ function Skills() {
     { name: "Tailwind CSS", icon: <SiTailwindcss /> },
     { name: "Git", icon: <FaGitAlt /> },
     { name: "GitHub", icon: <FaGithub /> },
+    { name: "Next.js", icon: <SiNextdotjs /> },
+    { name: "TypeScript", icon: <SiTypescript /> },
+    { name: "Supabase", icon: <SiSupabase /> },
+    { name: "Framer Motion", icon: <SiFramer /> },
   ];
 
   return (
@@ -39,7 +49,7 @@ function Skills() {
             </p>
           </div>
 
-          <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 sm:gap-4 md:grid-cols-4 xl:grid-cols-7">
+          <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 sm:gap-4 md:grid-cols-4 xl:grid-cols-6">
             {skills.map((skill) => (
               <div
                 key={skill.name}
