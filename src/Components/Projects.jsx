@@ -1,6 +1,9 @@
 import ecommerceImage from "../assets/E-Commerce.png";
 import movieImage from "../assets/Movie-APP.png";
 import portfolioImage from "../assets/Personal-Portfolio.png";
+import cafeImage from "../assets/cafe-image.png";
+import gymImage from "../assets/gym-image.png";
+import taskflowImage from "../assets/TaskDashboard.png";
 import SectionAnimation from "./SectionAnimation";
 
 function Projects() {
@@ -8,12 +11,58 @@ function Projects() {
     {
       title: "E-Commerce",
       description:
-        "Modern e-commerce web app built with React featuring category-based product browsing, dynamic sliders, API integration, and responsive UI.",
+        "Modern e-commerce platform built with Next.js, JavaScript, and Tailwind CSS, featuring product browsing with categories, search, a shopping cart, favorites, and an admin dashboard with user authentication. Built with responsive, reusable components and Framer Motion animations, integrating Supabase for authentication and data storage.",
       image: ecommerceImage,
-      tech: ["React", "Tailwind CSS"],
+      tech: [
+        "Next.js",
+        "JavaScript",
+        "Tailwind CSS",
+        "Supabase",
+        "Framer Motion",
+      ],
       live: "https://e-commerce-vert-zeta-75.vercel.app/",
       github: "https://github.com/MohamedSayed212/E-Commerce",
     },
+    {
+      title: "Cafe Website",
+      description:
+        "Responsive cafe website built with Next.js, JavaScript, and Tailwind CSS, featuring a reservation system, menu and category management, and an admin dashboard with user authentication. Built with reusable, well-structured components and Framer Motion animations, integrating Supabase for authentication, data storage, and CRUD operations.",
+      image: cafeImage,
+      tech: [
+        "Next.js",
+        "JavaScript",
+        "Tailwind CSS",
+        "Supabase",
+        "Framer Motion",
+      ],
+      live: "https://cafe-three-mu.vercel.app/",
+      github: "https://github.com/MohamedSayed212/cafe",
+    },
+    {
+      title: "Gym Website",
+      description:
+        "Responsive gym website built with Next.js, TypeScript, and Tailwind CSS, featuring a reservation system, menu and category management, an admin dashboard with user authentication, dark mode, and Arabic/English localization. Built with reusable, type-safe components and Framer Motion animations, integrating Supabase for authentication, data storage, and CRUD operations.",
+      image: gymImage,
+      tech: [
+        "Next.js",
+        "TypeScript",
+        "Tailwind CSS",
+        "Supabase",
+        "Framer Motion",
+      ],
+      live: "https://gym-qhv8.vercel.app/",
+      github: "https://github.com/MohamedSayed212/gym",
+    },
+    {
+      title: "TaskFlow Dashboard",
+      description:
+        "Task management dashboard built with React and Tailwind CSS, letting users create, edit, delete, and organize tasks across projects with completion tracking. Data persists with Local Storage, and Framer Motion powers smooth, responsive interactions throughout the UI.",
+      image: taskflowImage,
+      tech: ["React", "JavaScript", "Tailwind CSS", "Framer Motion"],
+      live: "https://taskflow-dashboard-delta.vercel.app/",
+      github: "https://github.com/MohamedSayed212/taskflow-dashboard",
+    },
+
     {
       title: "Movie App",
       description:
@@ -29,7 +78,7 @@ function Projects() {
         "A responsive personal portfolio built with React and Tailwind CSS to showcase my projects, skills, and contact information.",
       image: portfolioImage,
       tech: ["React", "Tailwind CSS"],
-      live: "https://personal-portfolio-omega-nine-78.vercel.app",
+      live: "https://mohamed-sayed-nine-78.vercel.app/",
       github: "https://github.com/MohamedSayed212/Personal-Portfolio",
     },
   ];

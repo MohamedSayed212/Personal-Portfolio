@@ -18,17 +18,17 @@ import SectionAnimation from "./SectionAnimation";
 
 function Skills() {
   const skills = [
+    { name: "React", icon: <FaReact /> },
+    { name: "Next.js", icon: <SiNextdotjs /> },
+    { name: "JavaScript", icon: <FaJs /> },
+    { name: "TypeScript", icon: <SiTypescript /> },
     { name: "HTML", icon: <FaHtml5 /> },
     { name: "CSS", icon: <FaCss3Alt /> },
-    { name: "JavaScript", icon: <FaJs /> },
-    { name: "React", icon: <FaReact /> },
+    { name: "Supabase", icon: <SiSupabase /> },
     { name: "Tailwind CSS", icon: <SiTailwindcss /> },
+    { name: "Framer Motion", icon: <SiFramer /> },
     { name: "Git", icon: <FaGitAlt /> },
     { name: "GitHub", icon: <FaGithub /> },
-    { name: "Next.js", icon: <SiNextdotjs /> },
-    { name: "TypeScript", icon: <SiTypescript /> },
-    { name: "Supabase", icon: <SiSupabase /> },
-    { name: "Framer Motion", icon: <SiFramer /> },
   ];
 
   return (
