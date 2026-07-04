@@ -68,7 +68,7 @@ function Header() {
         {/* ================= DESKTOP CV BUTTON ================= */}
         {/* Hidden on mobile, shown on md+ */}
         <a
-          href="/Mohamed_Sayed_Junior_Frontend_Developer_Resume.pdf"
+          href="/Mohamed-Sayed-Junior-Frontend-Developer-Resume.pdf"
           download
           className="hidden rounded-2xl border border-neutral-600 px-3 py-2 text-sm text-secondary 
           transition duration-200 hover:bg-white/20 hover:text-white 
