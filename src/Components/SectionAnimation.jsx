@@ -8,7 +8,10 @@ function SectionAnimation({ children, id, className = "" }) {
       initial={{ opacity: 0, y: 60 }}
       whileInView={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6, ease: "easeOut" }}
-      viewport={{ once: true, amount: 0.2 }}
+      // `amount` is a ratio of the ELEMENT, so a section taller than 5x the
+      // viewport can never reach 0.2 and would stay stuck at opacity 0.
+      // Trigger off the viewport instead: fire once the top edge passes 85%.
+      viewport={{ once: true, amount: "some", margin: "0px 0px -15% 0px" }}
     >
       {children}
     </motion.section>

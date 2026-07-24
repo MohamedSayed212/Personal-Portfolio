@@ -1,6 +1,6 @@
 import ecommerceImage from "../assets/E-Commerce.png";
 import movieImage from "../assets/Movie-APP.png";
-import portfolioImage from "../assets/Personal-Portfolio.png";
+import RealState from "../assets/RealState.png";
 import cafeImage from "../assets/cafe-image.png";
 import gymImage from "../assets/gym-image.png";
 import taskflowImage from "../assets/TaskDashboard.png";
@@ -39,6 +39,15 @@ function Projects() {
       github: "https://github.com/MohamedSayed212/cafe",
     },
     {
+      title: "Real State",
+      description:
+        "A modern real estate web application built with Next.js, JavaScript, Tailwind CSS, and Framer Motion. Features include responsive design, multilingual support (EN/AR), property search, filtering, sorting, and smooth animations for an engaging user experience.",
+      image: RealState,
+      tech: ["Next.js", "JavaScript", "Tailwind CSS", "Framer Motion"],
+      live: "https://real-state-iota-wheat.vercel.app/",
+      github: "https://github.com/MohamedSayed212/real-state",
+    },
+    {
       title: "Gym Website",
       description:
         "Responsive gym website built with Next.js, TypeScript, and Tailwind CSS, featuring a reservation system, menu and category management, an admin dashboard with user authentication, dark mode, and Arabic/English localization. Built with reusable, type-safe components and Framer Motion animations, integrating Supabase for authentication, data storage, and CRUD operations.",
@@ -71,15 +80,6 @@ function Projects() {
       tech: ["React", "Tailwind CSS", "API"],
       live: "https://movie-app-liart-kappa-13.vercel.app/",
       github: "https://github.com/MohamedSayed212/Movie-App",
-    },
-    {
-      title: "Personal Portfolio",
-      description:
-        "A responsive personal portfolio built with React and Tailwind CSS to showcase my projects, skills, and contact information.",
-      image: portfolioImage,
-      tech: ["React", "Tailwind CSS"],
-      live: "https://mohamed-sayed-nine-78.vercel.app/",
-      github: "https://github.com/MohamedSayed212/Personal-Portfolio",
     },
   ];
 

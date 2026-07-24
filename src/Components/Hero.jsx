@@ -1,7 +1,10 @@
-import heroPortrait from "../assets/hero-portrait.png";
+import heroImage from "../assets/hero-image.png";
 import { FaGithub, FaLinkedin } from "react-icons/fa";
+import { motion } from "framer-motion";
 
 function Hero() {
+  const hover = { scale: 1.02, transition: { duration: 0.4, ease: "easeOut" } };
+
   return (
     <section
       id="home"
@@ -13,13 +16,16 @@ function Hero() {
           {/* MOBILE IMAGE */}
           <div className="mb-9 flex justify-center lg:hidden">
             <div className="relative w-[210px] sm:w-[230px] md:w-[210px]">
-              {/* glow (stronger + smoother) */}
-              <div className="absolute -inset-4 rounded-[32px] bg-white/10 opacity-25 blur-3xl" />
+              {/* ambient radial glow */}
+              <div
+                aria-hidden="true"
+                className="pointer-events-none absolute -inset-x-8 -inset-y-6 rounded-full bg-[radial-gradient(circle_at_50%_40%,#6366f1_0%,#a855f7_42%,transparent_70%)] opacity-20 blur-[80px]"
+              />
 
               {/* card */}
-              <div className="relative overflow-hidden rounded-[26px] border border-white/10 bg-[#111] p-1 shadow-xl shadow-black/40">
+              <div className="relative overflow-hidden rounded-[30px] border border-white/10  p-1 shadow-[0_18px_40px_-12px_rgba(0,0,0,0.9),0_0_35px_-12px_rgba(139,92,246,0.3)]">
                 <img
-                  src={heroPortrait}
+                  src={heroImage}
                   alt="Mohamed portrait"
                   className="
           h-[180px] w-full
@@ -92,12 +98,16 @@ function Hero() {
 
         {/* DESKTOP IMAGE */}
         <div className="hidden w-full max-w-[420px] lg:block">
-          <div className="relative">
-            <div className="absolute -inset-6 rounded-[40px] bg-white/10 opacity-20 blur-3xl" />
+          <motion.div className="group relative" whileHover={hover}>
+            {/* ambient radial glow */}
+            <div
+              aria-hidden="true"
+              className="pointer-events-none absolute -inset-x-12 -inset-y-10 rounded-full bg-[radial-gradient(circle_at_50%_42%,#6366f1_0%,#a855f7_42%,transparent_70%)] opacity-20 blur-[110px] transition-opacity duration-500 group-hover:opacity-[0.3]"
+            />
 
-            <div className="relative overflow-hidden rounded-[32px] border border-white/10 bg-[#0f0f0f] shadow-2xl shadow-black/40">
+            <div className="relative overflow-hidden rounded-[36px] border border-white/10  shadow-[0_35px_70px_-20px_rgba(0,0,0,0.9),0_0_60px_-18px_rgba(139,92,246,0.35)] transition-shadow duration-500 group-hover:shadow-[0_45px_85px_-20px_rgba(0,0,0,0.95),0_0_80px_-16px_rgba(139,92,246,0.5)]">
               <img
-                src={heroPortrait}
+                src={heroImage}
                 alt="Mohamed portrait"
                 className="
                   h-[500px] w-full
@@ -107,7 +117,7 @@ function Hero() {
                 "
               />
             </div>
-          </div>
+          </motion.div>
         </div>
       </div>
     </section>
