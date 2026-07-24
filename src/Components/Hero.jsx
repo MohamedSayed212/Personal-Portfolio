@@ -42,7 +42,7 @@ function Hero() {
 
           {/* BADGE */}
           <span className="mb-5 inline-block rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm font-semibold text-white sm:text-base">
-            Front-End Developer • React
+            Front-End Developer • React | Next.js
           </span>
 
           {/* TITLE */}
@@ -53,8 +53,8 @@ function Hero() {
           {/* TEXT */}
           <p className="mx-auto mt-5   max-w-[720px] text-base leading-relaxed text-gray-400 sm:text-lg md:text-xl lg:mx-0">
             I build responsive interfaces with clean design, smooth UX, and
-            <span className="font-semibold text-white"> React</span>-based
-            applications.
+            <span className="font-semibold text-white"> React | Next.js</span>
+            -based applications.
           </p>
 
           {/* BUTTONS */}
