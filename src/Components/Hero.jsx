@@ -86,18 +86,22 @@ function Hero() {
               href="https://github.com/MohamedSayed212"
               target="_blank"
               rel="noopener noreferrer"
+              aria-label="Mohamed Elsayed on GitHub"
+              title="GitHub"
               className="flex h-12 w-12 items-center justify-center rounded-full border border-white/10 bg-white/5 text-gray-400 transition hover:bg-white/10 hover:text-white"
             >
-              <FaGithub size={23} />
+              <FaGithub size={23} aria-hidden="true" />
             </a>
 
             <a
               href="https://www.linkedin.com/in/mohamed-sayed-dev/"
               target="_blank"
               rel="noopener noreferrer"
+              aria-label="Mohamed Elsayed on LinkedIn"
+              title="LinkedIn"
               className="flex h-12 w-12 items-center justify-center rounded-full border border-white/10 bg-white/5 text-gray-400 transition hover:bg-white/10 hover:text-white"
             >
-              <FaLinkedin size={23} />
+              <FaLinkedin size={23} aria-hidden="true" />
             </a>
           </div>
         </div>
@@ -114,7 +118,7 @@ function Hero() {
             <div className="relative overflow-hidden rounded-[36px] border border-white/10  shadow-[0_35px_70px_-20px_rgba(0,0,0,0.9),0_0_60px_-18px_rgba(139,92,246,0.35)] transition-shadow duration-500 group-hover:shadow-[0_45px_85px_-20px_rgba(0,0,0,0.95),0_0_80px_-16px_rgba(139,92,246,0.5)]">
               <Image
                 src={heroImage}
-                alt="Mohamed portrait"
+                alt="Mohamed Elsayed (Mohamed Sayed), Front-End Developer"
                 priority
                 sizes="420px"
                 className="

@@ -26,10 +26,10 @@ function About() {
 
           <div className="mb-6 w-full rounded-3xl border border-white/10 bg-white/5 p-5 sm:mb-8 sm:p-8">
             <p className="text-base leading-7 text-gray-400 sm:text-lg sm:leading-8">
-              I’m a self-taught front-end developer specializing in React and
-              modern UI development. I build responsive, user-friendly web
-              applications with a strong focus on clean design and smooth user
-              experience.
+              I’m Mohamed Elsayed (also known as Mohamed Sayed), a self-taught
+              front-end developer specializing in React and modern UI
+              development. I build responsive, user-friendly web applications
+              with a strong focus on clean design and smooth user experience.
             </p>
 
             <p className="mt-4 text-base leading-7 text-gray-400 sm:text-lg sm:leading-8">
