@@ -47,24 +47,15 @@ function Contact() {
       {/* ================= SECTION ================= */}
       <section
         id="contact"
-        className=" xs:px-5 sm:py-10 md:mt-[20px] md:mb-[20px] "
+        className=" xs:px-5 sm:py-5 md:mt-[10px] md:mb-[20px] "
       >
         {/* ================= CONTAINER ================= */}
         <div className="mx-auto w-full max-w-[1320px] px-4 sm:px-6 md:px-8">
           {/* ================= HEADER ================= */}
-          <div className="mb-10 max-w-2xl  sm:mb-12 text-left">
+          <div className="mb-4 max-w-2xl  sm:mb-6 text-left">
             <span className="mb-4 inline-block rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm font-medium text-white sm:px-5">
               Contact
             </span>
-
-            <h2 className="text-3xl font-bold text-white sm:text-4xl md:text-5xl">
-              Let’s work together
-            </h2>
-
-            <p className="mt-4 text-base text-gray-400 sm:text-lg">
-              Have a project in mind or just want to connect? I’m open to remote
-              opportunities.
-            </p>
           </div>
 
           {/* ================= MAIN GRID ================= */}

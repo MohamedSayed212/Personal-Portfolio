@@ -12,7 +12,7 @@ function About() {
 
   return (
     <SectionAnimation>
-      <section id="about" className="py-16 xs:px-3 sm:py-20 md:py-24 xl:py-28">
+      <section id="about" className="py-14 xs:px-3 sm:py-20 md:py-24 xl:py-24">
         <div className="mx-auto w-full px-4 sm:px-6 md:px-8 xl:max-w-[1180px] 2xl:max-w-[1320px]">
           <div className="mb-10  sm:mb-12 text-left">
             <span className="mb-4 inline-block rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm font-medium text-white sm:px-5">
