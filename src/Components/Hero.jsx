@@ -29,7 +29,7 @@ function Hero() {
               <div className="relative overflow-hidden rounded-[30px] border border-white/10  p-1 shadow-[0_18px_40px_-12px_rgba(0,0,0,0.9),0_0_35px_-12px_rgba(139,92,246,0.3)]">
                 <Image
                   src={heroImage}
-                  alt="Mohamed portrait"
+                  alt="Mohamed Elsayed (Mohamed Sayed), Front-End Developer"
                   priority
                   sizes="230px"
                   className="
@@ -52,12 +52,14 @@ function Hero() {
 
           {/* TITLE */}
           <h1 className="mx-auto max-w-[720px] text-[34px] font-bold leading-[1.08] text-white sm:text-5xl md:text-[58px] lg:mx-0 lg:text-6xl xl:text-7xl">
-            Building clean, modern web experiences.
+            Mohamed Elsayed — building clean, modern web experiences.
           </h1>
 
           {/* TEXT */}
           <p className="mx-auto mt-5   max-w-[720px] text-base leading-relaxed text-gray-400 sm:text-lg md:text-xl lg:mx-0">
-            I build responsive interfaces with clean design, smooth UX, and
+            I’m Mohamed Elsayed Ramdan — also known as Mohamed Sayed — a
+            front-end developer building responsive interfaces with clean
+            design, smooth UX, and
             <span className="font-semibold text-white"> React | Next.js</span>
             -based applications.
           </p>
