@@ -1,3 +1,5 @@
+"use client";
+
 import { motion } from "framer-motion";
 
 function SectionAnimation({ children, id, className = "" }) {
@@ -5,7 +7,7 @@ function SectionAnimation({ children, id, className = "" }) {
     <motion.section
       id={id}
       className={className}
-      initial={{ opacity: 0, y: 60 }}
+      initial={{ opacity: 0, y: 40 }}
       whileInView={{ opacity: 1, y: 0 }}
       transition={{ duration: 0.6, ease: "easeOut" }}
       // `amount` is a ratio of the ELEMENT, so a section taller than 5x the

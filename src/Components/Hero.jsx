@@ -1,3 +1,6 @@
+"use client";
+
+import Image from "next/image";
 import heroImage from "../assets/hero-image.png";
 import { FaGithub, FaLinkedin } from "react-icons/fa";
 import { motion } from "framer-motion";
@@ -24,9 +27,11 @@ function Hero() {
 
               {/* card */}
               <div className="relative overflow-hidden rounded-[30px] border border-white/10  p-1 shadow-[0_18px_40px_-12px_rgba(0,0,0,0.9),0_0_35px_-12px_rgba(139,92,246,0.3)]">
-                <img
+                <Image
                   src={heroImage}
                   alt="Mohamed portrait"
+                  priority
+                  sizes="230px"
                   className="
           h-[180px] w-full
           object-cover
@@ -106,9 +111,11 @@ function Hero() {
             />
 
             <div className="relative overflow-hidden rounded-[36px] border border-white/10  shadow-[0_35px_70px_-20px_rgba(0,0,0,0.9),0_0_60px_-18px_rgba(139,92,246,0.35)] transition-shadow duration-500 group-hover:shadow-[0_45px_85px_-20px_rgba(0,0,0,0.95),0_0_80px_-16px_rgba(139,92,246,0.5)]">
-              <img
+              <Image
                 src={heroImage}
                 alt="Mohamed portrait"
+                priority
+                sizes="420px"
                 className="
                   h-[500px] w-full
                   object-cover

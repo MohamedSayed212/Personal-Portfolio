@@ -1,3 +1,5 @@
+"use client";
+
 import { useState } from "react";
 import { FaBars, FaTimes } from "react-icons/fa";
 
@@ -30,9 +32,9 @@ function Header() {
         {/* ================= LEFT SIDE ================= */}
         <div className="flex items-center justify-between gap-3">
           {/* Logo / Brand */}
-          <h1 className="shrink-0 text-base font-bold tracking-wide text-secondary sm:text-lg lg:text-xl">
+          <span className="shrink-0 text-base font-bold tracking-wide text-secondary sm:text-lg lg:text-xl">
             Mohamed<span className="text-neutral-300">.dev</span>
-          </h1>
+          </span>
 
           {/* ================= MOBILE MENU BUTTON ================= */}
           {/* Visible only on small screens */}
@@ -96,7 +98,7 @@ function Header() {
 
             {/* CV button (mobile) */}
             <a
-              href="/Mohamed-CV.pdf"
+              href="/Mohamed-Sayed-Junior-Frontend-Developer-Resume.pdf"
               download
               onClick={() => setIsMenuOpen(false)}
               className="mt-1 rounded-xl border border-neutral-600 px-3 py-3 text-center text-sm font-semibold text-secondary 

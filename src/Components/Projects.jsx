@@ -4,6 +4,7 @@ import RealState from "../assets/RealState.png";
 import cafeImage from "../assets/cafe-image.png";
 import gymImage from "../assets/gym-image.png";
 import taskflowImage from "../assets/TaskDashboard.png";
+import Image from "next/image";
 import SectionAnimation from "./SectionAnimation";
 
 function Projects() {
@@ -85,7 +86,10 @@ function Projects() {
 
   return (
     <SectionAnimation>
-      <section id="projects" className="py-14 xs:px-3 sm:py-16 lg:py-24">
+      <section
+        id="projects"
+        className=" py-10 sm:py-14 xs:px-3 sm:py-16 lg:py-24"
+      >
         <div className="mx-auto w-full max-w-[1320px] px-4 sm:px-6 md:px-8">
           {/* Header */}
           <div className="mb-9  sm:mb-12 text-left lg:mb-16">
@@ -112,9 +116,10 @@ function Projects() {
               >
                 {/* Project image */}
                 <div className="overflow-hidden">
-                  <img
+                  <Image
                     src={project.image}
                     alt={project.title}
+                    sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                     className="aspect-video w-full object-cover object-top transition duration-300 group-hover:scale-105"
                   />
                 </div>

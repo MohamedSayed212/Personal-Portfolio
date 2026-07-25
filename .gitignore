@@ -4,6 +4,12 @@ node_modules/
 # production build
 dist/
 
+# next.js
+.next/
+out/
+next-env.d.ts
+.vercel
+
 # local env files
 .env
 .env.local
