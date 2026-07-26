@@ -41,16 +41,7 @@ function Header() {
           {/* WhatsApp (primary) stays visible in the collapsed bar — never buried
               in the menu — next to the menu toggle. */}
           <div className="flex items-center gap-2 md:hidden">
-            <a
-              href={WHATSAPP_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label={WHATSAPP_ARIA}
-              className="inline-flex h-11 items-center gap-2 rounded-xl bg-white px-3 text-sm font-semibold text-black transition hover:opacity-90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/70"
-            >
-              <FaWhatsapp size={18} aria-hidden="true" />
-              WhatsApp
-            </a>
+           
 
             <button
               type="button"
@@ -85,17 +76,7 @@ function Header() {
         {/* ================= DESKTOP ACTIONS ================= */}
         {/* WhatsApp = primary CTA, Download CV = secondary. Shown from md+. */}
         <div className="hidden items-center gap-3 md:flex">
-          <a
-            href={WHATSAPP_URL}
-            target="_blank"
-            rel="noopener noreferrer"
-            aria-label={WHATSAPP_ARIA}
-            className="inline-flex items-center gap-2 rounded-2xl bg-white px-4 py-2 text-sm font-semibold text-black transition hover:opacity-90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/70 lg:text-base"
-          >
-            <FaWhatsapp size={18} aria-hidden="true" />
-            WhatsApp
-          </a>
-
+        
           <a
             href="/MohamedElSayed-CV.pdf"
             download
