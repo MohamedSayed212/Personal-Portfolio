@@ -2,10 +2,10 @@
 // <link rel="manifest"> tag is injected automatically by this file convention).
 export default function manifest() {
   return {
-    name: "Mohamed Elsayed (Mohamed Sayed) — Front-End Developer",
+    name: "Mohamed ElSayed  — Front-End Developer",
     short_name: "Mohamed Elsayed",
     description:
-      "Portfolio of Mohamed Elsayed (Mohamed Sayed), a front-end developer specializing in React, Next.js, and Tailwind CSS.",
+      "Portfolio of Mohamed ElSayed , a front-end developer specializing in React, Next.js, and Tailwind CSS.",
     start_url: "/",
     scope: "/",
     display: "standalone",

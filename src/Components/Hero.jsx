@@ -52,13 +52,13 @@ function Hero() {
 
           {/* TITLE */}
           <h1 className="mx-auto max-w-[720px]  font-bold leading-[1.23] lg:leading-[1.26] xl:leading-[1.22] 2xl:leading-[1.2] text-white sm:text-5xl md:text-[58px] lg:mx-0 lg:text-4xl xl:text-5xl 2xl:text-6xl ">
-            Mohamed Elsayed — building clean, modern web experiences.
+            Mohamed ElSayed — building clean, modern web experiences.
           </h1>
 
           {/* TEXT */}
           <p className="mx-auto mt-5   max-w-[720px] text-base leading-relaxed text-gray-400 sm:text-lg md:text-xl lg:mx-0">
-            I’m Mohamed Elsayed a front-end developer building responsive
-            interfaces with clean design, smooth UX, and
+            I’m Mohamed Elsayed Ramadan a front-end developer building
+            responsive interfaces with clean design, smooth UX, and
             <span className="font-semibold text-white"> React | Next.js</span>
             -based applications.
           </p>
