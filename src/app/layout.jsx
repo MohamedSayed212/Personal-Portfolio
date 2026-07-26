@@ -46,8 +46,8 @@ export const metadata = {
     "Next.js Developer",
   ],
   authors: [{ name: "Mohamed Elsayed Ramdan", url: SITE_URL }],
-  creator: "Mohamed Elsayed",
-  publisher: "Mohamed Elsayed",
+  creator: "Mohamed ElSayed",
+  publisher: "Mohamed ElSayed",
   category: "technology",
   alternates: {
     canonical: "/",
@@ -72,7 +72,7 @@ export const metadata = {
     type: "website",
     url: SITE_URL,
     siteName: SITE_NAME,
-    title: "Mohamed Elsayed (Mohamed Sayed) — Front-End Developer",
+    title: "Mohamed ElSayed  — Web Developer",
     description:
       "Portfolio of Mohamed ElSayed, a front-end developer specializing in React, Next.js, and Tailwind CSS.",
     locale: "en_US",
@@ -81,13 +81,13 @@ export const metadata = {
         url: portrait.src,
         width: portrait.width,
         height: portrait.height,
-        alt: "Mohamed Elsayed (Mohamed Sayed), Front-End Developer",
+        alt: "Mohamed ElSayed - Web Developer",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Mohamed Elsayed (Mohamed Sayed) — Front-End Developer",
+    title: "Mohamed ElSayed  — Web Developer",
     description:
       "Portfolio of Mohamed Elsayed (also known as Mohamed Sayed), a front-end developer specializing in React, Next.js, and Tailwind CSS.",
     images: [portrait.src],
