@@ -55,7 +55,7 @@ function Hero() {
 
           {/* TITLE */}
           <h1 className="mx-auto max-w-[720px]  font-bold leading-[1.23] lg:leading-[1.26] xl:leading-[1.22] 2xl:leading-[1.2] text-white sm:text-5xl md:text-[58px] lg:mx-0 lg:text-4xl xl:text-5xl 2xl:text-6xl ">
-            Mohamed ElSayed — building clean, modern web experiences.
+            Mohamed ElSayed Front-End Developer.
           </h1>
 
           {/* TEXT */}
