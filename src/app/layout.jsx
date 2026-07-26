@@ -30,11 +30,11 @@ export const metadata = {
   metadataBase: new URL(SITE_URL),
   applicationName: SITE_NAME,
   title: {
-    default: "Mohamed Elsayed (Mohamed Sayed) — Front-End Developer",
-    template: "%s | Mohamed Elsayed",
+    default: "Mohamed ElSayed — Front-End Developer",
+    template: "%s | Mohamed ElSayed",
   },
   description:
-    "Portfolio of Mohamed Elsayed (also known as Mohamed Sayed), a front-end developer specializing in React, Next.js, and Tailwind CSS — building clean, responsive, and modern web applications.",
+    "Portfolio of Mohamed ElSayed, a front-end developer specializing in React, Next.js, and Tailwind CSS — building clean, responsive, and modern web applications.",
   keywords: [
     ...NAME_VARIANTS,
     "Mohamed Elsayed Frontend Developer",
@@ -74,7 +74,7 @@ export const metadata = {
     siteName: SITE_NAME,
     title: "Mohamed Elsayed (Mohamed Sayed) — Front-End Developer",
     description:
-      "Portfolio of Mohamed Elsayed (also known as Mohamed Sayed), a front-end developer specializing in React, Next.js, and Tailwind CSS.",
+      "Portfolio of Mohamed ElSayed, a front-end developer specializing in React, Next.js, and Tailwind CSS.",
     locale: "en_US",
     images: [
       {
@@ -156,7 +156,7 @@ const structuredData = {
       name: SITE_NAME,
       alternateName: "Mohamed Elsayed Portfolio",
       description:
-        "Portfolio of Mohamed Elsayed (Mohamed Sayed) — a front-end developer specializing in React, Next.js, and Tailwind CSS.",
+        "Portfolio of Mohamed ElSayed — a front-end developer specializing in React, Next.js, and Tailwind CSS.",
       inLanguage: "en",
       publisher: { "@id": PERSON_ID },
       author: { "@id": PERSON_ID },
@@ -165,7 +165,7 @@ const structuredData = {
       "@type": "ProfilePage",
       "@id": PROFILE_ID,
       url: SITE_URL,
-      name: "Mohamed Elsayed (Mohamed Sayed) — Front-End Developer",
+      name: "Mohamed ElSayed — Front-End Developer",
       isPartOf: { "@id": WEBSITE_ID },
       about: { "@id": PERSON_ID },
       mainEntity: { "@id": PERSON_ID },

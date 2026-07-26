@@ -26,10 +26,10 @@ function About() {
 
           <div className="mb-6 w-full rounded-3xl border border-white/10 bg-white/5 p-5 sm:mb-8 sm:p-8">
             <p className="text-base leading-7 text-gray-400 sm:text-lg sm:leading-8">
-              I’m Mohamed Elsayed (also known as Mohamed Sayed), a self-taught
-              front-end developer specializing in React and modern UI
-              development. I build responsive, user-friendly web applications
-              with a strong focus on clean design and smooth user experience.
+              I’m Mohamed ElSayed Ramdan, a self-taught front-end developer
+              specializing in React and modern UI development. I build
+              responsive, user-friendly web applications with a strong focus on
+              clean design and smooth user experience.
             </p>
 
             <p className="mt-4 text-base leading-7 text-gray-400 sm:text-lg sm:leading-8">
@@ -37,12 +37,6 @@ function About() {
               platform, a movie application, and this portfolio, working with
               APIs, reusable components, dynamic interfaces, and responsive
               layouts.
-            </p>
-
-            <p className="mt-4 text-base leading-7 text-gray-400 sm:text-lg sm:leading-8">
-              Currently, I’m improving my JavaScript, React, and problem-solving
-              skills while focusing on building production-ready applications
-              that are clean, scalable, and easy to use.
             </p>
           </div>
 
