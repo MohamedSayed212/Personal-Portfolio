@@ -2,8 +2,9 @@
 
 import Image from "next/image";
 import heroImage from "../assets/hero-image.png";
-import { FaGithub, FaLinkedin } from "react-icons/fa";
+import { FaGithub, FaLinkedin, FaWhatsapp } from "react-icons/fa";
 import { motion } from "framer-motion";
+import { WHATSAPP_URL, WHATSAPP_ARIA } from "../constants/contact";
 
 function Hero() {
   const hover = { scale: 1.02, transition: { duration: 0.4, ease: "easeOut" } };
@@ -68,17 +69,21 @@ function Hero() {
           {/* BUTTONS */}
           <div className="mx-auto mt-7 grid w-full  max-w-[720px] grid-cols-2 gap-3 lg:mx-0">
             <a
-              href="#projects"
-              className="rounded-xl bg-white px-6 py-3.5 text-center text-base font-semibold text-black transition hover:opacity-90"
+              href={WHATSAPP_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label={WHATSAPP_ARIA}
+              className="flex items-center justify-center gap-2 rounded-xl bg-white px-4 py-3.5 text-center text-sm font-semibold leading-tight text-black transition hover:opacity-90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/70 sm:px-6 sm:text-base"
             >
-              View Projects
+              <FaWhatsapp size={20} aria-hidden="true" className="shrink-0" />
+              Message on WhatsApp
             </a>
 
             <a
-              href="#contact"
-              className="rounded-xl border border-white/20 px-6 py-3.5 text-center text-base font-semibold text-white transition hover:bg-white/10"
+              href="#projects"
+              className="flex items-center justify-center rounded-xl border border-white/20 px-4 py-3.5 text-center text-sm font-semibold text-white transition hover:bg-white/10 sm:px-6 sm:text-base"
             >
-              Contact Me
+              View Projects
             </a>
           </div>
 

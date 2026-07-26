@@ -1,0 +1,67 @@
+"use client";
+
+import { useEffect, useState } from "react";
+import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
+import { FaWhatsapp } from "react-icons/fa";
+import { WHATSAPP_URL, WHATSAPP_ARIA } from "../constants/contact";
+
+// Floating WhatsApp action, mobile-focused. Appears once the user scrolls past
+// the hero, and hides while the Contact section is on screen (redundant there).
+function WhatsAppFloat() {
+  const reduceMotion = useReducedMotion();
+  const [scrolledPastHero, setScrolledPastHero] = useState(false);
+  const [contactInView, setContactInView] = useState(false);
+
+  // Show after ~400px of scroll.
+  useEffect(() => {
+    const onScroll = () => setScrolledPastHero(window.scrollY > 400);
+    onScroll();
+    window.addEventListener("scroll", onScroll, { passive: true });
+    return () => window.removeEventListener("scroll", onScroll);
+  }, []);
+
+  // Hide when the Contact section is visible.
+  useEffect(() => {
+    const el = document.getElementById("contact");
+    if (!el) return;
+    const observer = new IntersectionObserver(
+      ([entry]) => setContactInView(entry.isIntersecting),
+      { threshold: 0.15 },
+    );
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
+
+  const visible = scrolledPastHero && !contactInView;
+
+  // Reduced motion → fade only (no scale).
+  const enter = reduceMotion
+    ? { initial: { opacity: 0 }, animate: { opacity: 1 }, exit: { opacity: 0 } }
+    : {
+        initial: { opacity: 0, scale: 0.8 },
+        animate: { opacity: 1, scale: 1 },
+        exit: { opacity: 0, scale: 0.8 },
+      };
+
+  return (
+    <AnimatePresence>
+      {visible && (
+        <motion.a
+          href={WHATSAPP_URL}
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label={WHATSAPP_ARIA}
+          initial={enter.initial}
+          animate={enter.animate}
+          exit={enter.exit}
+          transition={{ duration: 0.25, ease: "easeOut" }}
+          className="fixed bottom-5 right-5 z-40 flex h-14 w-14 items-center justify-center rounded-full bg-white text-black shadow-[0_10px_30px_-8px_rgba(0,0,0,0.7)] transition hover:opacity-90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/70 focus-visible:ring-offset-2 focus-visible:ring-offset-[#121212]"
+        >
+          <FaWhatsapp size={26} aria-hidden="true" />
+        </motion.a>
+      )}
+    </AnimatePresence>
+  );
+}
+
+export default WhatsAppFloat;

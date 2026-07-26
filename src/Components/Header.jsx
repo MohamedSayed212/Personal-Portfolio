@@ -1,7 +1,8 @@
 "use client";
 
 import { useState } from "react";
-import { FaBars, FaTimes } from "react-icons/fa";
+import { FaBars, FaTimes, FaWhatsapp } from "react-icons/fa";
+import { WHATSAPP_URL, WHATSAPP_ARIA } from "../constants/contact";
 
 function Header() {
   // ================= STATE =================
@@ -36,19 +37,33 @@ function Header() {
             Mohamed<span className="text-neutral-300">.dev</span>
           </span>
 
-          {/* ================= MOBILE MENU BUTTON ================= */}
-          {/* Visible only on small screens */}
-          <button
-            type="button"
-            aria-label="Toggle navigation menu"
-            aria-expanded={isMenuOpen}
-            onClick={() => setIsMenuOpen((open) => !open)}
-            className="element-center h-10 w-10 rounded-xl border border-neutral-600 text-secondary 
-            transition duration-200 hover:bg-white/10 hover:text-white md:hidden"
-          >
-            {/* Toggle icon */}
-            {isMenuOpen ? <FaTimes /> : <FaBars />}
-          </button>
+          {/* ================= MOBILE ACTIONS ================= */}
+          {/* WhatsApp (primary) stays visible in the collapsed bar — never buried
+              in the menu — next to the menu toggle. */}
+          <div className="flex items-center gap-2 md:hidden">
+            <a
+              href={WHATSAPP_URL}
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label={WHATSAPP_ARIA}
+              className="inline-flex h-11 items-center gap-2 rounded-xl bg-white px-3 text-sm font-semibold text-black transition hover:opacity-90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/70"
+            >
+              <FaWhatsapp size={18} aria-hidden="true" />
+              WhatsApp
+            </a>
+
+            <button
+              type="button"
+              aria-label="Toggle navigation menu"
+              aria-expanded={isMenuOpen}
+              onClick={() => setIsMenuOpen((open) => !open)}
+              className="element-center h-11 w-11 rounded-xl border border-neutral-600 text-secondary
+              transition duration-200 hover:bg-white/10 hover:text-white"
+            >
+              {/* Toggle icon */}
+              {isMenuOpen ? <FaTimes /> : <FaBars />}
+            </button>
+          </div>
         </div>
 
         {/* ================= DESKTOP NAVIGATION ================= */}
@@ -67,17 +82,29 @@ function Header() {
           ))}
         </nav>
 
-        {/* ================= DESKTOP CV BUTTON ================= */}
-        {/* Hidden on mobile, shown on md+ */}
-        <a
-          href="/MohamedElSayed-CV.pdf"
-          download
-          className="hidden rounded-2xl border border-neutral-600 px-3 py-2 text-sm text-secondary 
-          transition duration-200 hover:bg-white/20 hover:text-white 
-          md:inline-block lg:px-4 lg:text-base"
-        >
-          Download CV
-        </a>
+        {/* ================= DESKTOP ACTIONS ================= */}
+        {/* WhatsApp = primary CTA, Download CV = secondary. Shown from md+. */}
+        <div className="hidden items-center gap-3 md:flex">
+          <a
+            href={WHATSAPP_URL}
+            target="_blank"
+            rel="noopener noreferrer"
+            aria-label={WHATSAPP_ARIA}
+            className="inline-flex items-center gap-2 rounded-2xl bg-white px-4 py-2 text-sm font-semibold text-black transition hover:opacity-90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/70 lg:text-base"
+          >
+            <FaWhatsapp size={18} aria-hidden="true" />
+            WhatsApp
+          </a>
+
+          <a
+            href="/MohamedElSayed-CV.pdf"
+            download
+            className="rounded-2xl border border-neutral-600 px-3 py-2 text-sm text-secondary
+            transition duration-200 hover:bg-white/20 hover:text-white lg:px-4 lg:text-base"
+          >
+            Download CV
+          </a>
+        </div>
 
         {/* ================= MOBILE NAVIGATION ================= */}
         {/* Only shown when menu is open */}

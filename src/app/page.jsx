@@ -5,6 +5,7 @@ import Skills from "../Components/Skills";
 import About from "../Components/About";
 import Contact from "../Components/Contact";
 import Footer from "../Components/Footer";
+import WhatsAppFloat from "../Components/WhatsAppFloat";
 
 export default function Page() {
   return (
@@ -18,6 +19,7 @@ export default function Page() {
         <Contact />
       </main>
       <Footer />
+      <WhatsAppFloat />
     </>
   );
 }

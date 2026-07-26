@@ -1,4 +1,5 @@
-import { FaGithub, FaLinkedin, FaEnvelope } from "react-icons/fa";
+import { FaGithub, FaLinkedin, FaEnvelope, FaWhatsapp } from "react-icons/fa";
+import { WHATSAPP_URL, WHATSAPP_ARIA } from "../constants/contact";
 
 const CONTACT_EMAIL = "mohamedsayed.dev01@gmail.com";
 const GITHUB_URL = "https://github.com/MohamedSayed212";
@@ -58,6 +59,16 @@ function Footer() {
               Connect
             </h2>
             <div className="flex gap-3 md:justify-end">
+              <a
+                href={WHATSAPP_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label={WHATSAPP_ARIA}
+                title="WhatsApp"
+                className="flex h-11 w-11 items-center justify-center rounded-full border border-white/10 bg-white/5 text-gray-400 transition hover:bg-white/10 hover:text-white focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/70"
+              >
+                <FaWhatsapp size={20} aria-hidden="true" />
+              </a>
               <a
                 href={GITHUB_URL}
                 target="_blank"

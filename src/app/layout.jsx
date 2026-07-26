@@ -1,6 +1,7 @@
 import "../App.css";
 import "../index.css";
 import portrait from "../assets/hero-image.png";
+import { WHATSAPP_INTL } from "../constants/contact";
 
 const SITE_URL = "https://mohamedcoding.com";
 const SITE_NAME = "Mohamed ElSayed";
@@ -30,10 +31,11 @@ export const metadata = {
   alternates: {
     canonical: "/",
   },
-  formatDetection: {
-    email: false,
-    address: false,
-    telephone: false,
+  // NOTE: Next's `formatDetection` maps every present key to "=no", so it cannot
+  // emit "telephone=yes". Set the directive explicitly so iOS keeps phone numbers
+  // tappable, while leaving address/email auto-detection off.
+  other: {
+    "format-detection": "telephone=yes, address=no, email=no",
   },
   robots: {
     index: true,
@@ -104,6 +106,14 @@ const structuredData = {
       description:
         "Web developer in Cairo, Egypt who builds custom websites and e-commerce stores with React, Next.js, and Tailwind CSS.",
       email: `mailto:${CONTACT_EMAIL}`,
+      telephone: WHATSAPP_INTL,
+      contactPoint: {
+        "@type": "ContactPoint",
+        telephone: WHATSAPP_INTL,
+        contactType: "customer service",
+        areaServed: "Worldwide",
+        availableLanguage: ["Arabic", "English"],
+      },
       knowsAbout: [
         "React",
         "Next.js",

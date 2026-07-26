@@ -2,9 +2,15 @@
 
 import { useRef, useState } from "react";
 import emailjs from "@emailjs/browser";
-import { FaGithub, FaLinkedin, FaEnvelope } from "react-icons/fa";
+import { FaGithub, FaLinkedin, FaEnvelope, FaWhatsapp, FaPhone } from "react-icons/fa";
 import { FaLocationDot } from "react-icons/fa6";
 import SectionAnimation from "./SectionAnimation";
+import {
+  WHATSAPP_URL,
+  WHATSAPP_TEL,
+  WHATSAPP_DISPLAY,
+  WHATSAPP_ARIA,
+} from "../constants/contact";
 
 const CONTACT_EMAIL = "mohamedsayed.dev01@gmail.com";
 const GITHUB_URL = "https://github.com/MohamedSayed212";
@@ -64,6 +70,34 @@ function Contact() {
           <div className="grid gap-6 md:gap-8 lg:grid-cols-2">
             {/* ================= LEFT SIDE ================= */}
             <div className="space-y-5">
+              {/* WHATSAPP CARD — fastest path, shown before everything else */}
+              <div className="rounded-2xl border border-white/10 bg-white/5 p-5">
+                <p className="text-sm text-gray-400">WhatsApp</p>
+
+                <a
+                  href={WHATSAPP_URL}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  aria-label={WHATSAPP_ARIA}
+                  className="mt-3 flex items-center justify-center gap-2 rounded-xl bg-white px-4 py-3 text-sm font-semibold text-black transition hover:opacity-90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/70 sm:text-base"
+                >
+                  <FaWhatsapp size={20} aria-hidden="true" className="shrink-0" />
+                  Message on WhatsApp
+                </a>
+
+                <a
+                  href={WHATSAPP_TEL}
+                  className="mt-3 flex items-center gap-3 rounded text-base font-semibold text-white hover:text-gray-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/70"
+                >
+                  <FaPhone className="text-gray-400" aria-hidden="true" />
+                  {WHATSAPP_DISPLAY}
+                </a>
+
+                <p className="mt-2 text-xs text-gray-500">
+                  Fastest way to reach me
+                </p>
+              </div>
+
               {/* EMAIL CARD */}
               <div className="rounded-2xl border border-white/10 bg-white/5 p-5">
                 <p className="text-sm text-gray-400">Email</p>
