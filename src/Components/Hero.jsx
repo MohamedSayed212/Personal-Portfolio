@@ -18,7 +18,7 @@ function Hero() {
         <div className="w-full max-w-2xl  text-left">
           {/* MOBILE IMAGE */}
           <div className="mb-9 flex justify-center lg:hidden">
-            <div className="relative w-[210px] sm:w-[230px] md:w-[210px]">
+            <div className="relative w-[230px] sm:w-[250px] md:w-[260px]">
               {/* ambient radial glow */}
               <div
                 aria-hidden="true"
@@ -29,16 +29,19 @@ function Hero() {
               <div className="relative overflow-hidden rounded-[30px] border border-white/10  p-1 shadow-[0_18px_40px_-12px_rgba(0,0,0,0.9),0_0_35px_-12px_rgba(139,92,246,0.3)]">
                 <Image
                   src={heroImage}
-                  alt="Mohamed Elsayed (Mohamed Sayed), Front-End Developer"
+                  quality={100}
+                  alt="Mohamed ElSayed (Mohamed Sayed), FrontEnd Developer"
                   priority
                   sizes="230px"
                   className="
           h-[180px] w-full
           object-cover
-          scale-125        /* zoom */
+          scale-150       /* zoom */
           -translate-y-2   /* better face position */
-          sm:h-[200px]
-          md:h-[180px]
+      
+          h-[235px]
+          sm:h-[250px]
+          md:h-[260px]
         "
                 />
               </div>
@@ -120,11 +123,12 @@ function Hero() {
                 src={heroImage}
                 alt="Mohamed Elsayed (Mohamed Sayed), Front-End Developer"
                 priority
+                quality={100}
                 sizes="420px"
                 className="
                   h-[500px] w-full
                   object-cover
-                  scale-110         /* slight zoom */
+                  scale-125         /* slight zoom */
                   -translate-y-2    /* adjust */
                 "
               />
