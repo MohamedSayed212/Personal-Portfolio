@@ -2,12 +2,12 @@ import SectionAnimation from "./SectionAnimation";
 
 function About() {
   const tags = [
-    "React",
-    "JavaScript",
-    "REST APIs",
-    "Responsive UI",
-    "Git & GitHub",
-    "Remote-ready",
+    "E-Commerce",
+    "Custom Design",
+    "Admin Dashboards",
+    "Responsive",
+    "Arabic & English",
+    "Fast Delivery",
   ];
 
   return (
@@ -20,16 +20,17 @@ function About() {
             </span>
 
             <h2 className="mx-auto max-w-4xl text-2xl font-bold leading-tight text-white sm:text-3xl md:mx-0 md:text-4xl lg:text-5xl">
-              Front-End Developer building clean, responsive React applications.
+              Web developer building custom websites and e-commerce stores for
+              brands and businesses.
             </h2>
           </div>
 
           <div className="mb-6 w-full rounded-3xl border border-white/10 bg-white/5 p-5 sm:mb-8 sm:p-8">
             <p className="text-base leading-7 text-gray-400 sm:text-lg sm:leading-8">
-              I’m Mohamed ElSayed Ramdan, a self-taught front-end developer
-              specializing in React and modern UI development. I build
-              responsive, user-friendly web applications with a strong focus on
-              clean design and smooth user experience.
+              I’m Mohamed ElSayed, a web developer based in Cairo, Egypt. I
+              build fast, custom websites and e-commerce stores for brands and
+              small businesses — with clean design, smooth performance, and
+              interfaces that are easy to use.
             </p>
 
             <p className="mt-4 text-base leading-7 text-gray-400 sm:text-lg sm:leading-8">
@@ -42,15 +43,13 @@ function About() {
 
           <div className="w-full rounded-3xl border border-white/10 bg-white/5 p-5 sm:p-8">
             <h3 className="mb-4 text-xl font-bold text-white sm:text-2xl">
-              What I’m looking for
+              What I Build
             </h3>
 
             <p className="text-base leading-7 text-gray-400 sm:text-lg sm:leading-8">
-              I’m seeking a remote front-end developer role where I can
-              contribute to building modern, user-focused web applications using
-              React. I’m comfortable working with real-world projects, APIs,
-              Git, GitHub, and continuously improving my skills to deliver clean
-              and scalable solutions.
+              I build custom websites and e-commerce stores from scratch for
+              brands and small businesses — no templates, no page builders. You
+              get full control over design, performance, and functionality.
             </p>
 
             <div className="mt-6 flex flex-wrap gap-3">

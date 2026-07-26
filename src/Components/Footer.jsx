@@ -24,12 +24,12 @@ function Footer() {
           {/* Brand + short bio */}
           <div className="max-w-sm">
             <p className="text-lg font-bold text-white">
-              Mohamed Elsayed
-              <span className="text-neutral-400"> — Front-End Developer</span>
+              Mohamed ElSayed
+              <span className="text-neutral-400"> — Web Developer</span>
             </p>
             <p className="mt-3 text-sm leading-6 text-gray-400">
-              Front-end developer specializing in React, Next.js, and Tailwind
-              CSS, building clean, responsive, and modern web applications.
+              Web developer building custom websites and e-commerce stores with
+              React, Next.js, and Tailwind CSS.
             </p>
           </div>
 
@@ -62,7 +62,7 @@ function Footer() {
                 href={GITHUB_URL}
                 target="_blank"
                 rel="noopener noreferrer"
-                aria-label="Mohamed Elsayed on GitHub"
+                aria-label="Mohamed ElSayed on GitHub"
                 title="GitHub"
                 className="flex h-11 w-11 items-center justify-center rounded-full border border-white/10 bg-white/5 text-gray-400 transition hover:bg-white/10 hover:text-white"
               >
@@ -72,7 +72,7 @@ function Footer() {
                 href={LINKEDIN_URL}
                 target="_blank"
                 rel="noopener noreferrer"
-                aria-label="Mohamed Elsayed on LinkedIn"
+                aria-label="Mohamed ElSayed on LinkedIn"
                 title="LinkedIn"
                 className="flex h-11 w-11 items-center justify-center rounded-full border border-white/10 bg-white/5 text-gray-400 transition hover:bg-white/10 hover:text-white"
               >
@@ -80,7 +80,7 @@ function Footer() {
               </a>
               <a
                 href={`mailto:${CONTACT_EMAIL}`}
-                aria-label="Email Mohamed Elsayed"
+                aria-label="Email Mohamed ElSayed"
                 title="Email"
                 className="flex h-11 w-11 items-center justify-center rounded-full border border-white/10 bg-white/5 text-gray-400 transition hover:bg-white/10 hover:text-white"
               >
@@ -91,8 +91,7 @@ function Footer() {
         </div>
 
         <div className="mt-10 border-t border-white/10 pt-6 text-center text-sm text-gray-500 md:text-left">
-          © {year} Mohamed Elsayed (Mohamed Sayed). Built with Next.js &amp;
-          Tailwind CSS.
+          © {year} Mohamed ElSayed. Built with Next.js &amp; Tailwind CSS.
         </div>
       </div>
     </footer>

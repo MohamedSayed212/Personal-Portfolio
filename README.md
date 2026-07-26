@@ -1,4 +1,4 @@
-# Mohamed Sayed - Personal Portfolio
+# Mohamed ElSayed - Personal Portfolio
 
 This is my personal portfolio website built to showcase my frontend development skills, projects, and experience.
 

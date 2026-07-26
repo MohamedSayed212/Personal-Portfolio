@@ -1,6 +1,6 @@
 import ecommerceImage from "../assets/E-Commerce.png";
 import movieImage from "../assets/Movie-APP.png";
-import RealState from "../assets/RealState.png";
+import RealEstate from "../assets/RealEstate.png";
 import cafeImage from "../assets/cafe-image.png";
 import gymImage from "../assets/gym-image.png";
 import taskflowImage from "../assets/TaskDashboard.png";
@@ -40,10 +40,10 @@ function Projects() {
       github: "https://github.com/MohamedSayed212/cafe",
     },
     {
-      title: "Real State",
+      title: "Real Estate",
       description:
         "A modern real estate web application built with Next.js, JavaScript, Tailwind CSS, and Framer Motion. Features include responsive design, multilingual support (EN/AR), property search, filtering, sorting, and smooth animations for an engaging user experience.",
-      image: RealState,
+      image: RealEstate,
       tech: ["Next.js", "JavaScript", "Tailwind CSS", "Framer Motion"],
       live: "https://real-state-iota-wheat.vercel.app/",
       github: "https://github.com/MohamedSayed212/real-state",
@@ -118,7 +118,7 @@ function Projects() {
                 <div className="overflow-hidden">
                   <Image
                     src={project.image}
-                    alt={project.title}
+                    alt={`${project.title} — website built by Mohamed ElSayed`}
                     sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                     className="aspect-video w-full object-cover object-top transition duration-300 group-hover:scale-105"
                   />

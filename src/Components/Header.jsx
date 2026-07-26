@@ -70,7 +70,7 @@ function Header() {
         {/* ================= DESKTOP CV BUTTON ================= */}
         {/* Hidden on mobile, shown on md+ */}
         <a
-          href="/Mohamed-Sayed-Junior-Frontend-Developer-Resume.pdf"
+          href="/MohamedElSayed-CV.pdf"
           download
           className="hidden rounded-2xl border border-neutral-600 px-3 py-2 text-sm text-secondary 
           transition duration-200 hover:bg-white/20 hover:text-white 
@@ -98,7 +98,7 @@ function Header() {
 
             {/* CV button (mobile) */}
             <a
-              href="/Mohamed-Sayed-Junior-Frontend-Developer-Resume.pdf"
+              href="/MohamedElSayed-CV.pdf"
               download
               onClick={() => setIsMenuOpen(false)}
               className="mt-1 rounded-xl border border-neutral-600 px-3 py-3 text-center text-sm font-semibold text-secondary 

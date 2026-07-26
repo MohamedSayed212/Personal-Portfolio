@@ -29,8 +29,8 @@ function Hero() {
               <div className="relative overflow-hidden rounded-[30px] border border-white/10  p-1 shadow-[0_18px_40px_-12px_rgba(0,0,0,0.9),0_0_35px_-12px_rgba(139,92,246,0.3)]">
                 <Image
                   src={heroImage}
-                  quality={100}
-                  alt="Mohamed ElSayed (Mohamed Sayed), FrontEnd Developer"
+                  quality={80}
+                  alt="Mohamed ElSayed, Web Developer"
                   priority
                   sizes="230px"
                   className="
@@ -50,7 +50,7 @@ function Hero() {
 
           {/* BADGE */}
           <span className="mb-5 inline-block rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm font-semibold text-white sm:text-base">
-            Front-End Developer • React | Next.js
+            Web Developer • React | Next.js
           </span>
 
           {/* TITLE */}
@@ -60,10 +60,9 @@ function Hero() {
 
           {/* TEXT */}
           <p className="mx-auto mt-5   max-w-[720px] text-base leading-relaxed text-gray-400 sm:text-lg md:text-xl lg:mx-0">
-            I’m Mohamed Elsayed Ramadan a Web developer building responsive
-            interfaces with clean design, smooth UX, and
-            <span className="font-semibold text-white"> React | Next.js</span>
-            -based applications.
+            I’m Mohamed ElSayed, a web developer who builds custom websites and
+            e-commerce stores with clean design, smooth UX, and
+            <span className="font-semibold text-white"> React | Next.js</span>.
           </p>
 
           {/* BUTTONS */}
@@ -89,7 +88,7 @@ function Hero() {
               href="https://github.com/MohamedSayed212"
               target="_blank"
               rel="noopener noreferrer"
-              aria-label="Mohamed Elsayed on GitHub"
+              aria-label="Mohamed ElSayed on GitHub"
               title="GitHub"
               className="flex h-12 w-12 items-center justify-center rounded-full border border-white/10 bg-white/5 text-gray-400 transition hover:bg-white/10 hover:text-white"
             >
@@ -100,7 +99,7 @@ function Hero() {
               href="https://www.linkedin.com/in/mohamed-sayed-dev/"
               target="_blank"
               rel="noopener noreferrer"
-              aria-label="Mohamed Elsayed on LinkedIn"
+              aria-label="Mohamed ElSayed on LinkedIn"
               title="LinkedIn"
               className="flex h-12 w-12 items-center justify-center rounded-full border border-white/10 bg-white/5 text-gray-400 transition hover:bg-white/10 hover:text-white"
             >
@@ -121,9 +120,8 @@ function Hero() {
             <div className="relative overflow-hidden rounded-[36px] border border-white/10  shadow-[0_35px_70px_-20px_rgba(0,0,0,0.9),0_0_60px_-18px_rgba(139,92,246,0.35)] transition-shadow duration-500 group-hover:shadow-[0_45px_85px_-20px_rgba(0,0,0,0.95),0_0_80px_-16px_rgba(139,92,246,0.5)]">
               <Image
                 src={heroImage}
-                alt="Mohamed Elsayed (Mohamed Sayed), Front-End Developer"
-                priority
-                quality={100}
+                alt="Mohamed ElSayed, Web Developer"
+                quality={80}
                 sizes="420px"
                 className="
                   h-[500px] w-full
