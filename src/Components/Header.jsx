@@ -78,7 +78,7 @@ function Header() {
         <div className="hidden items-center gap-3 md:flex">
         
           <a
-            href="/MohamedElSayed-CV.pdf"
+            href="/Mohamed-Sayed-Junior-Frontend-Developer-Resume.pdf"
             download
             className="rounded-2xl border border-neutral-600 px-3 py-2 text-sm text-secondary
             transition duration-200 hover:bg-white/20 hover:text-white lg:px-4 lg:text-base"
@@ -106,7 +106,7 @@ function Header() {
 
             {/* CV button (mobile) */}
             <a
-              href="/MohamedElSayed-CV.pdf"
+              href="/Mohamed-Sayed-Junior-Frontend-Developer-Resume.pdf"
               download
               onClick={() => setIsMenuOpen(false)}
               className="mt-1 rounded-xl border border-neutral-600 px-3 py-3 text-center text-sm font-semibold text-secondary 

@@ -128,7 +128,7 @@ function Contact() {
                   href={GITHUB_URL}
                   target="_blank"
                   rel="noopener noreferrer"
-                  aria-label="Mohamed ElSayed on GitHub"
+                  aria-label="Mohamed Elsayed on GitHub"
                   className="flex items-center justify-center gap-2 rounded-2xl border border-white/10 bg-white/5 px-4 py-4 text-white transition hover:-translate-y-[1px] hover:bg-white/10"
                 >
                   <FaGithub aria-hidden="true" />
@@ -139,7 +139,7 @@ function Contact() {
                   href={LINKEDIN_URL}
                   target="_blank"
                   rel="noopener noreferrer"
-                  aria-label="Mohamed ElSayed on LinkedIn"
+                  aria-label="Mohamed Elsayed on LinkedIn"
                   className="flex items-center justify-center gap-2 rounded-2xl border border-white/10 bg-white/5 px-4 py-4 text-white transition hover:-translate-y-[1px] hover:bg-white/10"
                 >
                   <FaLinkedin aria-hidden="true" />
