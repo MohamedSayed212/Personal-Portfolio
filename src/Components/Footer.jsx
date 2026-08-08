@@ -25,12 +25,16 @@ function Footer() {
           {/* Brand + short bio */}
           <div className="max-w-sm">
             <p className="text-lg font-bold text-white">
-              Mohamed Elsayed
-              <span className="text-neutral-400"> — Front-End Developer</span>
+              Mohamed Coding
+              <span className="text-neutral-400">
+                {" "}
+                — Mohamed Elsayed, Front-End Developer
+              </span>
             </p>
             <p className="mt-3 text-sm leading-6 text-gray-400">
-              Front-end developer specializing in React, Next.js, and Tailwind
-              CSS, building clean, responsive, and modern web applications.
+              Mohamed Coding is the portfolio of Mohamed Elsayed, a front-end
+              developer specializing in React, Next.js, and Tailwind CSS,
+              building clean, responsive, and modern web applications.
             </p>
           </div>
 

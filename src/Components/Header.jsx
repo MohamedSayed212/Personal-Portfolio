@@ -32,10 +32,15 @@ function Header() {
       >
         {/* ================= LEFT SIDE ================= */}
         <div className="flex items-center justify-between gap-3">
-          {/* Logo / Brand */}
-          <span className="shrink-0 text-base font-bold tracking-wide text-secondary sm:text-lg lg:text-xl">
-            Mohamed<span className="text-neutral-300">.dev</span>
-          </span>
+          {/* Logo / Brand — matches the domain (mohamedcoding.com) so the brand
+              name exists as real, crawlable text, not just in metadata. */}
+          <a
+            href="#home"
+            aria-label="Mohamed Coding — home"
+            className="shrink-0 text-base font-bold tracking-wide text-secondary sm:text-lg lg:text-xl"
+          >
+            Mohamed<span className="text-neutral-300"> Coding</span>
+          </a>
 
           {/* ================= MOBILE ACTIONS ================= */}
           {/* WhatsApp (primary) stays visible in the collapsed bar — never buried
