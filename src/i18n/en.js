@@ -52,7 +52,6 @@ const en = {
     // src/lib/stats.js, never typed in here.
     stats: {
       projects: "Projects",
-      liveDemos: "Live demos",
       technologies: "Technologies",
     },
     statsNote: "Counted from the projects below — every one is live and open source.",

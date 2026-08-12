@@ -17,6 +17,7 @@ import { WHATSAPP_URL } from "../constants/contact";
 import { heroStats } from "../lib/stats";
 import ProjectTicker from "./ProjectTicker";
 import BackgroundGrid from "./BackgroundGrid";
+import ParticleField from "./ParticleField";
 
 const GITHUB_URL = "https://github.com/MohamedSayed212";
 const LINKEDIN_URL = "https://www.linkedin.com/in/mohamed-sayed-dev/";
@@ -59,6 +60,10 @@ function Hero({ t, tickerItems }) {
       {/* Depth comes from a receding grid plane rather than glowing blobs. */}
       <BackgroundGrid />
 
+      {/* Particles drift in front of the grid; their parallax layers and its
+          perspective read as one scene with depth. */}
+      <ParticleField />
+
       {/* One faint, near-neutral wash so the top of the section isn't flat. */}
       <div
         aria-hidden="true"
@@ -73,7 +78,7 @@ function Hero({ t, tickerItems }) {
           {/* STATUS BADGE */}
           <div
             style={step(0)}
-            className={`${REVEAL} mb-6 inline-flex flex-wrap items-center gap-x-3 gap-y-1 rounded-full border border-accent/25 bg-accent/[0.07] px-4 py-2`}
+            className={`${REVEAL} mb-7 inline-flex flex-wrap items-center gap-x-3 gap-y-1 rounded-full border border-accent/25 bg-accent/[0.07] px-4 py-2`}
           >
             <span className="inline-flex items-center gap-2 text-sm font-semibold text-accent-soft">
               <LiveDot />
@@ -85,7 +90,7 @@ function Hero({ t, tickerItems }) {
           {/* TITLE */}
           <h1
             style={step(1)}
-            className={`${REVEAL} text-4xl font-bold leading-[1.15] text-white sm:text-5xl md:text-6xl lg:text-5xl xl:text-6xl`}
+            className={`${REVEAL} text-4xl font-bold leading-[1.14] text-white sm:text-5xl md:text-6xl lg:text-6xl xl:text-7xl`}
           >
             {t.greeting}{" "}
             <span className="text-accent">
@@ -96,7 +101,7 @@ function Hero({ t, tickerItems }) {
           {/* ROLE */}
           <p
             style={step(2)}
-            className={`${REVEAL} mt-4 text-xl font-semibold text-secondary sm:text-2xl`}
+            className={`${REVEAL} mt-5 text-xl font-semibold text-secondary sm:text-2xl lg:text-3xl`}
           >
             {t.role}
           </p>
@@ -104,7 +109,7 @@ function Hero({ t, tickerItems }) {
           {/* INTRO */}
           <p
             style={step(3)}
-            className={`${REVEAL} mt-4 max-w-[620px] text-base leading-relaxed text-gray-400 sm:text-lg`}
+            className={`${REVEAL} mt-5 max-w-[560px] text-base leading-relaxed text-gray-400 sm:text-lg lg:text-xl`}
           >
             {t.intro}
           </p>
@@ -112,7 +117,7 @@ function Hero({ t, tickerItems }) {
           {/* AVAILABILITY */}
           <p
             style={step(4)}
-            className={`${REVEAL} mt-3 max-w-[620px] text-base font-semibold text-white sm:text-lg`}
+            className={`${REVEAL} mt-5 max-w-[560px] text-base font-semibold text-white sm:text-lg lg:text-xl`}
           >
             {t.availability}
           </p>
@@ -120,7 +125,7 @@ function Hero({ t, tickerItems }) {
           {/* BUTTONS */}
           <div
             style={step(5)}
-            className={`${REVEAL} mt-7 grid w-full max-w-[620px] grid-cols-2 gap-3`}
+            className={`${REVEAL} mt-9 grid w-full max-w-[560px] grid-cols-2 gap-3`}
           >
             <a
               href={WHATSAPP_URL}
@@ -141,7 +146,7 @@ function Hero({ t, tickerItems }) {
           </div>
 
           {/* SOCIAL */}
-          <div style={step(6)} className={`${REVEAL} mt-6 flex gap-4`}>
+          <div style={step(6)} className={`${REVEAL} mt-8 flex gap-4`}>
             <a
               href={GITHUB_URL}
               target="_blank"
@@ -172,11 +177,18 @@ function Hero({ t, tickerItems }) {
           className={`${REVEAL} order-1 mx-auto w-full max-w-[420px] lg:order-2 lg:max-w-none`}
         >
           <div className="group relative">
-            {/* Barely-there wash behind the card so it separates from the
-                background. Lifts slightly on hover. */}
+            {/* Light behind the portrait, in two layers.
+                A wide coloured spill sets the ambience, and a tighter, nearly
+                white core sits right behind the figure — one flat blur reads as
+                fog, whereas a bright centre falling off into colour reads as an
+                actual light source. Both lift on hover. */}
             <div
               aria-hidden="true"
-              className="pointer-events-none absolute -inset-8 rounded-[44px] bg-[radial-gradient(circle_at_50%_35%,#7aa2f7_0%,transparent_65%)] opacity-[0.09] blur-[80px] transition-opacity duration-500 group-hover:opacity-[0.16]"
+              className="pointer-events-none absolute -inset-10 rounded-[52px] bg-[radial-gradient(circle_at_50%_38%,#7aa2f7_0%,#7aa2f7_28%,transparent_70%)] opacity-[0.26] blur-[90px] transition-opacity duration-500 group-hover:opacity-[0.38]"
+            />
+            <div
+              aria-hidden="true"
+              className="pointer-events-none absolute inset-x-[12%] top-[8%] h-[46%] rounded-full bg-[radial-gradient(ellipse,#dce8ff_0%,#7aa2f7_45%,transparent_72%)] opacity-[0.22] blur-[70px] transition-opacity duration-500 group-hover:opacity-[0.32]"
             />
 
             {/* Plain hairline border. A glowing gradient edge was the most
@@ -201,25 +213,33 @@ function Hero({ t, tickerItems }) {
 
                 {/* Portrait.
                     The source is a near-full-body cut-out with roughly a fifth
-                    of the frame empty above the head, so `object-top` used to
-                    crop into dead space. Instead the zoom origin is set to the
-                    FACE (50% across, 30% down) — scaling around that point
-                    keeps the face fixed while the empty margins push out of
-                    frame, giving a head-and-torso crop. */}
-                <div className="relative overflow-hidden">
-                  <Image
-                    src={heroImage}
-                    alt={t.imageAlt}
-                    priority
-                    quality={100}
-                    // `sizes` must account for the 1.45x CSS zoom below.
-                    // Next picks a source width from `sizes` alone — it cannot
-                    // see transforms, so requesting the layout width (~420px)
-                    // meant a 420px file was being blown up to ~610px on
-                    // screen. These values are the layout width x1.45.
-                    sizes="(max-width: 992px) 640px, 70vw"
-                    className="h-[340px] w-full origin-[50%_30%] scale-[1.45] object-cover transition-transform duration-700 ease-out group-hover:scale-[1.52] motion-reduce:transition-none motion-reduce:group-hover:scale-[1.45] sm:h-[400px] lg:h-[460px]"
-                  />
+                    of the frame empty above the head, so the crop has to zoom
+                    past that dead space to land on head-and-torso.
+
+                    That zoom is done with LAYOUT (an inner box 145% wider than
+                    the frame) rather than `scale()`. A CSS transform scales the
+                    already-rasterised element, so the browser was painting at
+                    the 628px layout width and then stretching those pixels to
+                    ~910px — the single biggest cause of the softness. Sizing
+                    the element up instead makes the browser lay it out, request
+                    it, and rasterise it at the real displayed size. */}
+                <div className="relative h-[340px] overflow-hidden sm:h-[400px] lg:h-[460px]">
+                  <div className="absolute inset-y-0 left-[-22.5%] w-[145%] transition-transform duration-700 ease-out group-hover:scale-[1.05] motion-reduce:transition-none motion-reduce:group-hover:scale-100 lg:left-[-9%] lg:w-[118%]">
+                    <Image
+                      src={heroImage}
+                      alt={t.imageAlt}
+                      fill
+                      priority
+                      quality={100}
+                      // Sized so the browser lands on the largest variant the
+                      // source can produce (1940px) at every common DPR —
+                      // including a 1x desktop, which otherwise settles for
+                      // 1080w. Combined with the gentler lg zoom below, this is
+                      // what raises the effective resolution on big screens.
+                      sizes="(max-width: 992px) 768px, 1300px"
+                      className="object-cover object-[50%_44%]"
+                    />
+                  </div>
 
                   {/* Fades the photo into the ticker strip below it. */}
                   <div
@@ -235,9 +255,8 @@ function Hero({ t, tickerItems }) {
           </div>
 
           {/* STATS — values counted from the real project list, not typed in. */}
-          <div className="mt-10 grid grid-cols-3 gap-3">
+          <div className="mt-10 grid grid-cols-2 gap-3">
             <Stat value={heroStats.projects} label={t.stats.projects} />
-            <Stat value={heroStats.liveDemos} label={t.stats.liveDemos} />
             <Stat value={heroStats.technologies} label={t.stats.technologies} />
           </div>
 

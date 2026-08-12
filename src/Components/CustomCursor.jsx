@@ -1,7 +1,7 @@
 "use client";
 
 import { useEffect, useState } from "react";
-import { motion, useMotionValue, useSpring, useReducedMotion } from "framer-motion";
+import { motion, useMotionValue, useReducedMotion } from "framer-motion";
 
 // Circular cursor: a single ring that follows the pointer on a spring and
 // expands over anything interactive.
@@ -28,9 +28,8 @@ function CustomCursor() {
   const x = useMotionValue(-100);
   const y = useMotionValue(-100);
 
-  // Enough give to feel animated, tight enough to stay under the pointer.
-  const ringX = useSpring(x, { stiffness: 550, damping: 34, mass: 0.35 });
-  const ringY = useSpring(y, { stiffness: 550, damping: 34, mass: 0.35 });
+  // No spring: the dot is bound straight to the pointer values so it sits
+  // exactly under the cursor with zero lag. (A spring here read as delay.)
 
   useEffect(() => {
     if (reduceMotion) return;
@@ -67,7 +66,7 @@ function CustomCursor() {
   return (
     <motion.div
       aria-hidden="true"
-      style={{ x: ringX, y: ringY }}
+      style={{ x, y }}
       className="pointer-events-none fixed left-0 top-0 z-[100] hidden lg:block"
     >
       {/* Small solid dot with a soft halo around it.
@@ -77,7 +76,7 @@ function CustomCursor() {
       <motion.div
         animate={{ scale: isOverLink ? 2.2 : 1 }}
         transition={{ duration: 0.22, ease: "easeOut" }}
-        className="h-5 w-5 -translate-x-1/2 -translate-y-1/2 rounded-full bg-accent shadow-[0_0_16px_4px_rgba(122,162,247,0.4)]"
+        className="h-3.5 w-3.5 -translate-x-1/2 -translate-y-1/2 rounded-full bg-accent shadow-[0_0_14px_3px_rgba(122,162,247,0.4)]"
       />
     </motion.div>
   );

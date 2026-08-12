@@ -12,7 +12,13 @@ function About({ t }) {
             {t.badge}
           </span>
 
-          <h2 className="mx-auto max-w-4xl text-2xl font-bold leading-tight text-white sm:text-3xl md:mx-0 md:text-4xl lg:text-5xl">
+          {/* Line-height is set at EVERY breakpoint on purpose. Tailwind's
+              `text-*` utilities ship a line-height of their own (text-5xl is
+              1.0), so a single unprefixed `leading-relaxed` gets overridden the
+              moment `md:text-4xl` / `lg:text-5xl` kick in — which is why the
+              two lines were nearly touching. Arabic also needs more room than
+              Latin here: Cairo's ascenders and descenders are taller. */}
+          <h2 className="mx-auto max-w-4xl text-2xl font-bold leading-[1.6] text-white sm:text-3xl sm:leading-[1.6] md:mx-0 md:text-4xl md:leading-[1.55] lg:text-5xl lg:leading-[1.5]">
             {t.title}
           </h2>
         </div>

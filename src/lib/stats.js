@@ -12,6 +12,5 @@ import { usingSkills } from "../data/skills";
 
 export const heroStats = {
   projects: projects.length,
-  liveDemos: projects.filter((project) => project.live).length,
   technologies: usingSkills.length,
 };

@@ -48,7 +48,6 @@ const ar = {
 
     stats: {
       projects: "مشاريع",
-      liveDemos: "معاينات مباشرة",
       technologies: "تقنيات",
     },
     statsNote: "محسوبة من المشاريع بالأسفل — كلها منشورة ومفتوحة المصدر.",
