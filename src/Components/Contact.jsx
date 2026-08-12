@@ -86,7 +86,7 @@ function Contact({ t }) {
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label={WHATSAPP_ARIA}
-                className="mt-3 flex items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-accent to-accent-soft px-4 py-3 text-sm font-bold text-black transition hover:opacity-90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/70 sm:text-base"
+                className="mt-3 flex items-center justify-center gap-2 rounded-xl bg-accent px-4 py-3 text-sm font-semibold text-[#0e1116] transition hover:opacity-90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/70 sm:text-base"
               >
                 <FaWhatsapp size={20} aria-hidden="true" className="shrink-0" />
                 {t.whatsappCta}
@@ -209,7 +209,7 @@ function Contact({ t }) {
             <button
               type="submit"
               disabled={isSending}
-              className="w-full rounded-xl bg-gradient-to-r from-accent to-accent-soft px-6 py-3 font-bold text-black transition hover:opacity-90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/70 disabled:opacity-60"
+              className="w-full rounded-xl bg-accent px-6 py-3 font-semibold text-[#0e1116] transition hover:opacity-90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/70 disabled:opacity-60"
             >
               {isSending ? t.form.sending : t.form.send}
             </button>

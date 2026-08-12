@@ -3,13 +3,11 @@
 // The entrance animation is CSS (`animate-reveal` + a stagger delay) rather
 // than Framer Motion. Framer renders its `initial` state into the SSR HTML as
 // inline `opacity:0`, which means the hero stays invisible until the JS bundle
-// downloads and hydrates. On a language switch — a full document load, because
-// each locale has its own root layout — that produced a long blank screen that
-// looked like the page was broken.
+// downloads and hydrates — a blank screen that looks like a broken page.
 //
-// With CSS the hero paints and animates on first frame, with no JS involved,
-// and this component ships zero client JS of its own. Only the ticker inside
-// the card is interactive, and that is its own client component.
+// With CSS the hero paints and animates on the first frame, with no JS
+// involved. The only interactive pieces are the background grid and the
+// ticker, which are their own client components.
 
 import Image from "next/image";
 import { FaGithub, FaLinkedin, FaWhatsapp } from "react-icons/fa";
@@ -18,6 +16,7 @@ import heroImage from "../assets/hero-image.png";
 import { WHATSAPP_URL } from "../constants/contact";
 import { heroStats } from "../lib/stats";
 import ProjectTicker from "./ProjectTicker";
+import BackgroundGrid from "./BackgroundGrid";
 
 const GITHUB_URL = "https://github.com/MohamedSayed212";
 const LINKEDIN_URL = "https://www.linkedin.com/in/mohamed-sayed-dev/";
@@ -42,7 +41,7 @@ function Stat({ value, label }) {
     <div className="rounded-2xl border border-white/10 bg-white/5 px-3 py-4 text-center">
       <p
         dir="ltr"
-        className="bg-gradient-to-r from-accent to-accent-soft bg-clip-text text-2xl font-bold text-transparent sm:text-3xl"
+        className="text-2xl font-bold text-accent sm:text-3xl"
       >
         {value}
       </p>
@@ -57,14 +56,15 @@ function Hero({ t, tickerItems }) {
       id="home"
       className="relative overflow-hidden pt-[140px] xs:px-3 pb-16 sm:pt-[160px] md:pt-[180px] lg:pt-[210px]"
     >
-      {/* Ambient background glow. Pure CSS: it sits behind the LCP image, so
-          driving it from JS would compete with the hero render. */}
+      {/* Depth comes from a receding grid plane rather than glowing blobs. */}
+      <BackgroundGrid />
+
+      {/* One faint, near-neutral wash so the top of the section isn't flat. */}
       <div
         aria-hidden="true"
         className="pointer-events-none absolute inset-0 overflow-hidden"
       >
-        <div className="absolute -top-40 start-1/2 h-[520px] w-[520px] -translate-x-1/2 rounded-full bg-[radial-gradient(circle,#22d3ee_0%,#34d399_45%,transparent_70%)] opacity-[0.13] blur-[130px] animate-glow-drift motion-reduce:animate-none" />
-        <div className="absolute -bottom-40 end-0 h-[420px] w-[420px] rounded-full bg-[radial-gradient(circle,#34d399_0%,transparent_70%)] opacity-[0.10] blur-[120px]" />
+        <div className="absolute -top-52 start-1/2 h-[560px] w-[860px] -translate-x-1/2 rounded-full bg-[radial-gradient(ellipse,#7aa2f7_0%,transparent_68%)] opacity-[0.07] blur-[120px]" />
       </div>
 
       <div className="relative mx-auto grid w-full max-w-[1320px] items-center gap-10 px-4 sm:px-6 md:px-8 lg:grid-cols-2 lg:gap-16">
@@ -88,7 +88,7 @@ function Hero({ t, tickerItems }) {
             className={`${REVEAL} text-4xl font-bold leading-[1.15] text-white sm:text-5xl md:text-6xl lg:text-5xl xl:text-6xl`}
           >
             {t.greeting}{" "}
-            <span className="bg-gradient-to-r from-accent via-accent-soft to-accent bg-clip-text text-transparent">
+            <span className="text-accent">
               {t.name}
             </span>
           </h1>
@@ -126,7 +126,7 @@ function Hero({ t, tickerItems }) {
               href={WHATSAPP_URL}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-accent to-accent-soft px-4 py-3.5 text-center text-sm font-bold leading-tight text-black transition hover:opacity-90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/70 sm:px-6 sm:text-base"
+              className="flex items-center justify-center gap-2 rounded-xl bg-accent px-4 py-3.5 text-center text-sm font-semibold leading-tight text-[#0e1116] transition hover:opacity-90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/70 sm:px-6 sm:text-base"
             >
               <FaWhatsapp size={20} aria-hidden="true" className="shrink-0" />
               {t.ctaWork}
@@ -172,18 +172,19 @@ function Hero({ t, tickerItems }) {
           className={`${REVEAL} order-1 mx-auto w-full max-w-[420px] lg:order-2 lg:max-w-none`}
         >
           <div className="group relative">
-            {/* Accent glow behind the card, brighter on hover. */}
+            {/* Barely-there wash behind the card so it separates from the
+                background. Lifts slightly on hover. */}
             <div
               aria-hidden="true"
-              className="pointer-events-none absolute -inset-6 rounded-[44px] bg-[radial-gradient(circle_at_50%_30%,#22d3ee_0%,#34d399_40%,transparent_70%)] opacity-[0.18] blur-[70px] transition-opacity duration-500 group-hover:opacity-[0.32]"
+              className="pointer-events-none absolute -inset-8 rounded-[44px] bg-[radial-gradient(circle_at_50%_35%,#7aa2f7_0%,transparent_65%)] opacity-[0.09] blur-[80px] transition-opacity duration-500 group-hover:opacity-[0.16]"
             />
 
-            {/* Gradient hairline border: a 1.5px gradient layer with the card
-                sitting inside it. Cheaper and crisper than border-image. */}
-            <div className="relative rounded-[30px] bg-gradient-to-br from-accent/50 via-white/10 to-accent-soft/40 p-[1.5px] shadow-[0_35px_70px_-24px_rgba(0,0,0,0.9)]">
+            {/* Plain hairline border. A glowing gradient edge was the most
+                obviously synthetic detail on the page. */}
+            <div className="relative rounded-[30px] border border-white/10 shadow-[0_30px_60px_-28px_rgba(0,0,0,0.9)]">
               {/* Inner surface is near-black to match the photo's own
                   background, so the cut-out figure has no visible seam. */}
-              <div className="overflow-hidden rounded-[29px] bg-[#0e0e0e]">
+              <div className="overflow-hidden rounded-[30px] bg-[#0e0e0e]">
                 {/* Card top bar */}
                 <div className="flex items-center justify-between border-b border-white/10 px-4 py-3">
                   <span className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-accent-soft">

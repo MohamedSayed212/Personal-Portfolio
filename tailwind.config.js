@@ -17,12 +17,16 @@ export default {
         secondary: "#d4d4d4",
         secondaryHover: "#f5f5f5",
 
-        // Cyan → emerald accent pair, used for the gradient heading, the
-        // availability dot, and focus/hover highlights.
+        // ONE accent hue, in three tints — not a two-colour gradient.
+        //
+        // A saturated purple→blue gradient running across headings and buttons
+        // is the single most recognisable "generated portfolio" tell. A calm,
+        // slightly desaturated blue used sparingly reads as a deliberate
+        // choice; the work is carried by type and spacing instead of colour.
         accent: {
-          DEFAULT: "#22d3ee", // cyan-400
-          soft: "#34d399", // emerald-400
-          deep: "#0891b2", // cyan-600, for text on light surfaces
+          DEFAULT: "#7aa2f7", // calm blue — buttons, links, highlights
+          soft: "#a3bdfa", // lighter tint — small text on dark
+          deep: "#3f5c92", // muted — borders, hairlines
         },
       },
 

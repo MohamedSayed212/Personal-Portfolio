@@ -98,7 +98,7 @@ function Projects({ t }) {
                       href={project.live}
                       target="_blank"
                       rel="noreferrer"
-                      className="whitespace-nowrap rounded-xl bg-gradient-to-r from-accent to-accent-soft px-2 py-2.5 text-center text-sm font-bold text-black transition hover:opacity-90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/70 sm:px-3 lg:px-4 lg:text-base"
+                      className="whitespace-nowrap rounded-xl bg-accent px-2 py-2.5 text-center text-sm font-semibold text-[#0e1116] transition hover:opacity-90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/70 sm:px-3 lg:px-4 lg:text-base"
                     >
                       {t.live}
                     </a>

@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useSyncExternalStore } from "react";
+import { useEffect, useState } from "react";
 
 import Header from "./Header";
 import Hero from "./Hero";
@@ -13,55 +13,20 @@ import WhatsAppFloat from "./WhatsAppFloat";
 import CustomCursor from "./CustomCursor";
 
 import { getDictionary } from "../i18n";
-import { DEFAULT_LOCALE, LOCALE_DIR, LOCALES } from "../i18n/config";
+import { DEFAULT_LOCALE, LOCALE_DIR } from "../i18n/config";
 import { projects } from "../data/projects";
-
-const STORAGE_KEY = "portfolio-locale";
-
-// The chosen language lives in localStorage so it survives a refresh.
-//
-// It is read with useSyncExternalStore rather than "useState + restore it in an
-// effect": localStorage is an external source that does not exist on the
-// server, and this hook is built exactly for that — it takes a separate server
-// snapshot (English) and re-reads on the client, with no extra render pass.
-const localeStore = {
-  listeners: new Set(),
-
-  subscribe(listener) {
-    localeStore.listeners.add(listener);
-    return () => localeStore.listeners.delete(listener);
-  },
-
-  // Client snapshot. Anything unrecognised falls back to the default so a
-  // stale or hand-edited value can never render a blank page.
-  getSnapshot() {
-    const saved = window.localStorage.getItem(STORAGE_KEY);
-    return LOCALES.includes(saved) ? saved : DEFAULT_LOCALE;
-  },
-
-  // Server snapshot — must match what the HTML is generated with.
-  getServerSnapshot() {
-    return DEFAULT_LOCALE;
-  },
-
-  set(next) {
-    window.localStorage.setItem(STORAGE_KEY, next);
-    localeStore.listeners.forEach((listener) => listener());
-  },
-};
 
 // Holds the current language for the whole page.
 //
-// Switching swaps the dictionary and re-renders in place — no navigation, no
-// document reload. State lives at the top and is passed down as props, matching
-// how the rest of the components already receive their text, so there is no
-// Context or router involved.
+// Every visit starts in English. The choice is intentionally NOT persisted:
+// the page always opens in the default language, and switching is a plain
+// state change — no navigation, no reload, no stored preference to go stale.
+//
+// State lives at the top and is passed down as props, matching how the rest of
+// the components already receive their text, so there is no Context or router
+// involved.
 function SiteShell() {
-  const locale = useSyncExternalStore(
-    localeStore.subscribe,
-    localeStore.getSnapshot,
-    localeStore.getServerSnapshot,
-  );
+  const [locale, setLocale] = useState(DEFAULT_LOCALE);
 
   // <html lang> and <html dir> are rendered by the root layout, outside this
   // tree, so they are updated imperatively. `dir` is what drives every RTL
@@ -84,7 +49,7 @@ function SiteShell() {
   return (
     <>
       <CustomCursor />
-      <Header t={t} locale={locale} onLocaleChange={localeStore.set} />
+      <Header t={t} locale={locale} onLocaleChange={setLocale} />
       <main>
         <Hero t={t.hero} tickerItems={tickerItems} />
         <Projects t={t.projects} />
