@@ -1,14 +1,3 @@
-// NOTE: this is a SERVER component on purpose.
-//
-// The entrance animation is CSS (`animate-reveal` + a stagger delay) rather
-// than Framer Motion. Framer renders its `initial` state into the SSR HTML as
-// inline `opacity:0`, which means the hero stays invisible until the JS bundle
-// downloads and hydrates — a blank screen that looks like a broken page.
-//
-// With CSS the hero paints and animates on the first frame, with no JS
-// involved. The only interactive pieces are the background grid and the
-// ticker, which are their own client components.
-
 import Image from "next/image";
 import { FaGithub, FaLinkedin, FaWhatsapp } from "react-icons/fa";
 
@@ -40,10 +29,7 @@ function LiveDot({ className = "" }) {
 function Stat({ value, label }) {
   return (
     <div className="rounded-2xl border border-white/10 bg-white/5 px-3 py-4 text-center">
-      <p
-        dir="ltr"
-        className="text-2xl font-bold text-accent sm:text-3xl"
-      >
+      <p dir="ltr" className="text-2xl font-bold text-accent sm:text-3xl">
         {value}
       </p>
       <p className="mt-1 text-xs text-gray-400 sm:text-sm">{label}</p>
@@ -57,14 +43,10 @@ function Hero({ t, tickerItems }) {
       id="home"
       className="relative overflow-hidden pt-[140px] xs:px-3 pb-16 sm:pt-[160px] md:pt-[180px] lg:pt-[210px]"
     >
-      {/* Depth comes from a receding grid plane rather than glowing blobs. */}
       <BackgroundGrid />
 
-      {/* Particles drift in front of the grid; their parallax layers and its
-          perspective read as one scene with depth. */}
       <ParticleField />
 
-      {/* One faint, near-neutral wash so the top of the section isn't flat. */}
       <div
         aria-hidden="true"
         className="pointer-events-none absolute inset-0 overflow-hidden"
@@ -92,10 +74,7 @@ function Hero({ t, tickerItems }) {
             style={step(1)}
             className={`${REVEAL} text-4xl font-bold leading-[1.14] text-white sm:text-5xl md:text-6xl lg:text-6xl xl:text-7xl`}
           >
-            {t.greeting}{" "}
-            <span className="text-accent">
-              {t.name}
-            </span>
+            {t.greeting} <span className="text-accent">{t.name}</span>
           </h1>
 
           {/* ROLE */}
@@ -224,7 +203,7 @@ function Hero({ t, tickerItems }) {
                     the element up instead makes the browser lay it out, request
                     it, and rasterise it at the real displayed size. */}
                 <div className="relative h-[340px] overflow-hidden sm:h-[400px] lg:h-[460px]">
-                  <div className="absolute inset-y-0 left-[-22.5%] w-[145%] transition-transform duration-700 ease-out group-hover:scale-[1.05] motion-reduce:transition-none motion-reduce:group-hover:scale-100 lg:left-[-9%] lg:w-[118%]">
+                  <div className="absolute inset-y-0 left-[-22.5%] w-[145%] transition-transform duration-700 ease-out group-hover:scale-[1.05] motion-reduce:transition-none motion-reduce:group-hover:scale-100">
                     <Image
                       src={heroImage}
                       alt={t.imageAlt}
@@ -232,11 +211,9 @@ function Hero({ t, tickerItems }) {
                       priority
                       quality={100}
                       // Sized so the browser lands on the largest variant the
-                      // source can produce (1940px) at every common DPR —
-                      // including a 1x desktop, which otherwise settles for
-                      // 1080w. Combined with the gentler lg zoom below, this is
-                      // what raises the effective resolution on big screens.
-                      sizes="(max-width: 992px) 768px, 1300px"
+                      // source can produce (1940px) at every common DPR, rather
+                      // than settling for 1080 on a 1x desktop.
+                      sizes="(max-width: 992px) 768px, 1100px"
                       className="object-cover object-[50%_44%]"
                     />
                   </div>

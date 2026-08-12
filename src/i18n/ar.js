@@ -1,8 +1,3 @@
-// Arabic copy. Every key here must match en.js one-for-one.
-//
-// Note: technology names (React, Next.js, Supabase...) are intentionally left in
-// Latin script — that is how Arabic-speaking developers and clients write them.
-
 const ar = {
   locale: "ar",
 
@@ -36,7 +31,7 @@ const ar = {
       "أبني تطبيقات ويب متجاوبة تركّز على المستخدم، بتصميم نظيف وتجربة استخدام سلسة — للفرق التي تبحث عن مطوّر واجهات أمامية، وللشركات التي تحتاج موقعًا يُبنى من بدايته إلى نهايته.",
 
     availability: "متاح للعمل عن بُعد ولمشاريع تطوير المواقع كمستقل.",
-    ctaWork: "اعمل معي",
+    ctaWork: "تواصل معي",
     ctaProjects: "شاهد المشاريع",
 
     imageAlt: "محمد السيد، مطوّر واجهات أمامية",
@@ -54,11 +49,11 @@ const ar = {
   },
 
   projects: {
-    badge: "مشاريعي",
-    title: "مشاريع مختارة",
+    badge: "المشاريع",
+    title: "نماذج من أعمالي",
     subtitle:
       "بعض مشاريعي بـ React مع تركيز على واجهات نظيفة وتصميم متجاوب ووظائف واقعية.",
-    live: "معاينة مباشرة",
+    live: "زيارة الموقع",
     github: "GitHub",
     items: {
       ecommerce: {
@@ -97,7 +92,8 @@ const ar = {
       },
       movie: {
         title: "تطبيق أفلام",
-        benefit: "يتيح للمستخدمين إيجاد الأفلام وبناء قائمة مشاهدة خاصة بهم في ثوانٍ.",
+        benefit:
+          "يتيح للمستخدمين إيجاد الأفلام وبناء قائمة مشاهدة خاصة بهم في ثوانٍ.",
         description:
           "تطبيق أفلام حديث بـ React يجلب بيانات حقيقية من واجهة برمجية. يشمل البحث والتصفية وقائمة المشاهدة وقائمة ما تمت مشاهدته وتصميمًا متجاوبًا.",
       },

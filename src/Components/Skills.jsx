@@ -18,6 +18,7 @@ import {
 
 import SectionAnimation from "./SectionAnimation";
 import TechMarquee from "./TechMarquee";
+import Container from "./Container";
 import { usingSkills, learningSkills } from "../data/skills";
 
 // Name → icon. The lists themselves live in src/data/skills.js so the hero can
@@ -70,9 +71,9 @@ function Skills({ t }) {
   return (
     <SectionAnimation
       id="skills"
-      className="py-16 xs:px-3 sm:py-10 md:py-10 xl:py-16"
+      className="py-16 sm:py-10 md:py-10 xl:py-16"
     >
-      <div className="mx-auto w-full px-4 sm:px-6 md:px-8 xl:max-w-[1180px] 2xl:max-w-[1320px]">
+      <Container>
         <div className="mb-8 text-start">
           <span className="mb-4 inline-block rounded-full border border-accent/25 bg-accent/[0.07] px-4 py-2 text-sm font-medium text-accent-soft sm:mb-6 sm:px-5 sm:text-base">
             {t.badge}
@@ -106,7 +107,7 @@ function Skills({ t }) {
             <SkillGrid names={learningSkills} />
           </>
         )}
-      </div>
+      </Container>
     </SectionAnimation>
   );
 }

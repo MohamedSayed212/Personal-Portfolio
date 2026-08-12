@@ -11,6 +11,7 @@ import {
 } from "react-icons/fa";
 import { FaLocationDot } from "react-icons/fa6";
 import SectionAnimation from "./SectionAnimation";
+import Container from "./Container";
 import {
   WHATSAPP_URL,
   WHATSAPP_TEL,
@@ -62,10 +63,10 @@ function Contact({ t }) {
   return (
     <SectionAnimation
       id="contact"
-      className="xs:px-5 sm:py-5 md:mt-[10px] md:mb-[20px]"
+      className="sm:py-5 md:mb-[20px] md:mt-[10px]"
     >
       {/* ================= CONTAINER ================= */}
-      <div className="mx-auto w-full max-w-[1320px] px-4 sm:px-6 md:px-8">
+      <Container>
         {/* ================= HEADER ================= */}
         <div className="mb-4 max-w-2xl text-start sm:mb-6">
           <span className="mb-4 inline-block rounded-full border border-accent/25 bg-accent/[0.07] px-4 py-2 text-sm font-medium text-accent-soft sm:px-5">
@@ -98,7 +99,14 @@ function Contact({ t }) {
                 dir="ltr"
                 className="mt-3 flex items-center gap-3 rounded text-base font-semibold text-white hover:text-gray-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/70 rtl:justify-end"
               >
-                <FaPhone className="text-gray-400" aria-hidden="true" />
+                {/* Mirrored so the handset points toward the number instead of
+                    away from it. The anchor is dir="ltr" in both languages, so
+                    the icon always sits to the left of the number and this flip
+                    is correct in Arabic too. */}
+                <FaPhone
+                  className="-scale-x-100 text-gray-400"
+                  aria-hidden="true"
+                />
                 {WHATSAPP_DISPLAY}
               </a>
 
@@ -220,7 +228,7 @@ function Contact({ t }) {
             )}
           </form>
         </div>
-      </div>
+      </Container>
     </SectionAnimation>
   );
 }

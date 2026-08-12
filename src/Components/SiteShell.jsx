@@ -52,7 +52,7 @@ function SiteShell() {
       <Header t={t} locale={locale} onLocaleChange={setLocale} />
       <main>
         <Hero t={t.hero} tickerItems={tickerItems} />
-        <Projects t={t.projects} />
+        <Projects t={t.projects} locale={locale} />
         <Skills t={t.skills} />
         <About t={t.about} />
         <Contact t={t.contact} />

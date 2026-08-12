@@ -1,5 +1,6 @@
 import { FaGithub, FaLinkedin, FaEnvelope, FaWhatsapp } from "react-icons/fa";
 import { WHATSAPP_URL, WHATSAPP_ARIA } from "../constants/contact";
+import Container from "./Container";
 
 const CONTACT_EMAIL = "mohamedsayed.dev01@gmail.com";
 const GITHUB_URL = "https://github.com/MohamedSayed212";
@@ -20,7 +21,7 @@ function Footer({ t }) {
 
   return (
     <footer className="mt-10 border-t border-white/10 bg-white/[0.02]">
-      <div className="mx-auto w-full max-w-[1320px] px-4 py-12 sm:px-6 md:px-8">
+      <Container className="py-12">
         <div className="flex flex-col gap-10 md:flex-row md:items-start md:justify-between">
           {/* Brand + short bio */}
           <div className="max-w-sm">
@@ -104,7 +105,7 @@ function Footer({ t }) {
           © {year} Mohamed Elsayed (Mohamed Sayed). {t.footer.rights}{" "}
           {t.footer.builtWith}
         </div>
-      </div>
+      </Container>
     </footer>
   );
 }

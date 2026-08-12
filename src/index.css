@@ -9,13 +9,33 @@
 }
 
 html {
-  scroll-behavior: smooth;
+  /* Offsets the fixed header for anchor jumps AND for scroll-snap landings. */
   scroll-padding-top: 150px;
+
+  /* Only the project articles carry `scroll-snap-align`, so nothing else on the
+     page is a snap target. `proximity` (not `mandatory`) means the rest of the
+     page — hero, skills, about, contact — scrolls completely normally, and the
+     projects only lock in when a scroll happens to end near one. */
+  scroll-snap-type: y proximity;
+}
+
+/* Smooth scrolling is opt-out for motion-sensitive users. Combined with snap
+   and the dot rail's jump links, unconditional smooth scrolling is exactly the
+   kind of movement `prefers-reduced-motion` exists to suppress. */
+@media (prefers-reduced-motion: no-preference) {
+  html {
+    scroll-behavior: smooth;
+  }
 }
 
 body {
   background-color: #121212;
+  /* `hidden` would promote body to a scroll container, which makes the browser
+     ignore `scroll-snap-type` on <html>. `clip` prevents the same horizontal
+     overflow without creating one; the `hidden` line stays first as a fallback
+     for browsers without `clip`. */
   overflow-x: hidden;
+  overflow-x: clip;
   /* Latin default; the RTL rule below swaps in the Arabic face. Both are
      self-hosted by next/font (see src/lib/fonts.js). */
   font-family: var(--font-latin), system-ui, sans-serif;
@@ -40,6 +60,17 @@ body {
 .has-custom-cursor textarea,
 .has-custom-cursor select {
   cursor: auto;
+}
+
+/* Belt and braces. The component already refuses to add the class without a
+   fine pointer, but if that state ever goes stale the failure mode is a touch
+   device with no cursor at all and no dot to replace it. This makes that
+   impossible from the CSS side. */
+@media (hover: none), (pointer: coarse) {
+  .has-custom-cursor,
+  .has-custom-cursor * {
+    cursor: auto;
+  }
 }
 
 @layer components {

@@ -3,6 +3,7 @@
 import { useState } from "react";
 import { FaBars, FaTimes } from "react-icons/fa";
 import LanguageSwitcher from "./LanguageSwitcher";
+import Container from "./Container";
 
 const CV_URL = "/Mohamed-Sayed-Frontend-Developer-Resume.pdf";
 
@@ -25,14 +26,22 @@ function Header({ t, locale, onLocaleChange }) {
   return (
     // ================= WRAPPER =================
     // `start-0` (not `left-0`) so the bar anchors correctly in RTL too.
-    <div className="fixed start-0 top-3 z-50 w-full px-5 sm:top-4 sm:px-5 md:px-6 lg:top-5 lg:px-[30px]">
-      {/* ================= HEADER CONTAINER ================= */}
-      <header
-        className="mx-auto w-full max-w-[1320px] rounded-2xl bg-primary p-3 shadow-lg
-        sm:rounded-[28px] sm:p-4
-        md:flex md:h-[76px] md:items-center md:justify-between md:rounded-[34px] md:px-5 md:py-0
-        lg:h-[80px] lg:px-7"
-      >
+    <div className="fixed start-0 top-3 z-50 w-full sm:top-4 lg:top-5">
+      {/* ================= HEADER CONTAINER =================
+          Gutters and max-width come from <Container>, exactly like every
+          section, so the bar's edges line up with the content beneath it. This
+          used to hand-roll `mx-auto max-w-[1320px]` plus its own gutters
+          (px-5/px-6/px-[30px]) which did not match Container's — the bar was
+          visibly wider than the page.
+          The padding on <header> itself is the BAR's inner padding, not a page
+          gutter, so it stays put. */}
+      <Container>
+        <header
+          className="w-full rounded-2xl bg-primary p-3 shadow-lg
+          sm:rounded-[28px] sm:p-4
+          md:flex md:h-[76px] md:items-center md:justify-between md:rounded-[34px] md:px-5 md:py-0
+          lg:h-[80px] lg:px-7"
+        >
         {/* ================= LEFT SIDE ================= */}
         <div className="flex items-center justify-between gap-3">
           {/* Logo / Brand — matches the domain (mohamedcoding.com) so the brand
@@ -134,7 +143,8 @@ function Header({ t, locale, onLocaleChange }) {
             </a>
           </nav>
         )}
-      </header>
+        </header>
+      </Container>
     </div>
   );
 }

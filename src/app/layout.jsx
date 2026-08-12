@@ -1,13 +1,4 @@
-// Single root layout.
-//
-// There is one <html> for the whole site, so `lang` and `dir` are set here to
-// the English defaults and then updated on the client by SiteShell when the
-// visitor switches language. That is what makes switching instant — no
-// navigation, no document reload.
-//
-// The trade-off, chosen deliberately: because there is only one URL, the
-// Arabic version is not a separately indexable page and <html lang="ar"> is
-// only correct after JS runs. Search engines see the English site.
+
 
 import "../index.css";
 

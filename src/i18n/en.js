@@ -37,7 +37,7 @@ const en = {
 
     availability:
       "Available for remote roles and freelance web development projects.",
-    ctaWork: "Work With Me",
+    ctaWork: "Contact Me",
     ctaProjects: "View Projects",
 
     imageAlt: "Mohamed ElSayed (Mohamed Sayed), Front-End Developer",
