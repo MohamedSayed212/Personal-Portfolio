@@ -7,7 +7,7 @@ import { WHATSAPP_URL, WHATSAPP_ARIA } from "../constants/contact";
 
 // Floating WhatsApp action, mobile-focused. Appears once the user scrolls past
 // the hero, and hides while the Contact section is on screen (redundant there).
-function WhatsAppFloat() {
+function WhatsAppFloat({ label }) {
   const reduceMotion = useReducedMotion();
   const [scrolledPastHero, setScrolledPastHero] = useState(false);
   const [contactInView, setContactInView] = useState(false);
@@ -50,12 +50,12 @@ function WhatsAppFloat() {
           href={WHATSAPP_URL}
           target="_blank"
           rel="noopener noreferrer"
-          aria-label={WHATSAPP_ARIA}
+          aria-label={label || WHATSAPP_ARIA}
           initial={enter.initial}
           animate={enter.animate}
           exit={enter.exit}
           transition={{ duration: 0.25, ease: "easeOut" }}
-          className="fixed bottom-5 right-5 z-40 flex h-14 w-14 items-center justify-center rounded-full bg-white text-black shadow-[0_10px_30px_-8px_rgba(0,0,0,0.7)] transition hover:opacity-90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/70 focus-visible:ring-offset-2 focus-visible:ring-offset-[#121212]"
+          className="fixed bottom-5 end-5 z-40 flex h-14 w-14 items-center justify-center rounded-full bg-white text-black shadow-[0_10px_30px_-8px_rgba(0,0,0,0.7)] transition hover:opacity-90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/70 focus-visible:ring-offset-2 focus-visible:ring-offset-[#121212]"
         >
           <FaWhatsapp size={26} aria-hidden="true" />
         </motion.a>

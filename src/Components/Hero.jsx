@@ -1,144 +1,248 @@
-"use client";
+// NOTE: this is a SERVER component on purpose.
+//
+// The entrance animation is CSS (`animate-reveal` + a stagger delay) rather
+// than Framer Motion. Framer renders its `initial` state into the SSR HTML as
+// inline `opacity:0`, which means the hero stays invisible until the JS bundle
+// downloads and hydrates. On a language switch — a full document load, because
+// each locale has its own root layout — that produced a long blank screen that
+// looked like the page was broken.
+//
+// With CSS the hero paints and animates on first frame, with no JS involved,
+// and this component ships zero client JS of its own. Only the ticker inside
+// the card is interactive, and that is its own client component.
 
 import Image from "next/image";
-import heroImage from "../assets/hero-image.png";
 import { FaGithub, FaLinkedin, FaWhatsapp } from "react-icons/fa";
-import { motion } from "framer-motion";
-import { WHATSAPP_URL, WHATSAPP_ARIA } from "../constants/contact";
 
-function Hero() {
-  const hover = { scale: 1.02, transition: { duration: 0.4, ease: "easeOut" } };
+import heroImage from "../assets/hero-image.png";
+import { WHATSAPP_URL } from "../constants/contact";
+import { heroStats } from "../lib/stats";
+import ProjectTicker from "./ProjectTicker";
 
+const GITHUB_URL = "https://github.com/MohamedSayed212";
+const LINKEDIN_URL = "https://www.linkedin.com/in/mohamed-sayed-dev/";
+
+// Stagger: each hero element starts 70ms after the previous one.
+const step = (index) => ({ animationDelay: `${index * 70}ms` });
+const REVEAL = "animate-reveal motion-reduce:animate-none";
+
+// A small breathing dot. The ring is a separate absolutely-positioned span so
+// the dot itself stays a crisp, constant size while the halo expands.
+function LiveDot({ className = "" }) {
+  return (
+    <span className={`relative flex h-2.5 w-2.5 ${className}`}>
+      <span className="absolute inline-flex h-full w-full rounded-full bg-accent-soft animate-pulse-ring motion-reduce:animate-none" />
+      <span className="relative inline-flex h-2.5 w-2.5 rounded-full bg-accent-soft" />
+    </span>
+  );
+}
+
+function Stat({ value, label }) {
+  return (
+    <div className="rounded-2xl border border-white/10 bg-white/5 px-3 py-4 text-center">
+      <p
+        dir="ltr"
+        className="bg-gradient-to-r from-accent to-accent-soft bg-clip-text text-2xl font-bold text-transparent sm:text-3xl"
+      >
+        {value}
+      </p>
+      <p className="mt-1 text-xs text-gray-400 sm:text-sm">{label}</p>
+    </div>
+  );
+}
+
+function Hero({ t, tickerItems }) {
   return (
     <section
       id="home"
-      className="pt-[140px] xs:px-3 pb-16 sm:pt-[160px] md:pt-[180px] lg:pt-[220px]"
+      className="relative overflow-hidden pt-[140px] xs:px-3 pb-16 sm:pt-[160px] md:pt-[180px] lg:pt-[210px]"
     >
-      <div className="mx-auto flex w-full max-w-[1320px] flex-col items-center gap-10 px-4 sm:px-6 md:px-8 lg:flex-row lg:justify-between lg:gap-16">
-        {/* LEFT */}
-        <div className="w-full max-w-2xl  text-left">
-          {/* MOBILE IMAGE */}
-          <div className="mb-9 flex justify-center lg:hidden">
-            <div className="relative w-[230px] sm:w-[250px] md:w-[260px]">
-              {/* ambient radial glow */}
-              <div
-                aria-hidden="true"
-                className="pointer-events-none absolute -inset-x-8 -inset-y-6 rounded-full bg-[radial-gradient(circle_at_50%_40%,#6366f1_0%,#a855f7_42%,transparent_70%)] opacity-20 blur-[80px]"
-              />
+      {/* Ambient background glow. Pure CSS: it sits behind the LCP image, so
+          driving it from JS would compete with the hero render. */}
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-0 overflow-hidden"
+      >
+        <div className="absolute -top-40 start-1/2 h-[520px] w-[520px] -translate-x-1/2 rounded-full bg-[radial-gradient(circle,#22d3ee_0%,#34d399_45%,transparent_70%)] opacity-[0.13] blur-[130px] animate-glow-drift motion-reduce:animate-none" />
+        <div className="absolute -bottom-40 end-0 h-[420px] w-[420px] rounded-full bg-[radial-gradient(circle,#34d399_0%,transparent_70%)] opacity-[0.10] blur-[120px]" />
+      </div>
 
-              {/* card */}
-              <div className="relative overflow-hidden rounded-[30px] border border-white/10  p-1 shadow-[0_18px_40px_-12px_rgba(0,0,0,0.9),0_0_35px_-12px_rgba(139,92,246,0.3)]">
-                <Image
-                  src={heroImage}
-                  quality={100}
-                  alt="Mohamed ElSayed (Mohamed Sayed), FrontEnd Developer"
-                  priority
-                  sizes="230px"
-                  className="
-          h-[180px] w-full
-          object-cover
-          scale-150       /* zoom */
-          -translate-y-2   /* better face position */
-      
-          h-[235px]
-          sm:h-[250px]
-          md:h-[260px]
-        "
-                />
-              </div>
-            </div>
+      <div className="relative mx-auto grid w-full max-w-[1320px] items-center gap-10 px-4 sm:px-6 md:px-8 lg:grid-cols-2 lg:gap-16">
+        {/* ================= LEFT: COPY ================= */}
+        <div className="order-2 w-full max-w-2xl text-start lg:order-1">
+          {/* STATUS BADGE */}
+          <div
+            style={step(0)}
+            className={`${REVEAL} mb-6 inline-flex flex-wrap items-center gap-x-3 gap-y-1 rounded-full border border-accent/25 bg-accent/[0.07] px-4 py-2`}
+          >
+            <span className="inline-flex items-center gap-2 text-sm font-semibold text-accent-soft">
+              <LiveDot />
+              {t.status}
+            </span>
+            <span className="text-sm text-gray-400">{t.statusDetail}</span>
           </div>
 
-          {/* BADGE */}
-          <span className="mb-5 inline-block rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm font-semibold text-white sm:text-base">
-            Front-End Developer • React | Next.js
-          </span>
-
           {/* TITLE */}
-          <h1 className="mx-auto max-w-[720px]  font-bold leading-[1.23] lg:leading-[1.26] xl:leading-[1.22] 2xl:leading-[1.2] text-white sm:text-5xl md:text-[58px] lg:mx-0 lg:text-4xl xl:text-5xl 2xl:text-6xl ">
-            Mohamed ElSayed | Web Developer
+          <h1
+            style={step(1)}
+            className={`${REVEAL} text-4xl font-bold leading-[1.15] text-white sm:text-5xl md:text-6xl lg:text-5xl xl:text-6xl`}
+          >
+            {t.greeting}{" "}
+            <span className="bg-gradient-to-r from-accent via-accent-soft to-accent bg-clip-text text-transparent">
+              {t.name}
+            </span>
           </h1>
 
-          {/* TEXT */}
-          <p className="mx-auto mt-5   max-w-[720px] text-base leading-relaxed text-gray-400 sm:text-lg md:text-xl lg:mx-0">
-            I’m Mohamed Elsayed Ramadan a Web developer building responsive
-            interfaces with clean design, smooth UX, and
-            <span className="font-semibold text-white"> React | Next.js</span>
-            -based applications.
+          {/* ROLE */}
+          <p
+            style={step(2)}
+            className={`${REVEAL} mt-4 text-xl font-semibold text-secondary sm:text-2xl`}
+          >
+            {t.role}
+          </p>
+
+          {/* INTRO */}
+          <p
+            style={step(3)}
+            className={`${REVEAL} mt-4 max-w-[620px] text-base leading-relaxed text-gray-400 sm:text-lg`}
+          >
+            {t.intro}
+          </p>
+
+          {/* AVAILABILITY */}
+          <p
+            style={step(4)}
+            className={`${REVEAL} mt-3 max-w-[620px] text-base font-semibold text-white sm:text-lg`}
+          >
+            {t.availability}
           </p>
 
           {/* BUTTONS */}
-          <div className="mx-auto mt-7 grid w-full  max-w-[720px] grid-cols-2 gap-3 lg:mx-0">
+          <div
+            style={step(5)}
+            className={`${REVEAL} mt-7 grid w-full max-w-[620px] grid-cols-2 gap-3`}
+          >
             <a
               href={WHATSAPP_URL}
               target="_blank"
               rel="noopener noreferrer"
-              aria-label={WHATSAPP_ARIA}
-              className="flex items-center justify-center gap-2 rounded-xl bg-white px-4 py-3.5 text-center text-sm font-semibold leading-tight text-black transition hover:opacity-90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/70 sm:px-6 sm:text-base"
+              className="flex items-center justify-center gap-2 rounded-xl bg-gradient-to-r from-accent to-accent-soft px-4 py-3.5 text-center text-sm font-bold leading-tight text-black transition hover:opacity-90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/70 sm:px-6 sm:text-base"
             >
               <FaWhatsapp size={20} aria-hidden="true" className="shrink-0" />
-              Message on WhatsApp
+              {t.ctaWork}
             </a>
 
             <a
               href="#projects"
-              className="flex items-center justify-center rounded-xl border border-white/20 px-4 py-3.5 text-center text-sm font-semibold text-white transition hover:bg-white/10 sm:px-6 sm:text-base"
+              className="flex items-center justify-center rounded-xl border border-white/20 px-4 py-3.5 text-center text-sm font-semibold text-white transition hover:border-accent/40 hover:bg-white/10 sm:px-6 sm:text-base"
             >
-              View Projects
+              {t.ctaProjects}
             </a>
           </div>
 
           {/* SOCIAL */}
-          <div className="mt-6 flex  gap-4 lg:justify-start">
+          <div style={step(6)} className={`${REVEAL} mt-6 flex gap-4`}>
             <a
-              href="https://github.com/MohamedSayed212"
+              href={GITHUB_URL}
               target="_blank"
               rel="noopener noreferrer"
-              aria-label="Mohamed Elsayed on GitHub"
+              aria-label={t.github}
               title="GitHub"
-              className="flex h-12 w-12 items-center justify-center rounded-full border border-white/10 bg-white/5 text-gray-400 transition hover:bg-white/10 hover:text-white"
+              className="flex h-12 w-12 items-center justify-center rounded-full border border-white/10 bg-white/5 text-gray-400 transition hover:border-accent/40 hover:bg-white/10 hover:text-accent-soft"
             >
               <FaGithub size={23} aria-hidden="true" />
             </a>
 
             <a
-              href="https://www.linkedin.com/in/mohamed-sayed-dev/"
+              href={LINKEDIN_URL}
               target="_blank"
               rel="noopener noreferrer"
-              aria-label="Mohamed Elsayed on LinkedIn"
+              aria-label={t.linkedin}
               title="LinkedIn"
-              className="flex h-12 w-12 items-center justify-center rounded-full border border-white/10 bg-white/5 text-gray-400 transition hover:bg-white/10 hover:text-white"
+              className="flex h-12 w-12 items-center justify-center rounded-full border border-white/10 bg-white/5 text-gray-400 transition hover:border-accent/40 hover:bg-white/10 hover:text-accent-soft"
             >
               <FaLinkedin size={23} aria-hidden="true" />
             </a>
           </div>
         </div>
 
-        {/* DESKTOP IMAGE */}
-        <div className="hidden w-full max-w-[420px] lg:block">
-          <motion.div className="group relative" whileHover={hover}>
-            {/* ambient radial glow */}
+        {/* ================= RIGHT: LIVE CARD + STATS ================= */}
+        <div
+          style={step(2)}
+          className={`${REVEAL} order-1 mx-auto w-full max-w-[420px] lg:order-2 lg:max-w-none`}
+        >
+          <div className="group relative">
+            {/* Accent glow behind the card, brighter on hover. */}
             <div
               aria-hidden="true"
-              className="pointer-events-none absolute -inset-x-12 -inset-y-10 rounded-full bg-[radial-gradient(circle_at_50%_42%,#6366f1_0%,#a855f7_42%,transparent_70%)] opacity-20 blur-[110px] transition-opacity duration-500 group-hover:opacity-[0.3]"
+              className="pointer-events-none absolute -inset-6 rounded-[44px] bg-[radial-gradient(circle_at_50%_30%,#22d3ee_0%,#34d399_40%,transparent_70%)] opacity-[0.18] blur-[70px] transition-opacity duration-500 group-hover:opacity-[0.32]"
             />
 
-            <div className="relative overflow-hidden rounded-[36px] border border-white/10  shadow-[0_35px_70px_-20px_rgba(0,0,0,0.9),0_0_60px_-18px_rgba(139,92,246,0.35)] transition-shadow duration-500 group-hover:shadow-[0_45px_85px_-20px_rgba(0,0,0,0.95),0_0_80px_-16px_rgba(139,92,246,0.5)]">
-              <Image
-                src={heroImage}
-                alt="Mohamed Elsayed (Mohamed Sayed), Front-End Developer"
-                priority
-                quality={100}
-                sizes="420px"
-                className="
-                  h-[500px] w-full
-                  object-cover
-                  scale-125         /* slight zoom */
-                  -translate-y-2    /* adjust */
-                "
-              />
+            {/* Gradient hairline border: a 1.5px gradient layer with the card
+                sitting inside it. Cheaper and crisper than border-image. */}
+            <div className="relative rounded-[30px] bg-gradient-to-br from-accent/50 via-white/10 to-accent-soft/40 p-[1.5px] shadow-[0_35px_70px_-24px_rgba(0,0,0,0.9)]">
+              {/* Inner surface is near-black to match the photo's own
+                  background, so the cut-out figure has no visible seam. */}
+              <div className="overflow-hidden rounded-[29px] bg-[#0e0e0e]">
+                {/* Card top bar */}
+                <div className="flex items-center justify-between border-b border-white/10 px-4 py-3">
+                  <span className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-accent-soft">
+                    <LiveDot />
+                    {t.liveLabel}
+                  </span>
+                  <span
+                    dir="ltr"
+                    className="text-xs font-semibold tracking-wide text-gray-400"
+                  >
+                    {t.liveCardTitle}
+                  </span>
+                </div>
+
+                {/* Portrait.
+                    The source is a near-full-body cut-out with roughly a fifth
+                    of the frame empty above the head, so `object-top` used to
+                    crop into dead space. Instead the zoom origin is set to the
+                    FACE (50% across, 30% down) — scaling around that point
+                    keeps the face fixed while the empty margins push out of
+                    frame, giving a head-and-torso crop. */}
+                <div className="relative overflow-hidden">
+                  <Image
+                    src={heroImage}
+                    alt={t.imageAlt}
+                    priority
+                    quality={100}
+                    // `sizes` must account for the 1.45x CSS zoom below.
+                    // Next picks a source width from `sizes` alone — it cannot
+                    // see transforms, so requesting the layout width (~420px)
+                    // meant a 420px file was being blown up to ~610px on
+                    // screen. These values are the layout width x1.45.
+                    sizes="(max-width: 992px) 640px, 70vw"
+                    className="h-[340px] w-full origin-[50%_30%] scale-[1.45] object-cover transition-transform duration-700 ease-out group-hover:scale-[1.52] motion-reduce:transition-none motion-reduce:group-hover:scale-[1.45] sm:h-[400px] lg:h-[460px]"
+                  />
+
+                  {/* Fades the photo into the ticker strip below it. */}
+                  <div
+                    aria-hidden="true"
+                    className="pointer-events-none absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-[#0e0e0e] via-[#0e0e0e]/70 to-transparent"
+                  />
+                </div>
+
+                {/* Live ticker — cycles the same six projects listed below. */}
+                <ProjectTicker items={tickerItems} />
+              </div>
             </div>
-          </motion.div>
+          </div>
+
+          {/* STATS — values counted from the real project list, not typed in. */}
+          <div className="mt-10 grid grid-cols-3 gap-3">
+            <Stat value={heroStats.projects} label={t.stats.projects} />
+            <Stat value={heroStats.liveDemos} label={t.stats.liveDemos} />
+            <Stat value={heroStats.technologies} label={t.stats.technologies} />
+          </div>
+
+          <p className="mt-3 text-center text-xs text-gray-500">
+            {t.statsNote}
+          </p>
         </div>
       </div>
     </section>

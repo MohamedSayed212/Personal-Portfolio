@@ -16,6 +16,30 @@ html {
 body {
   background-color: #121212;
   overflow-x: hidden;
+  /* Latin default; the RTL rule below swaps in the Arabic face. Both are
+     self-hosted by next/font (see src/lib/fonts.js). */
+  font-family: var(--font-latin), system-ui, sans-serif;
+}
+
+/* dir lives on <html>, set per locale by the two root layouts. */
+[dir="rtl"] body {
+  font-family: var(--font-arabic), system-ui, sans-serif;
+}
+
+/* Custom cursor.
+   This class is added by CustomCursor.jsx only after it mounts AND confirms a
+   fine pointer, so without JS (or on touch) the native cursor stays. */
+.has-custom-cursor,
+.has-custom-cursor * {
+  cursor: none;
+}
+
+/* Text fields keep a real caret — typing with no I-beam is disorienting, and
+   the ring alone doesn't show where the insertion point is. */
+.has-custom-cursor input,
+.has-custom-cursor textarea,
+.has-custom-cursor select {
+  cursor: auto;
 }
 
 @layer components {

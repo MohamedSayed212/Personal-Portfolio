@@ -5,18 +5,18 @@ const CONTACT_EMAIL = "mohamedsayed.dev01@gmail.com";
 const GITHUB_URL = "https://github.com/MohamedSayed212";
 const LINKEDIN_URL = "https://www.linkedin.com/in/mohamed-sayed-dev/";
 
-// In-page anchors, mirrored from the header, so every section is reachable
-// from the bottom of the document too (internal linking + crawlability).
-const navLinks = [
-  { name: "Home", href: "#home" },
-  { name: "Projects", href: "#projects" },
-  { name: "Skills", href: "#skills" },
-  { name: "About", href: "#about" },
-  { name: "Contact", href: "#contact" },
-];
-
-function Footer() {
+function Footer({ t }) {
   const year = new Date().getFullYear();
+
+  // In-page anchors, mirrored from the header, so every section is reachable
+  // from the bottom of the document too (internal linking + crawlability).
+  const navLinks = [
+    { name: t.nav.home, href: "#home" },
+    { name: t.nav.projects, href: "#projects" },
+    { name: t.nav.skills, href: "#skills" },
+    { name: t.nav.about, href: "#about" },
+    { name: t.nav.contact, href: "#contact" },
+  ];
 
   return (
     <footer className="mt-10 border-t border-white/10 bg-white/[0.02]">
@@ -25,27 +25,22 @@ function Footer() {
           {/* Brand + short bio */}
           <div className="max-w-sm">
             <p className="text-lg font-bold text-white">
-              Mohamed Coding
-              <span className="text-neutral-400">
-                {" "}
-                — Mohamed Elsayed, Front-End Developer
-              </span>
+              <span dir="ltr">{t.footer.brand}</span>
+              <span className="text-neutral-400"> {t.footer.brandSuffix}</span>
             </p>
             <p className="mt-3 text-sm leading-6 text-gray-400">
-              Mohamed Coding is the portfolio of Mohamed Elsayed, a front-end
-              developer specializing in React, Next.js, and Tailwind CSS,
-              building clean, responsive, and modern web applications.
+              {t.footer.bio}
             </p>
           </div>
 
           {/* Section navigation */}
-          <nav aria-label="Footer" className="md:text-right">
+          <nav aria-label={t.footer.explore} className="md:text-end">
             <h2 className="mb-3 text-sm font-semibold uppercase tracking-wide text-white">
-              Explore
+              {t.footer.explore}
             </h2>
             <ul className="space-y-2">
               {navLinks.map((link) => (
-                <li key={link.name}>
+                <li key={link.href}>
                   <a
                     href={link.href}
                     className="text-sm text-gray-400 transition hover:text-white"
@@ -58,9 +53,9 @@ function Footer() {
           </nav>
 
           {/* Contact / social */}
-          <div className="md:text-right">
+          <div className="md:text-end">
             <h2 className="mb-3 text-sm font-semibold uppercase tracking-wide text-white">
-              Connect
+              {t.footer.connect}
             </h2>
             <div className="flex gap-3 md:justify-end">
               <a
@@ -77,7 +72,7 @@ function Footer() {
                 href={GITHUB_URL}
                 target="_blank"
                 rel="noopener noreferrer"
-                aria-label="Mohamed Elsayed on GitHub"
+                aria-label={t.hero.github}
                 title="GitHub"
                 className="flex h-11 w-11 items-center justify-center rounded-full border border-white/10 bg-white/5 text-gray-400 transition hover:bg-white/10 hover:text-white"
               >
@@ -87,7 +82,7 @@ function Footer() {
                 href={LINKEDIN_URL}
                 target="_blank"
                 rel="noopener noreferrer"
-                aria-label="Mohamed Elsayed on LinkedIn"
+                aria-label={t.hero.linkedin}
                 title="LinkedIn"
                 className="flex h-11 w-11 items-center justify-center rounded-full border border-white/10 bg-white/5 text-gray-400 transition hover:bg-white/10 hover:text-white"
               >
@@ -95,8 +90,8 @@ function Footer() {
               </a>
               <a
                 href={`mailto:${CONTACT_EMAIL}`}
-                aria-label="Email Mohamed Elsayed"
-                title="Email"
+                aria-label={t.contact.emailLabel}
+                title={t.contact.emailLabel}
                 className="flex h-11 w-11 items-center justify-center rounded-full border border-white/10 bg-white/5 text-gray-400 transition hover:bg-white/10 hover:text-white"
               >
                 <FaEnvelope size={19} aria-hidden="true" />
@@ -105,9 +100,9 @@ function Footer() {
           </div>
         </div>
 
-        <div className="mt-10 border-t border-white/10 pt-6 text-center text-sm text-gray-500 md:text-left">
-          © {year} Mohamed Elsayed (Mohamed Sayed). Built with Next.js &amp;
-          Tailwind CSS.
+        <div className="mt-10 border-t border-white/10 pt-6 text-center text-sm text-gray-500 md:text-start">
+          © {year} Mohamed Elsayed (Mohamed Sayed). {t.footer.rights}{" "}
+          {t.footer.builtWith}
         </div>
       </div>
     </footer>

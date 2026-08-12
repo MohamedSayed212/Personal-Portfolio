@@ -1,138 +1,82 @@
-import ecommerceImage from "../assets/E-Commerce.png";
-import movieImage from "../assets/Movie-APP.png";
-import RealState from "../assets/RealState.png";
-import cafeImage from "../assets/cafe-image.png";
-import gymImage from "../assets/gym-image.png";
-import taskflowImage from "../assets/TaskDashboard.png";
+"use client";
+
 import Image from "next/image";
+import { motion, useReducedMotion } from "framer-motion";
 import SectionAnimation from "./SectionAnimation";
+import { projects } from "../data/projects";
+import { fadeUp, fadeOnly, stagger } from "../lib/motion";
 
-function Projects() {
-  const projects = [
-    {
-      title: "E-Commerce",
-      description:
-        "Modern e-commerce platform built with Next.js, JavaScript, and Tailwind CSS, featuring product browsing with categories, search, a shopping cart, favorites, and an admin dashboard with user authentication. Built with responsive, reusable components and Framer Motion animations, integrating Supabase for authentication and data storage.",
-      image: ecommerceImage,
-      tech: [
-        "Next.js",
-        "JavaScript",
-        "Tailwind CSS",
-        "Supabase",
-        "Framer Motion",
-      ],
-      live: "https://e-commerce-vert-zeta-75.vercel.app/",
-      github: "https://github.com/MohamedSayed212/E-Commerce",
-    },
-    {
-      title: "Cafe Website",
-      description:
-        "Responsive cafe website built with Next.js, JavaScript, and Tailwind CSS, featuring a reservation system, menu and category management, and an admin dashboard with user authentication. Built with reusable, well-structured components and Framer Motion animations, integrating Supabase for authentication, data storage, and CRUD operations.",
-      image: cafeImage,
-      tech: [
-        "Next.js",
-        "JavaScript",
-        "Tailwind CSS",
-        "Supabase",
-        "Framer Motion",
-      ],
-      live: "https://cafe-three-mu.vercel.app/",
-      github: "https://github.com/MohamedSayed212/cafe",
-    },
-    {
-      title: "Real State",
-      description:
-        "A modern real estate web application built with Next.js, JavaScript, Tailwind CSS, and Framer Motion. Features include responsive design, multilingual support (EN/AR), property search, filtering, sorting, and smooth animations for an engaging user experience.",
-      image: RealState,
-      tech: ["Next.js", "JavaScript", "Tailwind CSS", "Framer Motion"],
-      live: "https://real-state-iota-wheat.vercel.app/",
-      github: "https://github.com/MohamedSayed212/real-state",
-    },
-    {
-      title: "Gym Website",
-      description:
-        "Responsive gym website built with Next.js, TypeScript, and Tailwind CSS, featuring a reservation system, menu and category management, an admin dashboard with user authentication, dark mode, and Arabic/English localization. Built with reusable, type-safe components and Framer Motion animations, integrating Supabase for authentication, data storage, and CRUD operations.",
-      image: gymImage,
-      tech: [
-        "Next.js",
-        "TypeScript",
-        "Tailwind CSS",
-        "Supabase",
-        "Framer Motion",
-      ],
-      live: "https://gym-qhv8.vercel.app/",
-      github: "https://github.com/MohamedSayed212/gym",
-    },
-    {
-      title: "TaskFlow Dashboard",
-      description:
-        "Task management dashboard built with React and Tailwind CSS, letting users create, edit, delete, and organize tasks across projects with completion tracking. Data persists with Local Storage, and Framer Motion powers smooth, responsive interactions throughout the UI.",
-      image: taskflowImage,
-      tech: ["React", "JavaScript", "Tailwind CSS", "Framer Motion"],
-      live: "https://taskflow-dashboard-delta.vercel.app/",
-      github: "https://github.com/MohamedSayed212/taskflow-dashboard",
-    },
-
-    {
-      title: "Movie App",
-      description:
-        "A modern React movie app that fetches real movie data from an API. Features search, filtering, watchlist, watched list, and responsive design.",
-      image: movieImage,
-      tech: ["React", "Tailwind CSS", "API"],
-      live: "https://movie-app-liart-kappa-13.vercel.app/",
-      github: "https://github.com/MohamedSayed212/Movie-App",
-    },
-  ];
+function Projects({ t }) {
+  const reduceMotion = useReducedMotion();
+  const card = reduceMotion ? fadeOnly : fadeUp;
 
   return (
-    <SectionAnimation>
-      <section
-        id="projects"
-        className=" py-10 sm:py-14 xs:px-3 sm:py-16 lg:py-24"
-      >
-        <div className="mx-auto w-full max-w-[1320px] px-4 sm:px-6 md:px-8">
-          {/* Header */}
-          <div className="mb-9  sm:mb-12 text-left lg:mb-16">
-            <span className="mb-4 inline-block rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm font-medium text-white sm:px-5 sm:text-base">
-              My Projects
-            </span>
+    <SectionAnimation
+      id="projects"
+      className="py-10 xs:px-3 sm:py-16 lg:py-24"
+    >
+      <div className="mx-auto w-full max-w-[1320px] px-4 sm:px-6 md:px-8">
+        {/* Header */}
+        <div className="mb-9 text-start sm:mb-12 lg:mb-16">
+          <span className="mb-4 inline-block rounded-full border border-accent/25 bg-accent/[0.07] px-4 py-2 text-sm font-medium text-accent-soft sm:px-5 sm:text-base">
+            {t.badge}
+          </span>
 
-            <h2 className="text-3xl font-bold text-white sm:text-4xl md:text-5xl">
-              Featured Projects
-            </h2>
+          <h2 className="text-3xl font-bold text-white sm:text-4xl md:text-5xl">
+            {t.title}
+          </h2>
 
-            <p className="mx-auto mt-4 max-w-2xl text-base leading-7 text-gray-400 sm:text-lg sm:leading-8 md:mx-0">
-              Here are some of my React projects focused on clean UI, responsive
-              design, and real-world functionality.
-            </p>
-          </div>
+          <p className="mx-auto mt-4 max-w-2xl text-base leading-7 text-gray-400 sm:text-lg sm:leading-8 md:mx-0">
+            {t.subtitle}
+          </p>
+        </div>
 
-          {/* Cards grid */}
-          <div className="grid gap-7 sm:grid-cols-2 lg:grid-cols-3">
-            {projects.map((project) => (
-              <article
-                key={project.title}
-                className="group flex h-full flex-col overflow-hidden rounded-3xl border border-white/10 bg-white/5 transition duration-300 hover:-translate-y-1 hover:bg-white/10 hover:shadow-xl hover:shadow-black/20"
+        {/* Cards grid — children reveal one after another as the grid scrolls in */}
+        <motion.div
+          variants={stagger(0.09)}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true, amount: 0.15 }}
+          className="grid gap-7 sm:grid-cols-2 lg:grid-cols-3"
+        >
+          {projects.map((project) => {
+            // Text for this project comes from the dictionary, matched by id.
+            const copy = t.items[project.id];
+
+            return (
+              <motion.article
+                key={project.id}
+                variants={card}
+                whileHover={reduceMotion ? undefined : { y: -6 }}
+                transition={{ duration: 0.25, ease: "easeOut" }}
+                className="group flex h-full flex-col overflow-hidden rounded-3xl border border-white/10 bg-white/5 transition-colors duration-300 hover:border-accent/40 hover:bg-white/10"
               >
                 {/* Project image */}
                 <div className="overflow-hidden">
                   <Image
                     src={project.image}
-                    alt={project.title}
+                    alt={copy.title}
                     sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
-                    className="aspect-video w-full object-cover object-top transition duration-300 group-hover:scale-105"
+                    className="aspect-video w-full object-cover object-top transition duration-500 group-hover:scale-105 motion-reduce:transition-none motion-reduce:group-hover:scale-100"
                   />
                 </div>
 
                 {/* Card content */}
                 <div className="flex flex-1 flex-col p-4 sm:p-5 lg:p-6">
-                  <h3 className="text-lg font-bold text-white sm:text-xl lg:text-2xl">
-                    {project.title}
+                  <h3 className="text-lg font-bold text-white transition-colors duration-200 group-hover:text-accent-soft sm:text-xl lg:text-2xl">
+                    {copy.title}
                   </h3>
 
+                  {/* Plain-language value, for non-technical visitors. Sits
+                      above the technical description so a freelance client gets
+                      the point before hitting the stack list. */}
+                  <p className="mt-2 line-clamp-2 text-sm font-medium leading-6 text-white sm:text-base">
+                    {copy.benefit}
+                  </p>
+
                   {/* Shorter text keeps sm cards clean */}
-                  <p className="mt-3 line-clamp-3 text-sm leading-6 text-gray-400 sm:text-base">
-                    {project.description}
+                  <p className="mt-2 line-clamp-3 text-sm leading-6 text-gray-400 sm:text-base">
+                    {copy.description}
                   </p>
 
                   {/* Tech */}
@@ -140,6 +84,7 @@ function Projects() {
                     {project.tech.map((item) => (
                       <span
                         key={item}
+                        dir="ltr"
                         className="rounded-full bg-white/10 px-3 py-1 text-xs text-gray-300 sm:text-sm"
                       >
                         {item}
@@ -153,26 +98,26 @@ function Projects() {
                       href={project.live}
                       target="_blank"
                       rel="noreferrer"
-                      className="whitespace-nowrap rounded-xl bg-white px-2 py-2.5 text-center text-sm font-semibold text-black transition hover:opacity-90 sm:px-3 lg:px-4 lg:text-base"
+                      className="whitespace-nowrap rounded-xl bg-gradient-to-r from-accent to-accent-soft px-2 py-2.5 text-center text-sm font-bold text-black transition hover:opacity-90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/70 sm:px-3 lg:px-4 lg:text-base"
                     >
-                      Live Demo
+                      {t.live}
                     </a>
 
                     <a
                       href={project.github}
                       target="_blank"
                       rel="noreferrer"
-                      className="whitespace-nowrap rounded-xl border border-white/20 px-2 py-2.5 text-center text-sm font-semibold text-white transition hover:bg-white/10 sm:px-3 lg:px-4 lg:text-base"
+                      className="whitespace-nowrap rounded-xl border border-white/20 px-2 py-2.5 text-center text-sm font-semibold text-white transition hover:border-accent/40 hover:bg-white/10 sm:px-3 lg:px-4 lg:text-base"
                     >
-                      GitHub
+                      {t.github}
                     </a>
                   </div>
                 </div>
-              </article>
-            ))}
-          </div>
-        </div>
-      </section>
+              </motion.article>
+            );
+          })}
+        </motion.div>
+      </div>
     </SectionAnimation>
   );
 }

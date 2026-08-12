@@ -1,54 +1,65 @@
 "use client";
 
 import { useState } from "react";
-import { FaBars, FaTimes, FaWhatsapp } from "react-icons/fa";
-import { WHATSAPP_URL, WHATSAPP_ARIA } from "../constants/contact";
+import { FaBars, FaTimes } from "react-icons/fa";
+import LanguageSwitcher from "./LanguageSwitcher";
 
-function Header() {
+const CV_URL = "/Mohamed-Sayed-Frontend-Developer-Resume.pdf";
+
+function Header({ t, locale, onLocaleChange }) {
   // ================= STATE =================
   // Controls mobile menu open/close
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   // ================= NAV LINKS =================
-  // Navigation items
+  // hrefs are section anchors, so they are the same in both languages — only
+  // the visible label comes from the dictionary.
   const navLinks = [
-    { name: "Home", href: "#home" },
-    { name: "Projects", href: "#projects" },
-    { name: "Skills", href: "#skills" },
-    { name: "About", href: "#about" },
-    { name: "Contact", href: "#contact" },
+    { name: t.nav.home, href: "#home" },
+    { name: t.nav.projects, href: "#projects" },
+    { name: t.nav.skills, href: "#skills" },
+    { name: t.nav.about, href: "#about" },
+    { name: t.nav.contact, href: "#contact" },
   ];
 
   return (
     // ================= WRAPPER =================
-    // Fixed header position + responsive horizontal padding
-    <div className="fixed left-0 top-3 z-50 w-full px-5 sm:top-4 sm:px-5 md:px-6 lg:top-5 lg:px-[30px]">
+    // `start-0` (not `left-0`) so the bar anchors correctly in RTL too.
+    <div className="fixed start-0 top-3 z-50 w-full px-5 sm:top-4 sm:px-5 md:px-6 lg:top-5 lg:px-[30px]">
       {/* ================= HEADER CONTAINER ================= */}
       <header
-        className="mx-auto w-full max-w-[1320px] rounded-2xl bg-primary p-3 shadow-lg 
-        sm:rounded-[28px] sm:p-4 
-        md:flex md:h-[76px] md:items-center md:justify-between md:rounded-[34px] md:px-5 md:py-0 
+        className="mx-auto w-full max-w-[1320px] rounded-2xl bg-primary p-3 shadow-lg
+        sm:rounded-[28px] sm:p-4
+        md:flex md:h-[76px] md:items-center md:justify-between md:rounded-[34px] md:px-5 md:py-0
         lg:h-[80px] lg:px-7"
       >
         {/* ================= LEFT SIDE ================= */}
         <div className="flex items-center justify-between gap-3">
           {/* Logo / Brand — matches the domain (mohamedcoding.com) so the brand
-              name exists as real, crawlable text, not just in metadata. */}
+              name exists as real, crawlable text, not just in metadata. Kept in
+              Latin script in both languages because it is the brand name. */}
           <a
             href="#home"
-            aria-label="Mohamed Coding — home"
+            aria-label={t.nav.homeAria}
             className="shrink-0 text-base font-bold tracking-wide text-secondary sm:text-lg lg:text-xl"
+            dir="ltr"
           >
             Mohamed<span className="text-neutral-300"> Coding</span>
           </a>
 
           {/* ================= MOBILE ACTIONS ================= */}
-          {/* WhatsApp (primary) stays visible in the collapsed bar — never buried
-              in the menu — next to the menu toggle. */}
+          {/* Language switcher stays visible in the collapsed bar — a visitor on
+              the wrong language shouldn't have to open a menu to fix that. */}
           <div className="flex items-center gap-2 md:hidden">
+            <LanguageSwitcher
+            t={t.language}
+            locale={locale}
+            onLocaleChange={onLocaleChange}
+          />
+
             <button
               type="button"
-              aria-label="Toggle navigation menu"
+              aria-label={t.nav.menuToggle}
               aria-expanded={isMenuOpen}
               onClick={() => setIsMenuOpen((open) => !open)}
               className="element-center h-11 w-11 rounded-xl border border-neutral-600 text-secondary
@@ -62,13 +73,13 @@ function Header() {
 
         {/* ================= DESKTOP NAVIGATION ================= */}
         {/* Hidden on mobile, visible from md and above */}
-        <nav className="ml-1 hidden items-center md:flex md:gap-1 lg:gap-2">
+        <nav className="ms-1 hidden items-center md:flex md:gap-1 lg:gap-2">
           {navLinks.map((link) => (
             <a
               href={link.href}
-              key={link.name}
-              className="rounded-xl px-2 py-2 text-sm text-secondary 
-              transition duration-200 hover:bg-neutral-600 
+              key={link.href}
+              className="rounded-xl px-2 py-2 text-sm text-secondary
+              transition duration-200 hover:bg-neutral-600
               lg:px-4 lg:py-3 lg:text-base"
             >
               {link.name}
@@ -77,15 +88,20 @@ function Header() {
         </nav>
 
         {/* ================= DESKTOP ACTIONS ================= */}
-        {/* WhatsApp = primary CTA, Download CV = secondary. Shown from md+. */}
         <div className="hidden items-center gap-3 md:flex">
+          <LanguageSwitcher
+            t={t.language}
+            locale={locale}
+            onLocaleChange={onLocaleChange}
+          />
+
           <a
-            href="/Mohamed-Sayed-Frontend-Developer-Resume.pdf"
+            href={CV_URL}
             download
             className="rounded-2xl border border-neutral-600 px-3 py-2 text-sm text-secondary
             transition duration-200 hover:bg-white/20 hover:text-white lg:px-4 lg:text-base"
           >
-            Download CV
+            {t.nav.downloadCv}
           </a>
         </div>
 
@@ -97,9 +113,9 @@ function Header() {
             {navLinks.map((link) => (
               <a
                 href={link.href}
-                key={link.name}
+                key={link.href}
                 onClick={() => setIsMenuOpen(false)} // close menu on click
-                className="rounded-xl px-3 py-3 text-sm font-medium text-secondary 
+                className="rounded-xl px-3 py-3 text-sm font-medium text-secondary
                 transition duration-200 hover:bg-neutral-600 hover:text-white"
               >
                 {link.name}
@@ -108,13 +124,13 @@ function Header() {
 
             {/* CV button (mobile) */}
             <a
-              href="/Mohamed-Sayed-Frontend-Developer-Resume.pdf"
+              href={CV_URL}
               download
               onClick={() => setIsMenuOpen(false)}
-              className="mt-1 rounded-xl border border-neutral-600 px-3 py-3 text-center text-sm font-semibold text-secondary 
+              className="mt-1 rounded-xl border border-neutral-600 px-3 py-3 text-center text-sm font-semibold text-secondary
               transition duration-200 hover:bg-white/20 hover:text-white"
             >
-              Download CV
+              {t.nav.downloadCv}
             </a>
           </nav>
         )}
