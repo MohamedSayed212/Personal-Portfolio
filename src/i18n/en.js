@@ -70,42 +70,42 @@ const en = {
         benefit:
           "A complete online store where customers browse and buy, and the owner manages products and orders from one dashboard.",
         description:
-          "Modern e-commerce platform built with Next.js, JavaScript, and Tailwind CSS, featuring product browsing with categories, search, a shopping cart, favorites, and an admin dashboard with user authentication. Built with responsive, reusable components and Framer Motion animations, integrating Supabase for authentication and data storage.",
+          "Customers browse by category or search, add products to a cart or favorites, and complete an order in a few steps. The owner manages products, orders and customer accounts from one dashboard.",
       },
       cafe: {
         title: "Cafe Website",
         benefit:
           "A table reservation system that saves time for both customers and the business, with the menu editable from one place.",
         description:
-          "Responsive cafe website built with Next.js, JavaScript, and Tailwind CSS, featuring a reservation system, menu and category management, and an admin dashboard with user authentication. Built with reusable, well-structured components and Framer Motion animations, integrating Supabase for authentication, data storage, and CRUD operations.",
+          "Visitors browse the menu with photos and prices and reserve a table in minutes. Staff follow incoming reservations and update dishes and prices from one place.",
       },
       realEstate: {
         title: "Real Estate",
         benefit:
           "Helps buyers find the right property fast with search and filters, in both Arabic and English.",
         description:
-          "A modern real estate web application built with Next.js, JavaScript, Tailwind CSS, and Framer Motion. Features include responsive design, multilingual support (EN/AR), property search, filtering, sorting, and smooth animations for an engaging user experience.",
+          "Visitors search properties and filter them by area, type and price, then open a full detail page with photos for each one. The whole site works in Arabic and English.",
       },
       gym: {
         title: "Gym Website",
         benefit:
           "Lets members book sessions online and gives the gym one place to manage schedules and sign-ups.",
         description:
-          "Responsive gym website built with Next.js, TypeScript, and Tailwind CSS, featuring a reservation system, menu and category management, an admin dashboard with user authentication, dark mode, and Arabic/English localization. Built with reusable, type-safe components and Framer Motion animations, integrating Supabase for authentication, data storage, and CRUD operations.",
+          "Visitors see membership plans and class schedules and book a free trial or a subscription in a few steps. Staff follow bookings and update schedules and content from one dashboard.",
       },
       taskflow: {
         title: "TaskFlow Dashboard",
         benefit:
           "Keeps a team’s tasks and projects organized in one place so nothing gets forgotten.",
         description:
-          "Task management dashboard built with React and Tailwind CSS, letting users create, edit, delete, and organize tasks across projects with completion tracking. Data persists with Local Storage, and Framer Motion powers smooth, responsive interactions throughout the UI.",
+          "Teams create tasks, group them by project and set deadlines. Progress and overdue work show on a single board that reflects the state of the work as it changes.",
       },
       movie: {
         title: "Movie App",
         benefit:
           "Lets users find films and build a personal watchlist in seconds.",
         description:
-          "A modern React movie app that fetches real movie data from an API. Features search, filtering, watchlist, watched list, and responsive design.",
+          "Users search for films, explore what's new and filter by what interests them. Anything worth watching goes to a personal watchlist, with watched titles marked off.",
       },
     },
   },
