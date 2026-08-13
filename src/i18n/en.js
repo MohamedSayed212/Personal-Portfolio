@@ -120,24 +120,29 @@ const en = {
 
   about: {
     badge: "About Me",
-    title:
-      "Front-End Developer building clean, responsive React applications.",
-    paragraph1:
-      "I’m Mohamed ElSayed Ramdan, a self-taught front-end developer specializing in React and modern UI development. I build responsive, user-friendly web applications with a strong focus on clean design and smooth user experience.",
-    paragraph2:
-      "I’ve developed real-world projects including an e-commerce platform, a movie application, and this portfolio, working with APIs, reusable components, dynamic interfaces, and responsive layouts.",
-    openToTitle: "What I’m open to",
-    openToBody:
-      "I’m available for remote front-end developer roles and freelance web development projects. Whether you’re a team looking for a React developer or a business owner who needs a fast, responsive website, I handle the build end to end — working confidently with real-world projects, APIs, Git, and GitHub to deliver clean, scalable solutions.",
-    tags: [
-      "React",
-      "JavaScript",
-      "REST APIs",
-      "Responsive UI",
-      "Git & GitHub",
-      "Remote-ready",
-      "Freelance projects",
+    title: "Front-End Developer building modern, responsive web experiences.",
+    intro:
+      "I’m Mohamed Elsayed Ramadan, a front-end developer focused on building clean, responsive interfaces and real-world web applications. I enjoy turning ideas and designs into fast, intuitive products that work smoothly across devices.",
+    // `id` maps to an icon in About.jsx — the copy stays translatable, the
+    // icon set stays in the component, same split as the skills list.
+    cards: [
+      {
+        id: "ui",
+        title: "Clean UI",
+        body: "Responsive, intuitive interfaces with attention to detail.",
+      },
+      {
+        id: "projects",
+        title: "Real-World Projects",
+        body: "E-commerce, dashboards, platforms, and business websites.",
+      },
+      {
+        id: "delivery",
+        title: "End-to-End Delivery",
+        body: "From UI implementation and API integration to deployment.",
+      },
     ],
+    availability: "Available for remote roles & freelance projects.",
   },
 
   contact: {
