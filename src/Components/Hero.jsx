@@ -1,8 +1,7 @@
 import Image from "next/image";
-import { FaGithub, FaLinkedin, FaWhatsapp } from "react-icons/fa";
+import { FaGithub, FaLinkedin } from "react-icons/fa";
 
 import heroImage from "../assets/hero-image.png";
-import { WHATSAPP_URL } from "../constants/contact";
 import { heroStats } from "../lib/stats";
 import Container from "./Container";
 import ProjectTicker from "./ProjectTicker";
