@@ -161,7 +161,35 @@ function Projects({ t, locale }) {
                   initial="hidden"
                   whileInView="show"
                   viewport={{ once: true, amount: 0.35 }}
-                  className="grid w-full items-center gap-8 lg:grid-cols-[1.15fr_1fr] lg:gap-14"
+                  // ================= ROW ALIGNMENT =================
+                  // `items-start`, not `items-center`. The screenshots are
+                  // ~1.9:1 landscape, so an image column is always shorter than
+                  // a copy column carrying number + title + benefit +
+                  // description + tags + buttons. Centring split that
+                  // difference at BOTH ends, which is what made the image read
+                  // as floating: its top sat ~70-150px below the project
+                  // number and its bottom ~70-150px above the buttons, tied to
+                  // neither. Starting both columns on the same line ties the
+                  // image to the project header and lets the copy run on — the
+                  // standard case-study row.
+                  //
+                  // The track sizes are mirrored with the order swap so the
+                  // IMAGE always gets the wider (1.15fr) track. Before, the
+                  // tracks were fixed by POSITION while `order` moved the
+                  // content, so alternate rows rendered their screenshot in
+                  // the narrow track — images came out 640px wide on odd rows
+                  // and 556px on even ones.
+                  //
+                  // Two columns start at xl, not lg. Between 992 and 1200 the
+                  // copy column is only ~460px wide, which stretches it to
+                  // ~600px tall against a ~290px image — no alignment can
+                  // balance a 2:1 mismatch, so the row stacks instead and the
+                  // screenshot gets the full content width.
+                  className={`grid w-full items-start gap-8 sm:gap-10 xl:gap-14 ${
+                    imageLast
+                      ? "xl:grid-cols-[1fr_1.15fr]"
+                      : "xl:grid-cols-[1.15fr_1fr]"
+                  }`}
                 >
                   {/* Screenshot.
                       `perspective` has to sit on the PARENT of the rotating
@@ -169,7 +197,7 @@ function Projects({ t, locale }) {
                       direct child, which is the grid above, not this image. */}
                   <div
                     style={{ perspective: 1000 }}
-                    className={imageLast ? "lg:order-2" : ""}
+                    className={imageLast ? "xl:order-2" : ""}
                   >
                     <motion.div
                       variants={imageReveal}
@@ -183,14 +211,25 @@ function Projects({ t, locale }) {
                         // time — a free perceived-performance win on six large
                         // images.
                         placeholder="blur"
-                        sizes="(max-width: 992px) 100vw, 55vw"
+                        // Matches the layout above: full content width while
+                        // the row is stacked, the wider of the two tracks once
+                        // it splits, and a hard cap because the container tops
+                        // out at 1320px however wide the window gets.
+                        sizes="(max-width: 1200px) 100vw, (max-width: 1400px) 58vw, 700px"
                         className="aspect-video w-full object-cover object-top"
                       />
                     </motion.div>
                   </div>
 
-                  {/* Copy */}
-                  <div className={imageLast ? "lg:order-1" : ""}>
+                  {/* Copy.
+                      `max-w-2xl` only bites while the row is stacked, where
+                      the column is as wide as the page and the description
+                      would otherwise run to ~110 characters a line. Once the
+                      row splits at xl the track is ~560px, well under the cap,
+                      so it has no effect there. */}
+                  <div
+                    className={`max-w-2xl ${imageLast ? "xl:order-1" : ""}`}
+                  >
                     <div
                       dir="ltr"
                       className="mb-4 flex items-center gap-3 rtl:justify-end"
