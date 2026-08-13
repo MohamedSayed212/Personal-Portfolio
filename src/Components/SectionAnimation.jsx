@@ -25,7 +25,18 @@ function SectionAnimation({ children, id, className = "" }) {
     // element itself the rotation renders flat. Only rotateX is used: rotating
     // a full-width section around the Y axis would push it past the viewport
     // edge and fight the body's overflow-x rule.
-    <div style={{ perspective: 1200 }}>
+    //
+    // `overflow-x-clip` is load-bearing. Even a pure rotateX widens the
+    // element's PROJECTED box: perspective throws the near (bottom) edge
+    // outward, so a viewport-wide section reaches ~150px past each side while
+    // it is still tilted. That made the document ~220px wider than the
+    // viewport, and any horizontal nudge scrolled the page — the in-flow
+    // content slid left while the fixed header, anchored to the viewport,
+    // stayed put, so the bar no longer lined up with the content under it.
+    // Clipping here kills the overflow at its source instead of relying on
+    // body's overflow-x. `clip` (not `hidden`) so this never becomes a scroll
+    // container, which would break sticky/snap behaviour inside a section.
+    <div className="overflow-x-clip" style={{ perspective: 1200 }}>
       <motion.section
         id={id}
         className={className}

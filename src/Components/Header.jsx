@@ -27,14 +27,6 @@ function Header({ t, locale, onLocaleChange }) {
     // ================= WRAPPER =================
     // `start-0` (not `left-0`) so the bar anchors correctly in RTL too.
     <div className="fixed start-0 top-3 z-50 w-full sm:top-4 lg:top-5">
-      {/* ================= HEADER CONTAINER =================
-          Gutters and max-width come from <Container>, exactly like every
-          section, so the bar's edges line up with the content beneath it. This
-          used to hand-roll `mx-auto max-w-[1320px]` plus its own gutters
-          (px-5/px-6/px-[30px]) which did not match Container's — the bar was
-          visibly wider than the page.
-          The padding on <header> itself is the BAR's inner padding, not a page
-          gutter, so it stays put. */}
       <Container>
         <header
           className="w-full rounded-2xl bg-primary p-3 shadow-lg
@@ -42,107 +34,107 @@ function Header({ t, locale, onLocaleChange }) {
           md:flex md:h-[76px] md:items-center md:justify-between md:rounded-[34px] md:px-5 md:py-0
           lg:h-[80px] lg:px-7"
         >
-        {/* ================= LEFT SIDE ================= */}
-        <div className="flex items-center justify-between gap-3">
-          {/* Logo / Brand — matches the domain (mohamedcoding.com) so the brand
+          {/* ================= LEFT SIDE ================= */}
+          <div className="flex items-center justify-between gap-3">
+            {/* Logo / Brand — matches the domain (mohamedcoding.com) so the brand
               name exists as real, crawlable text, not just in metadata. Kept in
               Latin script in both languages because it is the brand name. */}
-          <a
-            href="#home"
-            aria-label={t.nav.homeAria}
-            className="shrink-0 text-base font-bold tracking-wide text-secondary sm:text-lg lg:text-xl"
-            dir="ltr"
-          >
-            Mohamed<span className="text-neutral-300"> Coding</span>
-          </a>
-
-          {/* ================= MOBILE ACTIONS ================= */}
-          {/* Language switcher stays visible in the collapsed bar — a visitor on
-              the wrong language shouldn't have to open a menu to fix that. */}
-          <div className="flex items-center gap-2 md:hidden">
-            <LanguageSwitcher
-            t={t.language}
-            locale={locale}
-            onLocaleChange={onLocaleChange}
-          />
-
-            <button
-              type="button"
-              aria-label={t.nav.menuToggle}
-              aria-expanded={isMenuOpen}
-              onClick={() => setIsMenuOpen((open) => !open)}
-              className="element-center h-11 w-11 rounded-xl border border-neutral-600 text-secondary
-              transition duration-200 hover:bg-white/10 hover:text-white"
-            >
-              {/* Toggle icon */}
-              {isMenuOpen ? <FaTimes /> : <FaBars />}
-            </button>
-          </div>
-        </div>
-
-        {/* ================= DESKTOP NAVIGATION ================= */}
-        {/* Hidden on mobile, visible from md and above */}
-        <nav className="ms-1 hidden items-center md:flex md:gap-1 lg:gap-2">
-          {navLinks.map((link) => (
             <a
-              href={link.href}
-              key={link.href}
-              className="rounded-xl px-2 py-2 text-sm text-secondary
-              transition duration-200 hover:bg-neutral-600
-              lg:px-4 lg:py-3 lg:text-base"
+              href="#home"
+              aria-label={t.nav.homeAria}
+              className="shrink-0 text-base font-bold tracking-wide text-secondary sm:text-lg lg:text-xl"
+              dir="ltr"
             >
-              {link.name}
+              Mohamed<span className="text-neutral-300"> Coding</span>
             </a>
-          ))}
-        </nav>
 
-        {/* ================= DESKTOP ACTIONS ================= */}
-        <div className="hidden items-center gap-3 md:flex">
-          <LanguageSwitcher
-            t={t.language}
-            locale={locale}
-            onLocaleChange={onLocaleChange}
-          />
+            {/* ================= MOBILE ACTIONS ================= */}
+            {/* Language switcher stays visible in the collapsed bar — a visitor on
+              the wrong language shouldn't have to open a menu to fix that. */}
+            <div className="flex items-center gap-2 md:hidden">
+              <LanguageSwitcher
+                t={t.language}
+                locale={locale}
+                onLocaleChange={onLocaleChange}
+              />
 
-          <a
-            href={CV_URL}
-            download
-            className="rounded-2xl border border-neutral-600 px-3 py-2 text-sm text-secondary
-            transition duration-200 hover:bg-white/20 hover:text-white lg:px-4 lg:text-base"
-          >
-            {t.nav.downloadCv}
-          </a>
-        </div>
+              <button
+                type="button"
+                aria-label={t.nav.menuToggle}
+                aria-expanded={isMenuOpen}
+                onClick={() => setIsMenuOpen((open) => !open)}
+                className="element-center h-11 w-11 rounded-xl border border-neutral-600 text-secondary
+              transition duration-200 hover:bg-white/10 hover:text-white"
+              >
+                {/* Toggle icon */}
+                {isMenuOpen ? <FaTimes /> : <FaBars />}
+              </button>
+            </div>
+          </div>
 
-        {/* ================= MOBILE NAVIGATION ================= */}
-        {/* Only shown when menu is open */}
-        {isMenuOpen && (
-          <nav className="mt-3 grid gap-2 border-t border-white/10 pt-3 md:hidden">
-            {/* Links */}
+          {/* ================= DESKTOP NAVIGATION ================= */}
+          {/* Hidden on mobile, visible from md and above */}
+          <nav className="ms-1 hidden items-center md:flex md:gap-1 lg:gap-2">
             {navLinks.map((link) => (
               <a
                 href={link.href}
                 key={link.href}
-                onClick={() => setIsMenuOpen(false)} // close menu on click
-                className="rounded-xl px-3 py-3 text-sm font-medium text-secondary
-                transition duration-200 hover:bg-neutral-600 hover:text-white"
+                className="rounded-xl px-2 py-2 text-sm text-secondary
+              transition duration-200 hover:bg-neutral-600
+              lg:px-4 lg:py-3 lg:text-base"
               >
                 {link.name}
               </a>
             ))}
+          </nav>
 
-            {/* CV button (mobile) */}
+          {/* ================= DESKTOP ACTIONS ================= */}
+          <div className="hidden items-center gap-3 md:flex">
+            <LanguageSwitcher
+              t={t.language}
+              locale={locale}
+              onLocaleChange={onLocaleChange}
+            />
+
             <a
               href={CV_URL}
               download
-              onClick={() => setIsMenuOpen(false)}
-              className="mt-1 rounded-xl border border-neutral-600 px-3 py-3 text-center text-sm font-semibold text-secondary
-              transition duration-200 hover:bg-white/20 hover:text-white"
+              className="rounded-2xl border border-neutral-600 px-3 py-2 text-sm text-secondary
+            transition duration-200 hover:bg-white/20 hover:text-white lg:px-4 lg:text-base"
             >
               {t.nav.downloadCv}
             </a>
-          </nav>
-        )}
+          </div>
+
+          {/* ================= MOBILE NAVIGATION ================= */}
+          {/* Only shown when menu is open */}
+          {isMenuOpen && (
+            <nav className="mt-3 grid gap-2 border-t border-white/10 pt-3 md:hidden">
+              {/* Links */}
+              {navLinks.map((link) => (
+                <a
+                  href={link.href}
+                  key={link.href}
+                  onClick={() => setIsMenuOpen(false)} // close menu on click
+                  className="rounded-xl px-3 py-3 text-sm font-medium text-secondary
+                transition duration-200 hover:bg-neutral-600 hover:text-white"
+                >
+                  {link.name}
+                </a>
+              ))}
+
+              {/* CV button (mobile) */}
+              <a
+                href={CV_URL}
+                download
+                onClick={() => setIsMenuOpen(false)}
+                className="mt-1 rounded-xl border border-neutral-600 px-3 py-3 text-center text-sm font-semibold text-secondary
+              transition duration-200 hover:bg-white/20 hover:text-white"
+              >
+                {t.nav.downloadCv}
+              </a>
+            </nav>
+          )}
         </header>
       </Container>
     </div>

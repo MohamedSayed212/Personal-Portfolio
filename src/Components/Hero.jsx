@@ -4,6 +4,7 @@ import { FaGithub, FaLinkedin, FaWhatsapp } from "react-icons/fa";
 import heroImage from "../assets/hero-image.png";
 import { WHATSAPP_URL } from "../constants/contact";
 import { heroStats } from "../lib/stats";
+import Container from "./Container";
 import ProjectTicker from "./ProjectTicker";
 import BackgroundGrid from "./BackgroundGrid";
 import ParticleField from "./ParticleField";
@@ -41,7 +42,7 @@ function Hero({ t, tickerItems }) {
   return (
     <section
       id="home"
-      className="relative overflow-hidden pt-[140px] xs:px-3 pb-16 sm:pt-[160px] md:pt-[180px] lg:pt-[210px]"
+      className="relative overflow-hidden pt-[140px] pb-16 sm:pt-[160px] md:pt-[180px] lg:pt-[210px]"
     >
       <BackgroundGrid />
 
@@ -54,7 +55,7 @@ function Hero({ t, tickerItems }) {
         <div className="absolute -top-52 start-1/2 h-[560px] w-[860px] -translate-x-1/2 rounded-full bg-[radial-gradient(ellipse,#7aa2f7_0%,transparent_68%)] opacity-[0.07] blur-[120px]" />
       </div>
 
-      <div className="relative mx-auto grid w-full max-w-[1320px] items-center gap-10 px-4 sm:px-6 md:px-8 lg:grid-cols-2 lg:gap-16">
+      <Container className="relative grid items-center gap-10 lg:grid-cols-2 lg:gap-16">
         {/* ================= LEFT: COPY ================= */}
         <div className="order-2 w-full max-w-2xl text-start lg:order-1">
           {/* STATUS BADGE */}
@@ -107,12 +108,10 @@ function Hero({ t, tickerItems }) {
             className={`${REVEAL} mt-9 grid w-full max-w-[560px] grid-cols-2 gap-3`}
           >
             <a
-              href={WHATSAPP_URL}
-              target="_blank"
+              href="#contact"
               rel="noopener noreferrer"
               className="flex items-center justify-center gap-2 rounded-xl bg-accent px-4 py-3.5 text-center text-sm font-semibold leading-tight text-[#0e1116] transition hover:opacity-90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/70 sm:px-6 sm:text-base"
             >
-              <FaWhatsapp size={20} aria-hidden="true" className="shrink-0" />
               {t.ctaWork}
             </a>
 
@@ -241,7 +240,7 @@ function Hero({ t, tickerItems }) {
             {t.statsNote}
           </p>
         </div>
-      </div>
+      </Container>
     </section>
   );
 }
