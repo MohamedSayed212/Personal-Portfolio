@@ -42,7 +42,11 @@ function Hero({ t, tickerItems }) {
         <div className="absolute -top-52 start-1/2 h-[560px] w-[860px] -translate-x-1/2 rounded-full bg-[radial-gradient(ellipse,#7aa2f7_0%,transparent_68%)] opacity-[0.07] blur-[120px]" />
       </div>
 
-      <Container className="relative grid items-center gap-10 lg:grid-cols-2 lg:gap-16">
+      {/* `lg:items-start`: the card is shorter than the copy, and centring it
+          split the difference at both ends — which is why its bottom ran level
+          with the social icons. Starting both columns on the same line puts the
+          whole reduction at the bottom, so the portrait stays large. */}
+      <Container className="relative grid items-center gap-10 lg:grid-cols-2 lg:items-start lg:gap-16">
         {/* ================= LEFT: COPY ================= */}
         <div className="order-2 w-full max-w-2xl text-start lg:order-1">
           {/* STATUS BADGE */}
@@ -136,7 +140,7 @@ function Hero({ t, tickerItems }) {
           </div>
         </div>
 
-        {/* ================= RIGHT: LIVE CARD ================= */}
+        {/* ================= RIGHT: LIVE CARD + STATS ================= */}
         <div
           style={step(2)}
           className={`${REVEAL} order-1 mx-auto w-full max-w-[420px] lg:order-2 lg:max-w-none`}
@@ -181,15 +185,16 @@ function Hero({ t, tickerItems }) {
                     of the frame empty above the head, so the crop has to zoom
                     past that dead space to land on head-and-torso.
 
-                    That zoom is done with LAYOUT (an inner box 145% wider than
-                    the frame) rather than `scale()`. A CSS transform scales the
+                    That zoom is done with LAYOUT (an inner box wider than the
+                    frame — `w-[130%]`, offset by half the excess to keep it
+                    centred) rather than `scale()`. A CSS transform scales the
                     already-rasterised element, so the browser was painting at
                     the 628px layout width and then stretching those pixels to
                     ~910px — the single biggest cause of the softness. Sizing
                     the element up instead makes the browser lay it out, request
                     it, and rasterise it at the real displayed size. */}
-                <div className="relative h-[340px] overflow-hidden sm:h-[400px] lg:h-[460px]">
-                  <div className="absolute inset-y-0 left-[-22.5%] w-[145%] transition-transform duration-700 ease-out group-hover:scale-[1.05] motion-reduce:transition-none motion-reduce:group-hover:scale-100">
+                <div className="relative h-[380px] overflow-hidden sm:h-[440px] lg:h-[460px]">
+                  <div className="absolute inset-y-0 left-[-15%] w-[130%] transition-transform duration-700 ease-out group-hover:scale-[1.05] motion-reduce:transition-none motion-reduce:group-hover:scale-100">
                     <Image
                       src={heroImage}
                       alt={t.imageAlt}
@@ -204,7 +209,7 @@ function Hero({ t, tickerItems }) {
                     />
                   </div>
 
-                  {/* Fades the photo into the ticker strip below it. */}
+                  {/* Softens the photo into the card's bottom edge. */}
                   <div
                     aria-hidden="true"
                     className="pointer-events-none absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-[#0e0e0e] via-[#0e0e0e]/70 to-transparent"
@@ -212,7 +217,6 @@ function Hero({ t, tickerItems }) {
                 </div>
 
                 {/* Live ticker — cycles the same six projects listed below. */}
-                <ProjectTicker items={tickerItems} />
               </div>
             </div>
           </div>

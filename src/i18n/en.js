@@ -33,7 +33,7 @@ const en = {
     role: "Web Developer · Front-End",
 
     intro:
-      "I build responsive, user-focused web applications with clean design and smooth UX — for teams hiring a front-end developer, and for businesses that need a site built end to end.",
+      "I build clean, responsive websites and web applications for businesses and teams.",
 
     availability:
       "Available for remote roles and freelance web development projects.",
