@@ -30,7 +30,7 @@ const en = {
 
     greeting: "Hi, I’m",
     name: "Mohamed ElSayed",
-    role: "Front-End Developer · React & Next.js",
+    role: "Web Developer · Front-End",
 
     intro:
       "I build responsive, user-focused web applications with clean design and smooth UX — for teams hiring a front-end developer, and for businesses that need a site built end to end.",
