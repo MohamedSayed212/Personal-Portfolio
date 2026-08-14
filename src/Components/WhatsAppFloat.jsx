@@ -55,9 +55,12 @@ function WhatsAppFloat({ label }) {
           animate={enter.animate}
           exit={enter.exit}
           transition={{ duration: 0.25, ease: "easeOut" }}
-          className="fixed bottom-5 end-5 z-40 flex h-14 w-14 items-center justify-center rounded-full bg-white text-black shadow-[0_10px_30px_-8px_rgba(0,0,0,0.7)] transition hover:opacity-90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/70 focus-visible:ring-offset-2 focus-visible:ring-offset-[#121212]"
+          // WhatsApp brand green, 60px. The shadow is one soft green cast over
+          // the usual dark drop — enough to lift the button off the page
+          // without turning into a glow.
+          className="fixed bottom-5 end-5 z-40 flex h-[60px] w-[60px] items-center justify-center rounded-full bg-[#25D366] text-white shadow-[0_10px_30px_-8px_rgba(0,0,0,0.7),0_8px_24px_-6px_rgba(37,211,102,0.45)] transition hover:opacity-90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#25D366]/70 focus-visible:ring-offset-2 focus-visible:ring-offset-[#121212]"
         >
-          <FaWhatsapp size={26} aria-hidden="true" />
+          <FaWhatsapp size={30} aria-hidden="true" />
         </motion.a>
       )}
     </AnimatePresence>
