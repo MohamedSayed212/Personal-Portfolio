@@ -75,7 +75,7 @@ function Projects({ t, locale }) {
 
   return (
     <section id="projects">
-      {/* Intro — normal flow, not a snap target. */}
+      {/* Intro */}
       <Container className="pt-10 text-start sm:pt-16 lg:pt-24">
         <span className="mb-4 inline-block rounded-full border border-accent/25 bg-accent/[0.07] px-4 py-2 text-sm font-medium text-accent-soft sm:px-5 sm:text-base">
           {t.badge}
@@ -129,21 +129,21 @@ function Projects({ t, locale }) {
           const imageLast = index % 2 === 1;
 
           return (
-            // The ARTICLE is the snap target and is never transformed — a
-            // transformed snap target aligns unreliably. It only supplies the
-            // perspective that the inner block's rotateX needs.
+            // The ARTICLE is never transformed — it only supplies the
+            // perspective that the inner block's rotateX needs, and the anchor
+            // id the dot rail jumps to.
             //
             // `overflow-x-clip`: the reveal below starts the block 56px to one
             // side, and the block is full-width, so until it plays it hangs
             // past the viewport edge and makes the page horizontally
-            // scrollable. `clip` rather than `hidden` keeps this from becoming
-            // a scroll container, which would break the snap alignment.
+            // scrollable. `clip` rather than `hidden` so this never becomes a
+            // scroll container of its own.
             <article
               key={project.id}
               id={anchorId(project.id)}
               data-project-id={project.id}
               style={{ perspective: 1200 }}
-              className={`flex snap-start items-center overflow-x-clip ${ARTICLE_HEIGHT} py-10 sm:py-12 lg:py-12`}
+              className={`flex items-center overflow-x-clip ${ARTICLE_HEIGHT} py-10 sm:py-12 lg:py-12`}
             >
               {/* The inner block is what animates. It is a few hundred px tall,
                   so `amount: 0.35` fires when it is genuinely on screen —

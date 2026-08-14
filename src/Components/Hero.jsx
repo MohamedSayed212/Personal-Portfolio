@@ -2,7 +2,6 @@ import Image from "next/image";
 import { FaGithub, FaLinkedin } from "react-icons/fa";
 
 import heroImage from "../assets/hero-image.png";
-import { heroStats } from "../lib/stats";
 import Container from "./Container";
 import ProjectTicker from "./ProjectTicker";
 import BackgroundGrid from "./BackgroundGrid";
@@ -23,17 +22,6 @@ function LiveDot({ className = "" }) {
       <span className="absolute inline-flex h-full w-full rounded-full bg-accent-soft animate-pulse-ring motion-reduce:animate-none" />
       <span className="relative inline-flex h-2.5 w-2.5 rounded-full bg-accent-soft" />
     </span>
-  );
-}
-
-function Stat({ value, label }) {
-  return (
-    <div className="rounded-2xl border border-white/10 bg-white/5 px-3 py-4 text-center">
-      <p dir="ltr" className="text-2xl font-bold text-accent sm:text-3xl">
-        {value}
-      </p>
-      <p className="mt-1 text-xs text-gray-400 sm:text-sm">{label}</p>
-    </div>
   );
 }
 
@@ -148,7 +136,7 @@ function Hero({ t, tickerItems }) {
           </div>
         </div>
 
-        {/* ================= RIGHT: LIVE CARD + STATS ================= */}
+        {/* ================= RIGHT: LIVE CARD ================= */}
         <div
           style={step(2)}
           className={`${REVEAL} order-1 mx-auto w-full max-w-[420px] lg:order-2 lg:max-w-none`}
@@ -229,15 +217,6 @@ function Hero({ t, tickerItems }) {
             </div>
           </div>
 
-          {/* STATS — values counted from the real project list, not typed in. */}
-          <div className="mt-10 grid grid-cols-2 gap-3">
-            <Stat value={heroStats.projects} label={t.stats.projects} />
-            <Stat value={heroStats.technologies} label={t.stats.technologies} />
-          </div>
-
-          <p className="mt-3 text-center text-xs text-gray-500">
-            {t.statsNote}
-          </p>
         </div>
       </Container>
     </section>

@@ -9,19 +9,20 @@
 }
 
 html {
-  /* Offsets the fixed header for anchor jumps AND for scroll-snap landings. */
+  /* Offsets the fixed header for anchor jumps. */
   scroll-padding-top: 150px;
 
-  /* Only the project articles carry `scroll-snap-align`, so nothing else on the
-     page is a snap target. `proximity` (not `mandatory`) means the rest of the
-     page — hero, skills, about, contact — scrolls completely normally, and the
-     projects only lock in when a scroll happens to end near one. */
-  scroll-snap-type: y proximity;
+  /* NO `scroll-snap-type` here, deliberately. It used to be `y proximity` with
+     the project articles as targets, but proximity re-snaps whenever a scroll
+     ENDS near a target — so nudging the wheel inside the projects section
+     pulled the viewport back to the project you had just left. That reads as
+     the page fighting you. Scrolling is the user's; nothing on this page may
+     take it back. */
 }
 
-/* Smooth scrolling is opt-out for motion-sensitive users. Combined with snap
-   and the dot rail's jump links, unconditional smooth scrolling is exactly the
-   kind of movement `prefers-reduced-motion` exists to suppress. */
+/* Smooth scrolling is opt-out for motion-sensitive users. Applied to the dot
+   rail's jump links and the nav anchors, unconditional smooth scrolling is
+   exactly the kind of movement `prefers-reduced-motion` exists to suppress. */
 @media (prefers-reduced-motion: no-preference) {
   html {
     scroll-behavior: smooth;
@@ -30,10 +31,10 @@ html {
 
 body {
   background-color: #121212;
-  /* `hidden` would promote body to a scroll container, which makes the browser
-     ignore `scroll-snap-type` on <html>. `clip` prevents the same horizontal
-     overflow without creating one; the `hidden` line stays first as a fallback
-     for browsers without `clip`. */
+  /* `clip` rather than `hidden`: `hidden` would promote body to a scroll
+     container, which changes how the page scrolls. `clip` prevents the same
+     horizontal overflow without creating one; the `hidden` line stays first as
+     a fallback for browsers without `clip`. */
   overflow-x: hidden;
   overflow-x: clip;
   /* Latin default; the RTL rule below swaps in the Arabic face. Both are
