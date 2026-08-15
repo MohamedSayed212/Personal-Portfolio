@@ -10,7 +10,6 @@ import About from "./About";
 import Contact from "./Contact";
 import Footer from "./Footer";
 import WhatsAppFloat from "./WhatsAppFloat";
-import CustomCursor from "./CustomCursor";
 
 import { getDictionary } from "../i18n";
 import { DEFAULT_LOCALE, LOCALE_DIR } from "../i18n/config";
@@ -48,7 +47,6 @@ function SiteShell() {
 
   return (
     <>
-      <CustomCursor />
       <Header t={t} locale={locale} onLocaleChange={setLocale} />
       <main>
         <Hero t={t.hero} tickerItems={tickerItems} />

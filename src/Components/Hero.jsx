@@ -3,19 +3,15 @@ import { FaGithub, FaLinkedin } from "react-icons/fa";
 
 import heroImage from "../assets/hero-image.png";
 import Container from "./Container";
-import ProjectTicker from "./ProjectTicker";
 import BackgroundGrid from "./BackgroundGrid";
 import ParticleField from "./ParticleField";
 
 const GITHUB_URL = "https://github.com/MohamedSayed212";
 const LINKEDIN_URL = "https://www.linkedin.com/in/mohamed-sayed-dev/";
 
-// Stagger: each hero element starts 70ms after the previous one.
 const step = (index) => ({ animationDelay: `${index * 70}ms` });
 const REVEAL = "animate-reveal motion-reduce:animate-none";
 
-// A small breathing dot. The ring is a separate absolutely-positioned span so
-// the dot itself stays a crisp, constant size while the halo expands.
 function LiveDot({ className = "" }) {
   return (
     <span className={`relative flex h-2.5 w-2.5 ${className}`}>
@@ -25,7 +21,7 @@ function LiveDot({ className = "" }) {
   );
 }
 
-function Hero({ t, tickerItems }) {
+function Hero({ t }) {
   return (
     <section
       id="home"
@@ -42,12 +38,7 @@ function Hero({ t, tickerItems }) {
         <div className="absolute -top-52 start-1/2 h-[560px] w-[860px] -translate-x-1/2 rounded-full bg-[radial-gradient(ellipse,#7aa2f7_0%,transparent_68%)] opacity-[0.07] blur-[120px]" />
       </div>
 
-      {/* `lg:items-start`: the card is shorter than the copy, and centring it
-          split the difference at both ends — which is why its bottom ran level
-          with the social icons. Starting both columns on the same line puts the
-          whole reduction at the bottom, so the portrait stays large. */}
       <Container className="relative grid items-center gap-10 lg:grid-cols-2 lg:items-start lg:gap-16">
-        {/* ================= LEFT: COPY ================= */}
         <div className="order-2 w-full max-w-2xl text-start lg:order-1">
           {/* STATUS BADGE */}
           <div
@@ -64,7 +55,7 @@ function Hero({ t, tickerItems }) {
           {/* TITLE */}
           <h1
             style={step(1)}
-            className={`${REVEAL} text-4xl font-bold leading-[1.14] text-white sm:text-5xl md:text-6xl lg:text-6xl xl:text-7xl`}
+            className={`${REVEAL} text-4xl font-bold leading-[1.14] text-white sm:text-4xl md:text-6xl lg:text-5xl xl:text-6xl`}
           >
             {t.greeting} <span className="text-accent">{t.name}</span>
           </h1>
@@ -220,7 +211,6 @@ function Hero({ t, tickerItems }) {
               </div>
             </div>
           </div>
-
         </div>
       </Container>
     </section>

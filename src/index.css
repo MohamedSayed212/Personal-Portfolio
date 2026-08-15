@@ -47,33 +47,6 @@ body {
   font-family: var(--font-arabic), system-ui, sans-serif;
 }
 
-/* Custom cursor.
-   This class is added by CustomCursor.jsx only after it mounts AND confirms a
-   fine pointer, so without JS (or on touch) the native cursor stays. */
-.has-custom-cursor,
-.has-custom-cursor * {
-  cursor: none;
-}
-
-/* Text fields keep a real caret — typing with no I-beam is disorienting, and
-   the ring alone doesn't show where the insertion point is. */
-.has-custom-cursor input,
-.has-custom-cursor textarea,
-.has-custom-cursor select {
-  cursor: auto;
-}
-
-/* Belt and braces. The component already refuses to add the class without a
-   fine pointer, but if that state ever goes stale the failure mode is a touch
-   device with no cursor at all and no dot to replace it. This makes that
-   impossible from the CSS side. */
-@media (hover: none), (pointer: coarse) {
-  .has-custom-cursor,
-  .has-custom-cursor * {
-    cursor: auto;
-  }
-}
-
 @layer components {
   .container {
     @apply w-full  mx-auto;

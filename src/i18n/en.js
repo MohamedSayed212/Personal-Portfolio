@@ -16,15 +16,13 @@ const en = {
 
   language: {
     label: "Change language",
-    // Each option is labelled in its OWN language — a visitor who only reads
-    // Arabic still recognises "العربية" on an English page.
+
     en: "English",
     ar: "العربية",
     short: { en: "EN", ar: "ع" },
   },
 
   hero: {
-    // Status badge — both doors, stated as fact rather than a sales line.
     status: "Open to work",
     statusDetail: "Remote roles & freelance projects",
 
@@ -54,7 +52,8 @@ const en = {
       projects: "Projects",
       technologies: "Technologies",
     },
-    statsNote: "Counted from the projects below — every one is live and open source.",
+    statsNote:
+      "Counted from the projects below — every one is live and open source.",
   },
 
   projects: {

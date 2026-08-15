@@ -9,8 +9,6 @@ const LINKEDIN_URL = "https://www.linkedin.com/in/mohamed-sayed-dev/";
 function Footer({ t }) {
   const year = new Date().getFullYear();
 
-  // In-page anchors, mirrored from the header, so every section is reachable
-  // from the bottom of the document too (internal linking + crawlability).
   const navLinks = [
     { name: t.nav.home, href: "#home" },
     { name: t.nav.projects, href: "#projects" },
@@ -23,7 +21,6 @@ function Footer({ t }) {
     <footer className="mt-10 border-t border-white/10 bg-white/[0.02]">
       <Container className="py-12">
         <div className="flex flex-col gap-10 md:flex-row md:items-start md:justify-between">
-          {/* Brand + short bio */}
           <div className="max-w-sm">
             <p className="text-lg font-bold text-white">
               <span dir="ltr">{t.footer.brand}</span>
@@ -34,7 +31,6 @@ function Footer({ t }) {
             </p>
           </div>
 
-          {/* Section navigation */}
           <nav aria-label={t.footer.explore} className="md:text-end">
             <h2 className="mb-3 text-sm font-semibold uppercase tracking-wide text-white">
               {t.footer.explore}
@@ -53,7 +49,7 @@ function Footer({ t }) {
             </ul>
           </nav>
 
-          {/* Contact / social */}
+
           <div className="md:text-end">
             <h2 className="mb-3 text-sm font-semibold uppercase tracking-wide text-white">
               {t.footer.connect}

@@ -3,13 +3,7 @@
 import { useEffect, useRef, useState } from "react";
 import { FaGlobe, FaCheck, FaChevronDown } from "react-icons/fa";
 
-// A single globe button that opens a small menu, rather than two segments
-// sitting side by side.
-//
-// Deliberately a globe rather than flag icons: Arabic is not the language of
-// one country, so a flag would be picking a nation to stand in for a language.
-// The globe is neutral, and each option is written in its own script so it is
-// readable to the person who needs it.
+
 function LanguageSwitcher({ t, locale, onLocaleChange, className = "" }) {
   const [isOpen, setIsOpen] = useState(false);
   const containerRef = useRef(null);

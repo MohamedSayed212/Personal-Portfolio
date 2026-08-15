@@ -47,7 +47,7 @@ function ParticleField({ className = "" }) {
 
       // Scale count with area so a phone doesn't draw a desktop's worth.
       const count = Math.round(
-        Math.min(70, Math.max(22, (width * height) / 22000)),
+        Math.min(30, Math.max(10, (width * height) / 48000)),
       );
 
       particles = Array.from({ length: count }, () => {
@@ -59,8 +59,8 @@ function ParticleField({ className = "" }) {
           // Nearer particles drift faster — the other half of the depth cue.
           vx: (Math.random() - 0.5) * (0.05 + z * 0.12),
           vy: (Math.random() - 0.5) * (0.05 + z * 0.12),
-          r: 0.6 + z * 1.7,
-          alpha: 0.12 + z * 0.3,
+          r: 0.5 + z * 1.1,
+          alpha: 0.06 + z * 0.14,
         };
       });
     };
@@ -70,8 +70,8 @@ function ParticleField({ className = "" }) {
 
       for (const p of particles) {
         // Parallax: near particles shift more than far ones.
-        const offsetX = eased.x * (6 + p.z * 26);
-        const offsetY = eased.y * (4 + p.z * 16);
+        const offsetX = eased.x * (3 + p.z * 10);
+        const offsetY = eased.y * (2 + p.z * 6);
 
         ctx.beginPath();
         ctx.arc(p.x + offsetX, p.y + offsetY, p.r, 0, Math.PI * 2);
