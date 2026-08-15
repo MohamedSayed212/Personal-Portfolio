@@ -1,7 +1,13 @@
 import Image from "next/image";
 import { FaGithub, FaLinkedin } from "react-icons/fa";
 
-import heroImage from "../assets/hero-image.png";
+// Alpha cut-out of the original photo. The source PNG had the studio backdrop
+// baked in as flat #121212, which is what read as a "black rectangle" — the
+// hero's grid, stars and glow all stopped at its edges. The backdrop was keyed
+// out (flood-filled from the borders, silhouette feathered ~1.6px), so the
+// figure now sits directly on the hero background with nothing behind it. The
+// person's pixels are untouched.
+import heroImage from "../assets/hero-image-cutout.png";
 import Container from "./Container";
 import BackgroundGrid from "./BackgroundGrid";
 import ParticleField from "./ParticleField";
@@ -137,26 +143,45 @@ function Hero({ t }) {
           className={`${REVEAL} order-1 mx-auto w-full max-w-[420px] lg:order-2 lg:max-w-none`}
         >
           <div className="group relative">
-            {/* Light behind the portrait, in two layers.
-                A wide coloured spill sets the ambience, and a tighter, nearly
-                white core sits right behind the figure — one flat blur reads as
-                fog, whereas a bright centre falling off into colour reads as an
-                actual light source. Both lift on hover. */}
+            {/* Ambience AROUND the card — the only place the blue now lives.
+
+                It sits on -inset-14 with a hollow centre: the first stop is
+                transparent out to 46%, so the gradient only starts to exist
+                near the card's own edge and then spills past it. Blurred 110px,
+                there is no ring and no edge to find — the card just reads as
+                sitting in a faintly lit pocket rather than being lit from
+                inside. */}
             <div
               aria-hidden="true"
-              className="pointer-events-none absolute -inset-10 rounded-[52px] bg-[radial-gradient(circle_at_50%_38%,#7aa2f7_0%,#7aa2f7_28%,transparent_70%)] opacity-[0.26] blur-[90px] transition-opacity duration-500 group-hover:opacity-[0.38]"
-            />
-            <div
-              aria-hidden="true"
-              className="pointer-events-none absolute inset-x-[12%] top-[8%] h-[46%] rounded-full bg-[radial-gradient(ellipse,#dce8ff_0%,#7aa2f7_45%,transparent_72%)] opacity-[0.22] blur-[70px] transition-opacity duration-500 group-hover:opacity-[0.32]"
+              className="pointer-events-none absolute -inset-14 rounded-[60px] bg-[radial-gradient(ellipse_at_50%_46%,transparent_46%,rgba(26,33,50,0.85)_66%,transparent_86%)] blur-[110px]"
             />
 
             {/* Plain hairline border. A glowing gradient edge was the most
                 obviously synthetic detail on the page. */}
-            <div className="relative rounded-[30px] border border-white/10 shadow-[0_30px_60px_-28px_rgba(0,0,0,0.9)]">
-              {/* Inner surface is near-black to match the photo's own
-                  background, so the cut-out figure has no visible seam. */}
-              <div className="overflow-hidden rounded-[30px] bg-[#0e0e0e]">
+            <div className="relative rounded-[30px] border border-white/10 shadow-[0_30px_60px_-32px_rgba(0,0,0,0.65)]">
+              {/* Solid surface, deliberately LIGHTER than the page now.
+
+                  `body` is #121212 (src/index.css). This lifts to about #1c1f25
+                  in the middle and falls to #151619 at the edges — roughly ten
+                  RGB points above the hero at the centre, four at the border.
+                  So the card reads as its own lit panel, but the falloff means
+                  the seam where it meets the hero is still gentle rather than a
+                  hard step.
+
+                  It is a near-neutral lift, not the old navy: the blue was
+                  taken out of here on purpose and still lives only in the
+                  ambience layer outside the card.
+
+                  It stays fully opaque so no grid line, star or glow from the
+                  section behind comes through — that leak is what made the
+                  figure read as a transparent PNG. */}
+              <div
+                className="overflow-hidden rounded-[30px] bg-[#181a1f]"
+                style={{
+                  backgroundImage:
+                    "radial-gradient(76% 62% at 50% 34%, #1c1f25 0%, #1a1c22 40%, #17191d 70%, #151619 92%)",
+                }}
+              >
                 {/* Card top bar */}
                 <div className="flex items-center justify-between border-b border-white/10 px-4 py-3">
                   <span className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-accent-soft">
@@ -184,27 +209,59 @@ function Hero({ t }) {
                     ~910px — the single biggest cause of the softness. Sizing
                     the element up instead makes the browser lay it out, request
                     it, and rasterise it at the real displayed size. */}
-                <div className="relative h-[380px] overflow-hidden sm:h-[440px] lg:h-[460px]">
-                  <div className="absolute inset-y-0 left-[-15%] w-[130%] transition-transform duration-700 ease-out group-hover:scale-[1.05] motion-reduce:transition-none motion-reduce:group-hover:scale-100">
+                <div
+                  className="relative h-[380px] overflow-hidden sm:h-[440px] lg:h-[460px]"
+                  style={{
+                    // The fade is now ONLY the very bottom of the coat: fully
+                    // opaque down to 74%, then out over the last ~120px so the
+                    // coat meets the card's lower edge as atmosphere rather
+                    // than a cut. Face, hair, glasses, shoulders and torso are
+                    // at full opacity, untouched. The side gradients feather
+                    // just the outer 5% so nothing ends on a vertical line.
+                    maskImage:
+                      "linear-gradient(to right, transparent 0%, black 5%, black 95%, transparent 100%), linear-gradient(to bottom, black 0%, black 74%, rgba(0,0,0,0.45) 90%, transparent 100%)",
+                    WebkitMaskImage:
+                      "linear-gradient(to right, transparent 0%, black 5%, black 95%, transparent 100%), linear-gradient(to bottom, black 0%, black 74%, rgba(0,0,0,0.45) 90%, transparent 100%)",
+                    maskComposite: "intersect",
+                    WebkitMaskComposite: "source-in",
+                    maskSize: "100% 100%",
+                    WebkitMaskSize: "100% 100%",
+                    maskRepeat: "no-repeat",
+                    WebkitMaskRepeat: "no-repeat",
+                  }}
+                >
+                  <div
+                    className="absolute inset-y-0 left-[-15%] w-[130%] transition-transform duration-700 ease-out group-hover:scale-[1.05] motion-reduce:transition-none motion-reduce:group-hover:scale-100"
+                    // A touch of contrast pulled out so the coat's near-black
+                    // (0–8) sits at roughly the hero's own #121212 — the dark
+                    // side of the figure then merges with the background
+                    // instead of silhouetting against it. No blur, no
+                    // brightness change: the face stays sharp.
+                    style={{ filter: "contrast(0.95)" }}
+                  >
                     <Image
                       src={heroImage}
                       alt={t.imageAlt}
                       fill
                       priority
                       quality={100}
-                      // Sized so the browser lands on the largest variant the
-                      // source can produce (1940px) at every common DPR, rather
-                      // than settling for 1080 on a 1x desktop.
-                      sizes="(max-width: 992px) 768px, 1100px"
+                      // The displayed box is ~816px wide on a large screen (the
+                      // inner div is w-[130%] of the column). A 2x screen was
+                      // already pulling the biggest variant the 1940px source
+                      // can give, but a 1x desktop asked for 1200 and upscaled
+                      // it — which is the softness visible on most monitors.
+                      // Over-declaring the width here pushes 1x up to the 1920
+                      // variant, so the image is downscaled into place instead
+                      // of stretched.
+                      sizes="(max-width: 992px) 1000px, 1400px"
                       className="object-cover object-[50%_44%]"
                     />
                   </div>
 
-                  {/* Softens the photo into the card's bottom edge. */}
-                  <div
-                    aria-hidden="true"
-                    className="pointer-events-none absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-[#0e0e0e] via-[#0e0e0e]/70 to-transparent"
-                  />
+                  {/* The old bottom scrim lived here. It is gone because the
+                      mask above now does the same job on all three edges, and
+                      a second fade in the old #0e0e0e would have painted back
+                      the dark band this change exists to remove. */}
                 </div>
 
                 {/* Live ticker — cycles the same six projects listed below. */}
