@@ -47,7 +47,7 @@ function ParticleField({ className = "" }) {
 
       // Scale count with area so a phone doesn't draw a desktop's worth.
       const count = Math.round(
-        Math.min(30, Math.max(10, (width * height) / 48000)),
+        Math.min(46, Math.max(16, (width * height) / 32000)),
       );
 
       particles = Array.from({ length: count }, () => {
@@ -59,8 +59,8 @@ function ParticleField({ className = "" }) {
           // Nearer particles drift faster — the other half of the depth cue.
           vx: (Math.random() - 0.5) * (0.05 + z * 0.12),
           vy: (Math.random() - 0.5) * (0.05 + z * 0.12),
-          r: 0.5 + z * 1.1,
-          alpha: 0.06 + z * 0.14,
+          r: 0.6 + z * 1.2,
+          alpha: 0.18 + z * 0.42,
         };
       });
     };
@@ -73,11 +73,18 @@ function ParticleField({ className = "" }) {
         const offsetX = eased.x * (3 + p.z * 10);
         const offsetY = eased.y * (2 + p.z * 6);
 
+        // A small halo in the dot's own colour is what makes it read as a
+        // light rather than a flat speck. Nearer dots glow wider.
+        ctx.shadowColor = `rgba(${ACCENT}, ${p.alpha})`;
+        ctx.shadowBlur = 3 + p.z * 5;
+
         ctx.beginPath();
         ctx.arc(p.x + offsetX, p.y + offsetY, p.r, 0, Math.PI * 2);
         ctx.fillStyle = `rgba(${ACCENT}, ${p.alpha})`;
         ctx.fill();
       }
+
+      ctx.shadowBlur = 0;
     };
 
     resize();
