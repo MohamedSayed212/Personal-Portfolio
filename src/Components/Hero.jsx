@@ -1,13 +1,25 @@
 import Image from "next/image";
 import { FaGithub, FaLinkedin } from "react-icons/fa";
 
-// Alpha cut-out of the original photo. The source PNG had the studio backdrop
-// baked in as flat #121212, which is what read as a "black rectangle" — the
-// hero's grid, stars and glow all stopped at its edges. The backdrop was keyed
-// out (flood-filled from the borders, silhouette feathered ~1.6px), so the
-// figure now sits directly on the hero background with nothing behind it. The
-// person's pixels are untouched.
-import heroImage from "../assets/hero-image-cutout.png";
+// Alpha cut-out of the original photo, re-feathered.
+//
+// The first pass keyed the flat #121212 studio backdrop out and feathered the
+// silhouette ~1.6px. Two things were left over, and both showed up as a
+// "cutout" edge once the card fill behind the figure was lightened to ~#1c1f25:
+//
+//   1. Matte contamination. Every partially-transparent pixel still held a
+//      blend of person and backdrop — the alpha 1-64 band measured luminance
+//      18.1, i.e. it WAS #121212. Harmless while the card was also #121212;
+//      a dark rim against a lighter one. Since the backdrop was a known
+//      constant the blend was inverted exactly: fg = (C - 18*(1-a)) / a.
+//   2. A sub-pixel feather. 1.6px in a 1940px source that displays at ~0.42x
+//      is 0.67 CSS px, which the downscale rounds back to a hard edge. The
+//      falloff is now ~5px in the source, landing near 2 CSS px on screen.
+//
+// Alpha and edge-band colour only. Interior pixels are bit-identical to the
+// original, so the face, glasses and internal hair detail are the same pixels
+// they always were; no fully-opaque pixel drops below alpha 242/255.
+import heroImage from "../assets/hero-image-feathered.png";
 import Container from "./Container";
 import BackgroundGrid from "./BackgroundGrid";
 import ParticleField from "./ParticleField";
@@ -35,7 +47,14 @@ function Hero({ t }) {
     >
       <BackgroundGrid />
 
-      <ParticleField />
+      {/* The particles get their own, earlier fade on top of the dissolve
+          below. Covering them with the gradient alone would work, but they are
+          discrete bright specks — a dot at 30% cover is still legibly a dot,
+          so they survive further down the ramp than the smooth glow does and
+          read as the last thing standing. Masking the canvas from 56% thins
+          the field out first, which is the order the eye expects: stars go,
+          then the glow, then flat colour. */}
+      <ParticleField className="[mask-image:linear-gradient(to_bottom,black_56%,transparent_86%)]" />
 
       <div
         aria-hidden="true"
@@ -43,6 +62,30 @@ function Hero({ t }) {
       >
         <div className="absolute -top-52 start-1/2 h-[560px] w-[860px] -translate-x-1/2 rounded-full bg-[radial-gradient(ellipse,#7aa2f7_0%,transparent_68%)] opacity-[0.07] blur-[120px]" />
       </div>
+
+      {/* Bottom dissolve.
+          =================
+          The hero and the section under it are already the SAME colour: neither
+          paints a background, so both are body's #121212. The hard line was
+          never a colour jump — it was this section's `overflow-hidden` cutting
+          the grid, the particles and the glow off mid-stroke at its bottom
+          edge. So this does not blend two backgrounds; it retires the
+          decoration before the edge exists.
+
+          Sits after the decorative layers and before <Container>, so in paint
+          order it covers the grid/particles/glow and nothing else — the copy
+          and the card are later siblings and stay fully opaque on top of it.
+
+          The stops are weighted rather than linear (slow start, steep middle,
+          long tail). A plain two-stop gradient reaches 50% opacity at the
+          halfway mark, and that even ramp is exactly what the eye picks out as
+          a band. The last stop is #121212 at alpha 1, i.e. body's own colour,
+          so the final pixel of the hero and the first pixel of Projects are the
+          same value. */}
+      <div
+        aria-hidden="true"
+        className="pointer-events-none absolute inset-x-0 bottom-0 h-[200px] bg-[linear-gradient(to_bottom,transparent_0%,rgba(18,18,18,0.12)_24%,rgba(18,18,18,0.38)_46%,rgba(18,18,18,0.7)_66%,rgba(18,18,18,0.9)_82%,#121212_100%)] md:h-[240px]"
+      />
 
       <Container className="relative grid items-center gap-10 lg:grid-cols-2 lg:items-start lg:gap-16">
         <div className="order-2 w-full max-w-2xl text-start lg:order-1">
