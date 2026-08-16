@@ -11,18 +11,6 @@ import {
 import SectionAnimation from "./SectionAnimation";
 import Container from "./Container";
 
-// What a client can actually buy, stated in their words rather than in stack
-// names. Sits directly under the hero so the "can this person build the thing I
-// need?" question is answered before the visitor reaches the project list.
-//
-// Deliberately built from the SAME pieces as About: SectionAnimation for the
-// scroll reveal, the accent pill for the badge, and the identical card shell
-// (rounded-2xl / border-white/10 / bg-white/5 / accent icon chip). Nothing new
-// is introduced to the design system — this reads as a section that was always
-// there.
-//
-// Name → icon, matching the `id` in the dictionary. Copy stays translatable,
-// icons stay here, same split the skills and about lists already use.
 const ICONS = {
   business: <FaBriefcase />,
   ecommerce: <FaStore />,
@@ -51,8 +39,6 @@ function Services({ t }) {
           </p>
         </div>
 
-        {/* Seven items over a 1/2/3 grid, so the last row is never a single
-            stranded card on tablet (2 cols → 4 rows, last one paired). */}
         <div className="mt-10 grid gap-4 sm:mt-12 sm:grid-cols-2 sm:gap-5 lg:grid-cols-3">
           {t.items.map((item) => (
             <div

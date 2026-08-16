@@ -49,7 +49,6 @@ function Footer({ t }) {
             </ul>
           </nav>
 
-
           <div className="md:text-end">
             <h2 className="mb-3 text-sm font-semibold uppercase tracking-wide text-white">
               {t.footer.connect}

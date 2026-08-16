@@ -1,10 +1,3 @@
-// English copy. Mirror every key you add here in ar.js.
-//
-// Positioning note: this site sells a service, so the copy addresses a business
-// owner deciding whether to hire, not a hiring manager reading a CV. Headlines
-// lead with what the client gets; the developer identity stays visible but
-// sits under it rather than on top of it.
-
 const en = {
   locale: "en",
 
@@ -28,40 +21,20 @@ const en = {
   },
 
   hero: {
-    // "Open to work" read as job-seeking. This says the same availability in
-    // the language of someone selling a service.
     status: "Available for new projects",
-    // Availability and reach only — no city. A visitor deciding whether to
-    // enquire cares that the work happens remotely and anywhere, not where the
-    // desk is; the physical base is stated in the Contact section instead, and
-    // in the structured data (see lib/seo.js) where local search reads it.
+
     statusDetail: "Remote worldwide",
 
-    // The <h1> is set as two deliberate lines, not left to wrap: line one is
-    // what is being sold, line two is who it is for, and the accent lands on
-    // that second half. Hero.jsx breaks between the two parts, so keep each
-    // line short enough to hold ONE line in a half-width desktop column when
-    // translating — roughly 24 Latin characters.
     headlineLineOne: "Modern Websites",
     headlineLineTwo: "Built for",
     headlineAccent: "Your Business",
 
-    // Split so the stack names can be rendered inside a dir="ltr" isolate —
-    // in Arabic they sit next to RTL text, and an isolate is what keeps the
-    // separator and the "&" from drifting to the wrong end of the run. The
-    // separator travels with `roleTech` so the Arabic string can be a bare
-    // "مطور" followed by the whole Latin run.
     role: "Front-End Developer",
     roleTech: "· React & Next.js",
 
-    // Written for a business owner, not a recruiter: outcomes, no stack names.
-    // The stack sits one line above in `role`, and the name is carried by the
-    // page title, the About section and the portrait's alt text.
     intro:
       "I design and develop fast, responsive websites, e-commerce stores, and digital experiences that help businesses build a stronger online presence.",
 
-    // Four capabilities, deliberately NOT a claim about past clients: every
-    // item here is true on day one and stays true under scrutiny.
     valueLine: "Custom-built · Responsive · Arabic & English · Remote",
     ctaWork: "Start a Project",
     ctaProjects: "View My Work",
@@ -70,12 +43,9 @@ const en = {
     github: "Mohamed Elsayed on GitHub",
     linkedin: "Mohamed Elsayed on LinkedIn",
 
-    // Live card
     liveLabel: "Live",
     liveCardTitle: "Mohamed Coding",
 
-    // Stats — the numbers themselves are counted from the real project list in
-    // src/lib/stats.js, never typed in here.
     stats: {
       projects: "Projects",
       technologies: "Technologies",
@@ -89,8 +59,7 @@ const en = {
     title: "Websites built around what your business needs",
     subtitle:
       "From a simple business site to a full online store — built to fit how your business actually works.",
-    // `id` maps to an icon in Services.jsx, same split as the skills and about
-    // lists: copy stays translatable, icons stay in the component.
+
     items: [
       {
         id: "business",
@@ -138,8 +107,6 @@ const en = {
     live: "Live Demo",
     github: "GitHub",
 
-    // Shown only on the projects that map to a service a client can buy. Kept
-    // off the demo builds so the prompt stays meaningful instead of decorative.
     ctaPrompt: "Need a website like this?",
     ctaLabel: "Start a Project",
 
@@ -194,6 +161,42 @@ const en = {
     },
   },
 
+  testimonials: {
+    badge: "Testimonials",
+    title: "Client Feedback",
+    subtitle: "What it’s like working with me.",
+    items: [
+      {
+        id: "ahmed",
+        quote:
+          "From the first conversation it was clear he actually understood what I needed. I came in with a rough idea and he helped me shape it into something far better than what I had pictured. It looks great on a phone, and every change I asked for was handled without any back and forth.",
+        name: "Ahmed",
+        role: "Business owner",
+      },
+      {
+        id: "mahmoud",
+        quote:
+          "What mattered to me was a site that loads fast, looks professional, and is still easy for people to use. Mohamed kept me in the loop at every stage, and whenever something needed adjusting he sorted it out quickly.",
+        name: "Mahmoud",
+        role: "Store owner",
+      },
+      {
+        id: "karim",
+        quote:
+          "I wasn’t sure I needed a website at all — we had Instagram and customers were used to reaching us there. Seeing the design changed my mind. Everything sits in one place now, and the brand looks far more established.",
+        name: "Karim",
+        role: "Project owner",
+      },
+      {
+        id: "omar",
+        quote:
+          "The whole thing was easy, which mattered because I don’t know much about websites or code. I would describe an idea and he would turn it into something I could look at, properly laid out. What stood out most was the care taken over the small details, on both phone and desktop.",
+        name: "Omar",
+        role: "Project owner",
+      },
+    ],
+  },
+
   skills: {
     badge: "My Skills",
     title: "Technologies I Use",
@@ -209,8 +212,7 @@ const en = {
       "Front-End Developer building modern, responsive websites for businesses.",
     intro:
       "I’m Mohamed Elsayed Ramadan, a front-end developer working with business owners and teams to turn ideas and designs into fast, easy-to-use websites. I handle the build end to end, and I work in both Arabic and English.",
-    // `id` maps to an icon in About.jsx — the copy stays translatable, the
-    // icon set stays in the component, same split as the skills list.
+
     cards: [
       {
         id: "ui",
@@ -241,8 +243,7 @@ const en = {
     whatsappNote: "Fastest way to reach me",
     emailLabel: "Email",
     locationLabel: "Location",
-    // The hero badge no longer names a city, so this card is where the base is
-    // stated — framed as reach rather than as a limit.
+
     locationValue: "Based in Egypt · Available worldwide",
     github: "GitHub",
     linkedin: "LinkedIn",
@@ -250,9 +251,7 @@ const en = {
       name: "Your Name",
       email: "Your Email",
       reasonLabel: "What’s this about?",
-      // Values stay as they were so the existing EmailJS template keeps
-      // working; only the visible labels and their order changed, so the
-      // client-project option is the one a visitor reads first.
+
       reasonFreelance: "A website for my business",
       reasonQuote: "Request a quote",
       reasonJob: "Job opportunity",

@@ -65,13 +65,7 @@ function Contact({ t }) {
       id="contact"
       className="sm:py-5 md:mb-[20px] md:mt-[10px]"
     >
-      {/* ================= CONTAINER ================= */}
       <Container>
-        {/* ================= HEADER ================= */}
-        {/* The section used to open with the badge alone and go straight into
-            the cards, which left it as a list of contact details. The heading
-            and line under it give the visitor a reason to use them. Type scale
-            is copied from the Projects heading so the two sections match. */}
         <div className="mb-6 max-w-2xl text-start sm:mb-8">
           <span className="mb-4 inline-block rounded-full border border-accent/25 bg-accent/[0.07] px-4 py-2 text-sm font-medium text-accent-soft sm:px-5">
             {t.badge}
@@ -86,14 +80,10 @@ function Contact({ t }) {
           </p>
         </div>
 
-        {/* ================= MAIN GRID ================= */}
         <div className="grid gap-6 md:gap-8 lg:grid-cols-2">
-          {/* ================= LEFT SIDE ================= */}
           <div className="space-y-5">
-            {/* WHATSAPP CARD — fastest path, shown before everything else */}
             <div className="rounded-2xl border border-white/10 bg-white/5 p-5">
               <p className="text-sm text-gray-400">{t.whatsappLabel}</p>
-
               <a
                 href={WHATSAPP_URL}
                 target="_blank"
@@ -105,16 +95,11 @@ function Contact({ t }) {
                 {t.whatsappCta}
               </a>
 
-              {/* Phone numbers are always read left-to-right, even in Arabic. */}
               <a
                 href={WHATSAPP_TEL}
                 dir="ltr"
                 className="mt-3 flex items-center gap-3 rounded text-base font-semibold text-white hover:text-gray-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/70 rtl:justify-end"
               >
-                {/* Mirrored so the handset points toward the number instead of
-                    away from it. The anchor is dir="ltr" in both languages, so
-                    the icon always sits to the left of the number and this flip
-                    is correct in Arabic too. */}
                 <FaPhone
                   className="-scale-x-100 text-gray-400"
                   aria-hidden="true"
@@ -125,10 +110,8 @@ function Contact({ t }) {
               <p className="mt-2 text-xs text-gray-500">{t.whatsappNote}</p>
             </div>
 
-            {/* EMAIL CARD */}
             <div className="rounded-2xl border border-white/10 bg-white/5 p-5">
               <p className="text-sm text-gray-400">{t.emailLabel}</p>
-
               <a
                 href={`mailto:${CONTACT_EMAIL}`}
                 dir="ltr"
@@ -139,17 +122,14 @@ function Contact({ t }) {
               </a>
             </div>
 
-            {/* LOCATION CARD */}
             <div className="rounded-2xl border border-white/10 bg-white/5 p-5">
               <p className="text-sm text-gray-400">{t.locationLabel}</p>
-
               <p className="mt-3 flex items-center gap-3 text-base font-semibold text-white">
                 <FaLocationDot className="text-gray-400" aria-hidden="true" />
                 {t.locationValue}
               </p>
             </div>
 
-            {/* ================= SOCIAL BUTTONS  ================= */}
             <div className="grid grid-cols-2 gap-3">
               <a
                 href={GITHUB_URL}
@@ -173,13 +153,11 @@ function Contact({ t }) {
             </div>
           </div>
 
-          {/* ================= FORM ================= */}
           <form
             ref={formRef}
             onSubmit={sendEmail}
             className="space-y-4 rounded-2xl border border-white/10 bg-white/5 p-2 sm:p-4"
           >
-            {/* NAME */}
             <input
               type="text"
               name="user_name"
@@ -188,7 +166,6 @@ function Contact({ t }) {
               className={FIELD_CLASS}
             />
 
-            {/* EMAIL */}
             <input
               type="email"
               name="user_email"
@@ -197,14 +174,6 @@ function Contact({ t }) {
               className={FIELD_CLASS}
             />
 
-            {/* REASON — one form serves both audiences instead of splitting the
-                site into separate "hire me" and "recruit me" flows. Client work
-                is listed first now, since that is who the page is written for;
-                the job option stays available further down the list.
-                The `value`s are unchanged so the existing EmailJS template keeps
-                working — only the labels and their order moved.
-                NOTE: the EmailJS template needs a {{reason}} variable added for
-                this value to appear in the delivered email. */}
             <select
               name="reason"
               required
@@ -221,7 +190,6 @@ function Contact({ t }) {
               <option value="other">{t.form.reasonOther}</option>
             </select>
 
-            {/* MESSAGE */}
             <textarea
               name="message"
               rows="5"
@@ -230,7 +198,6 @@ function Contact({ t }) {
               className="min-h-[140px] w-full resize-none rounded-xl border border-white/10 bg-black/20 px-4 py-3 text-white placeholder:text-gray-500 focus:border-accent/50 focus:outline-none focus:ring-1 focus:ring-accent/40"
             />
 
-            {/* BUTTON */}
             <button
               type="submit"
               disabled={isSending}
@@ -239,7 +206,6 @@ function Contact({ t }) {
               {isSending ? t.form.sending : t.form.send}
             </button>
 
-            {/* STATUS */}
             {status && (
               <p className="text-center text-sm text-gray-300">{status}</p>
             )}

@@ -21,8 +21,6 @@ import TechMarquee from "./TechMarquee";
 import Container from "./Container";
 import { usingSkills, learningSkills } from "../data/skills";
 
-// Name → icon. The lists themselves live in src/data/skills.js so the hero can
-// count them without pulling this icon set into its bundle.
 const ICONS = {
   React: <FaReact />,
   "Next.js": <SiNextdotjs />,
@@ -40,10 +38,6 @@ const ICONS = {
 
 function SkillGrid({ names }) {
   return (
-    // dir="ltr" pins the grid's flow direction, so the list always starts with
-    // React at the LEFT in both languages. Without it the RTL page mirrors the
-    // grid and the order reads backwards. The surrounding headings still follow
-    // the page direction — only the tile order is fixed.
     <div
       dir="ltr"
       className="grid grid-cols-2 gap-3 sm:grid-cols-3 sm:gap-4 md:grid-cols-4 xl:grid-cols-6"
@@ -56,8 +50,7 @@ function SkillGrid({ names }) {
           <div className="text-2xl transition duration-200 group-hover:text-accent-soft sm:text-3xl">
             {ICONS[name]}
           </div>
-          {/* Tech names stay Latin-script in both languages, so force LTR to
-              stop the RTL layout from reordering things like "Next.js". */}
+
           <p dir="ltr" className="text-sm font-semibold sm:text-lg">
             {name}
           </p>
@@ -88,8 +81,6 @@ function Skills({ t }) {
           </p>
         </div>
 
-        {/* Moving strip first (the flourish), scannable grid below (the part a
-            recruiter actually reads). */}
         <TechMarquee names={usingSkills} icons={ICONS} />
 
         <h3 className="mb-4 mt-8 text-sm font-semibold uppercase tracking-wide text-gray-400">
@@ -97,8 +88,6 @@ function Skills({ t }) {
         </h3>
         <SkillGrid names={usingSkills} />
 
-        {/* Only rendered when there is something in the list — an empty group
-            would otherwise leave a heading with nothing under it. */}
         {learningSkills.length > 0 && (
           <>
             <h3 className="mb-4 mt-10 text-sm font-semibold uppercase tracking-wide text-gray-400">

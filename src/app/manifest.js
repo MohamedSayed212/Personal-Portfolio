@@ -1,5 +1,3 @@
-// Web App Manifest (served by Next at /manifest.webmanifest, and the
-// <link rel="manifest"> tag is injected automatically by this file convention).
 export default function manifest() {
   return {
     name: "Mohamed ElSayed  — Front-End Developer",

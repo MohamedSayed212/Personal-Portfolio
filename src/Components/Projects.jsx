@@ -75,7 +75,6 @@ function Projects({ t, locale }) {
 
   return (
     <section id="projects">
-      {/* Intro */}
       <Container className="pt-10 text-start sm:pt-16 lg:pt-24">
         <span className="mb-4 inline-block rounded-full border border-accent/25 bg-accent/[0.07] px-4 py-2 text-sm font-medium text-accent-soft sm:px-5 sm:text-base">
           {t.badge}
@@ -90,7 +89,6 @@ function Projects({ t, locale }) {
         </p>
       </Container>
 
-      {/* ================= SNAP TRACK ================= */}
       <div className="relative">
         <div className="pointer-events-none sticky top-0 z-20 hidden h-0 md:block">
           <ol className="pointer-events-auto absolute end-4 top-[50svh] flex -translate-y-1/2 flex-col items-center gap-5 lg:end-6">
@@ -122,22 +120,11 @@ function Projects({ t, locale }) {
         </div>
 
         {projects.map((project, index) => {
-          // Text for this project comes from the dictionary, matched by id.
           const copy = t.items[project.id];
-          // Alternate which side the image sits on. In RTL the grid mirrors
-          // automatically, so this needs no direction handling.
+
           const imageLast = index % 2 === 1;
 
           return (
-            // The ARTICLE is never transformed — it only supplies the
-            // perspective that the inner block's rotateX needs, and the anchor
-            // id the dot rail jumps to.
-            //
-            // `overflow-x-clip`: the reveal below starts the block 56px to one
-            // side, and the block is full-width, so until it plays it hangs
-            // past the viewport edge and makes the page horizontally
-            // scrollable. `clip` rather than `hidden` so this never becomes a
-            // scroll container of its own.
             <article
               key={project.id}
               id={anchorId(project.id)}
@@ -145,38 +132,21 @@ function Projects({ t, locale }) {
               style={{ perspective: 1200 }}
               className={`flex items-center overflow-x-clip ${ARTICLE_HEIGHT} py-10 sm:py-12 lg:py-12`}
             >
-              {/* The inner block is what animates. It is a few hundred px tall,
-                  so `amount: 0.35` fires when it is genuinely on screen —
-                  animating the full-height article instead meant the reveal
-                  finished while the section was still below the fold, which is
-                  why nothing appeared to animate at all.
-                  `once: true`: the reveal plays on first sight and the block
-                  then stays put, so scrolling back up doesn't replay it. */}
               <Container>
                 <motion.div
                   variants={reveal}
-                  // Odd projects come in from the other side, matching which side
-                  // their screenshot sits on.
+
                   custom={(imageLast ? 1 : -1) * rtl}
                   initial="hidden"
                   whileInView="show"
                   viewport={{ once: true, amount: 0.35 }}
-                  // The track sizes mirror the order swap, so the IMAGE always
-                  // lands in the wider 1.15fr track. With the tracks fixed by
-                  // POSITION (`[1.15fr_1fr]` for everyone) while `order` moves
-                  // the content, alternate projects rendered their screenshot
-                  // in the narrow track instead — images came out 640px wide
-                  // on odd rows and 556px on even ones.
+
                   className={`grid w-full items-center gap-8 lg:gap-14 ${
                     imageLast
                       ? "lg:grid-cols-[1fr_1.15fr]"
                       : "lg:grid-cols-[1.15fr_1fr]"
                   }`}
                 >
-                  {/* Screenshot.
-                      `perspective` has to sit on the PARENT of the rotating
-                      element — the article's own perspective only reaches its
-                      direct child, which is the grid above, not this image. */}
                   <div
                     style={{ perspective: 1000 }}
                     className={imageLast ? "lg:order-2" : ""}
@@ -189,9 +159,7 @@ function Projects({ t, locale }) {
                       <Image
                         src={project.image}
                         alt={copy.title}
-                        // Static import, so Next generates the blur data at build
-                        // time — a free perceived-performance win on six large
-                        // images.
+
                         placeholder="blur"
                         sizes="(max-width: 992px) 100vw, 55vw"
                         className="aspect-video w-full object-cover object-top"
@@ -199,7 +167,6 @@ function Projects({ t, locale }) {
                     </motion.div>
                   </div>
 
-                  {/* Copy */}
                   <div className={imageLast ? "lg:order-1" : ""}>
                     <div
                       dir="ltr"
@@ -221,20 +188,12 @@ function Projects({ t, locale }) {
                       {copy.title}
                     </h3>
 
-                    {/* Who this was built for. Sits directly under the title so
-                        a visitor in that trade recognises themselves before
-                        reading anything else. Only the projects that map to a
-                        service carry one — the demo builds have no `audience`
-                        key and render nothing here. */}
                     {copy.audience && (
                       <p className="mt-3 inline-block rounded-full border border-accent/25 bg-accent/[0.07] px-3 py-1.5 text-xs font-medium text-accent-soft sm:text-sm">
                         {copy.audience}
                       </p>
                     )}
 
-                    {/* Plain-language value, for non-technical visitors. Sits
-                        above the technical description so a freelance client gets
-                        the point before hitting the stack list. */}
                     <p className="mt-4 text-base font-medium leading-7 text-white sm:text-lg sm:leading-8">
                       {copy.benefit}
                     </p>
@@ -243,7 +202,6 @@ function Projects({ t, locale }) {
                       {copy.description}
                     </p>
 
-                    {/* Tech */}
                     <div className="mt-6 flex flex-wrap gap-2">
                       {project.tech.map((item) => (
                         <span
@@ -256,7 +214,6 @@ function Projects({ t, locale }) {
                       ))}
                     </div>
 
-                    {/* Links */}
                     <div className="mt-8 flex flex-wrap gap-3">
                       <a
                         href={project.live}
@@ -277,15 +234,6 @@ function Projects({ t, locale }) {
                       </a>
                     </div>
 
-                    {/* Sales prompt, on the four projects that correspond to a
-                        service someone can actually order (`client` in
-                        src/data/projects.js). Kept off the demo builds on
-                        purpose — a prompt under every single project stops
-                        being an invitation and turns into furniture.
-
-                        A text link, not a third button: the row above already
-                        has two, and a filled button here would compete with
-                        "Live Demo" instead of following it. */}
                     {project.client && (
                       <p className="mt-6 flex flex-wrap items-center gap-x-2 gap-y-1 text-sm text-gray-400 sm:text-base">
                         {t.ctaPrompt}
@@ -294,8 +242,7 @@ function Projects({ t, locale }) {
                           className="inline-flex items-center gap-1.5 font-semibold text-accent-soft transition hover:text-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/70"
                         >
                           {t.ctaLabel}
-                          {/* Flipped in Arabic so the arrow points the way the
-                              text runs. */}
+
                           <span
                             aria-hidden="true"
                             className="inline-block rtl:-scale-x-100"

@@ -1,13 +1,3 @@
-// Project data that is the SAME in every language: images, tech tags, and links.
-//
-// The translatable parts (title, audience, benefit, description) live in the
-// dictionaries under `projects.items[id]`, matched by the `id` below. Keeping
-// the URLs here means a link only ever has to be updated in one place.
-//
-// `client: true` marks a project that maps to a service someone can order, and
-// is what makes the "Need a website like this?" prompt render. The demo builds
-// (taskflow, movie) leave it off so the prompt stays selective.
-
 import ecommerceImage from "../assets/E-Commerce.png";
 import cafeImage from "../assets/cafe-image.png";
 import realEstateImage from "../assets/RealState.png";

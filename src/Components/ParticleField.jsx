@@ -3,18 +3,7 @@
 import { useEffect, useRef } from "react";
 import { useReducedMotion } from "framer-motion";
 
-// A drifting particle field with depth, drawn on a 2D canvas.
-//
-// Deliberately NOT Three.js: for floating dots, three + @react-three/fiber
-// would add roughly 185 kB gzipped — more than doubling this site's bundle for
-// a decorative background. This does the same job in ~2 kB. Three.js earns its
-// weight when you need real geometry, lighting, or models.
-//
-// Depth is faked with a `z` value per particle (0 = far, 1 = near) that drives
-// size, opacity, drift speed, and how far it parallaxes against the pointer.
-// That difference in travel between layers is what reads as 3D.
-
-const ACCENT = "122, 162, 247"; // matches theme accent (#7aa2f7)
+const ACCENT = "122, 162, 247";
 
 function ParticleField({ className = "" }) {
   const reduceMotion = useReducedMotion();
@@ -26,14 +15,11 @@ function ParticleField({ className = "" }) {
     const ctx = canvas.getContext("2d");
     if (!ctx) return;
 
-    // Cap DPR at 2 — beyond that the pixel cost climbs with no visible gain.
     const dpr = Math.min(window.devicePixelRatio || 1, 2);
     let width = 0;
     let height = 0;
     let particles = [];
 
-    // Pointer target vs. the eased value actually drawn, so the field glides
-    // instead of snapping to the cursor.
     const pointer = { x: 0, y: 0 };
     const eased = { x: 0, y: 0 };
 
@@ -45,7 +31,6 @@ function ParticleField({ className = "" }) {
       canvas.height = Math.round(height * dpr);
       ctx.setTransform(dpr, 0, 0, dpr, 0, 0);
 
-      // Scale count with area so a phone doesn't draw a desktop's worth.
       const count = Math.round(
         Math.min(46, Math.max(16, (width * height) / 32000)),
       );
@@ -56,7 +41,7 @@ function ParticleField({ className = "" }) {
           x: Math.random() * width,
           y: Math.random() * height,
           z,
-          // Nearer particles drift faster — the other half of the depth cue.
+
           vx: (Math.random() - 0.5) * (0.05 + z * 0.12),
           vy: (Math.random() - 0.5) * (0.05 + z * 0.12),
           r: 0.6 + z * 1.2,
@@ -69,12 +54,9 @@ function ParticleField({ className = "" }) {
       ctx.clearRect(0, 0, width, height);
 
       for (const p of particles) {
-        // Parallax: near particles shift more than far ones.
         const offsetX = eased.x * (3 + p.z * 10);
         const offsetY = eased.y * (2 + p.z * 6);
 
-        // A small halo in the dot's own colour is what makes it read as a
-        // light rather than a flat speck. Nearer dots glow wider.
         ctx.shadowColor = `rgba(${ACCENT}, ${p.alpha})`;
         ctx.shadowBlur = 3 + p.z * 5;
 
@@ -89,7 +71,6 @@ function ParticleField({ className = "" }) {
 
     resize();
 
-    // Reduced motion: one static frame, no loop, no pointer tracking.
     if (reduceMotion) {
       draw();
       window.addEventListener("resize", handleResize);
@@ -109,7 +90,6 @@ function ParticleField({ className = "" }) {
         p.x += p.vx;
         p.y += p.vy;
 
-        // Wrap around the edges so the field never thins out.
         if (p.x < -4) p.x = width + 4;
         else if (p.x > width + 4) p.x = -4;
         if (p.y < -4) p.y = height + 4;
@@ -132,7 +112,6 @@ function ParticleField({ className = "" }) {
     };
 
     const handlePointerMove = (event) => {
-      // -1 → 1 across the viewport.
       pointer.x = (event.clientX / window.innerWidth) * 2 - 1;
       pointer.y = (event.clientY / window.innerHeight) * 2 - 1;
     };
@@ -142,8 +121,6 @@ function ParticleField({ className = "" }) {
       if (reduceMotion) draw();
     }
 
-    // Stop drawing when the hero scrolls away or the tab is hidden — no reason
-    // to burn frames on something nobody is looking at.
     const observer = new IntersectionObserver(
       ([entry]) => (entry.isIntersecting ? start() : stop()),
       { threshold: 0 },

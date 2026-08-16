@@ -18,18 +18,15 @@ function About({ t }) {
             {t.badge}
           </span>
 
-        
           <h2 className="max-w-4xl text-2xl font-bold leading-[1.6] text-white sm:text-3xl sm:leading-[1.6] md:text-4xl md:leading-[1.55] lg:text-5xl lg:leading-[1.5]">
             {t.title}
           </h2>
 
-         
           <p className="mt-5 max-w-3xl text-base leading-7 text-gray-400 sm:text-lg sm:leading-8">
             {t.intro}
           </p>
         </div>
 
-       
         <div className="mt-10 grid gap-4 sm:mt-12 sm:gap-5 md:grid-cols-3">
           {t.cards.map((card) => (
             <div
@@ -54,7 +51,6 @@ function About({ t }) {
           ))}
         </div>
 
-     
         <div className="mt-8 inline-flex items-center gap-3 rounded-full border border-accent/25 bg-accent/[0.07] px-4 py-2 sm:mt-10 sm:px-5">
           <span className="relative flex h-2.5 w-2.5">
             <span className="absolute inline-flex h-full w-full animate-pulse-ring rounded-full bg-accent-soft motion-reduce:animate-none" />

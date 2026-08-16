@@ -9,20 +9,9 @@
 }
 
 html {
-  /* Offsets the fixed header for anchor jumps. */
   scroll-padding-top: 150px;
-
-  /* NO `scroll-snap-type` here, deliberately. It used to be `y proximity` with
-     the project articles as targets, but proximity re-snaps whenever a scroll
-     ENDS near a target — so nudging the wheel inside the projects section
-     pulled the viewport back to the project you had just left. That reads as
-     the page fighting you. Scrolling is the user's; nothing on this page may
-     take it back. */
 }
 
-/* Smooth scrolling is opt-out for motion-sensitive users. Applied to the dot
-   rail's jump links and the nav anchors, unconditional smooth scrolling is
-   exactly the kind of movement `prefers-reduced-motion` exists to suppress. */
 @media (prefers-reduced-motion: no-preference) {
   html {
     scroll-behavior: smooth;
@@ -31,18 +20,13 @@ html {
 
 body {
   background-color: #121212;
-  /* `clip` rather than `hidden`: `hidden` would promote body to a scroll
-     container, which changes how the page scrolls. `clip` prevents the same
-     horizontal overflow without creating one; the `hidden` line stays first as
-     a fallback for browsers without `clip`. */
+
   overflow-x: hidden;
   overflow-x: clip;
-  /* Latin default; the RTL rule below swaps in the Arabic face. Both are
-     self-hosted by next/font (see src/lib/fonts.js). */
+
   font-family: var(--font-latin), system-ui, sans-serif;
 }
 
-/* dir lives on <html>, set per locale by the two root layouts. */
 [dir="rtl"] body {
   font-family: var(--font-arabic), system-ui, sans-serif;
 }
@@ -58,7 +42,6 @@ body {
 }
 
 @layer base {
-  /* Default heading colors that work on normal pages (light + dark) */
   h1 {
     @apply text-4xl font-bold text-gray-900 md:text-5xl dark:text-slate-50;
   }

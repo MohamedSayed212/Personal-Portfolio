@@ -3,7 +3,6 @@
 import { useEffect, useRef, useState } from "react";
 import { FaGlobe, FaCheck, FaChevronDown } from "react-icons/fa";
 
-
 function LanguageSwitcher({ t, locale, onLocaleChange, className = "" }) {
   const [isOpen, setIsOpen] = useState(false);
   const containerRef = useRef(null);
@@ -15,8 +14,6 @@ function LanguageSwitcher({ t, locale, onLocaleChange, className = "" }) {
 
   const current = options.find((option) => option.code === locale);
 
-  // Close on outside click and on Escape. Both listeners are only attached
-  // while the menu is actually open.
   useEffect(() => {
     if (!isOpen) return;
 
@@ -62,8 +59,6 @@ function LanguageSwitcher({ t, locale, onLocaleChange, className = "" }) {
       </button>
 
       {isOpen && (
-        // `end-0` (not right-0) so the menu hangs off the correct edge once the
-        // page mirrors into RTL.
         <ul
           role="listbox"
           aria-label={t.label}

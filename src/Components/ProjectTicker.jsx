@@ -5,18 +5,11 @@ import { motion, AnimatePresence, useReducedMotion } from "framer-motion";
 
 const INTERVAL_MS = 3000;
 
-// The "alive" part of the hero card: cycles through the SAME six projects
-// listed further down the page, one at a time.
-//
-// Everything shown here is real data passed in from the project list — no
-// invented activity feed, no fake build logs.
 function ProjectTicker({ items }) {
   const reduceMotion = useReducedMotion();
   const [index, setIndex] = useState(0);
 
   useEffect(() => {
-    // An auto-advancing element is exactly what prefers-reduced-motion is meant
-    // to suppress, so hold on the first item instead of cycling.
     if (reduceMotion || items.length <= 1) return;
 
     const id = setInterval(
@@ -35,11 +28,7 @@ function ProjectTicker({ items }) {
         className="h-1.5 w-1.5 shrink-0 rounded-full bg-accent-soft"
       />
 
-      {/* Fixed height stops the card from jumping as titles change length. */}
       <div className="relative h-9 flex-1 overflow-hidden">
-        {/* `initial={false}` renders the FIRST item at its final state instead
-            of animating it in. Without it the strip is SSR'd at opacity 0 and
-            stays blank until hydration; later cycles still animate normally. */}
         <AnimatePresence mode="wait" initial={false}>
           <motion.div
             key={current.id}
@@ -59,7 +48,6 @@ function ProjectTicker({ items }) {
         </AnimatePresence>
       </div>
 
-      {/* Position indicator, e.g. 3/6 */}
       <span dir="ltr" className="shrink-0 text-xs font-semibold text-gray-500">
         {index + 1}/{items.length}
       </span>
