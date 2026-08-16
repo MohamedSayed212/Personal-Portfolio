@@ -42,16 +42,28 @@ function Header({ t, locale, onLocaleChange }) {
             <a
               href="#home"
               aria-label={t.nav.homeAria}
-              className="shrink-0 text-base font-bold tracking-wide text-secondary sm:text-lg lg:text-xl"
+              // `min-w-0 truncate` rather than `shrink-0`: at 320px the bar
+              // holds the brand, the language switcher and the menu button in
+              // 248px of usable width (Container's px-6 plus the header's p-3),
+              // which is ~46px short. With the brand unable to shrink, the menu
+              // button was pushed off the right edge and clipped. It can give
+              // way now; at 360px and up the full name still fits untouched.
+              className="min-w-0 truncate text-base font-bold tracking-wide text-secondary sm:text-lg lg:text-xl"
               dir="ltr"
             >
-              Mohamed<span className="text-neutral-300"> Coding</span>
+              {/* Under 360px the bar cannot fit the full brand, the language
+                  switcher and the menu button at once. Dropping the suffix
+                  there reads as a deliberate short form ("Mohamed") instead of
+                  a word cut mid-letter by the truncate above, which stays as a
+                  backstop. At 360px and up nothing changes. */}
+              Mohamed
+              <span className="text-neutral-300 max-[359px]:hidden"> Coding</span>
             </a>
 
             {/* ================= MOBILE ACTIONS ================= */}
             {/* Language switcher stays visible in the collapsed bar — a visitor on
               the wrong language shouldn't have to open a menu to fix that. */}
-            <div className="flex items-center gap-2 md:hidden">
+            <div className="flex shrink-0 items-center gap-2 md:hidden">
               <LanguageSwitcher
                 t={t.language}
                 locale={locale}

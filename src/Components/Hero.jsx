@@ -92,51 +92,134 @@ function Hero({ t }) {
           {/* STATUS BADGE */}
           <div
             style={step(0)}
-            className={`${REVEAL} mb-7 inline-flex flex-wrap items-center gap-x-3 gap-y-1 rounded-full border border-accent/25 bg-accent/[0.07] px-4 py-2`}
+            className={`${REVEAL} mb-6 inline-flex flex-wrap items-center gap-x-2 gap-y-1 rounded-full border border-accent/25 bg-accent/[0.07] px-4 py-2`}
           >
             <span className="inline-flex items-center gap-2 text-sm font-semibold text-accent-soft">
               <LiveDot />
               {t.status}
             </span>
-            <span className="text-sm text-gray-400">{t.statusDetail}</span>
+            {/* The separator lives INSIDE the second span, not between the two,
+                so that when the badge wraps on a narrow phone the dot travels
+                down with the text it belongs to instead of dangling at the end
+                of the first line. */}
+            <span className="text-sm text-gray-400">
+              <span aria-hidden="true" className="text-gray-600">
+                ·
+              </span>{" "}
+              {t.statusDetail}
+            </span>
           </div>
 
-          {/* TITLE */}
+          {/* TITLE
+              ======
+              Two hard lines rather than one wrapping sentence. Left to wrap,
+              "Modern Websites Built for Your Business" broke into three ragged
+              lines in the half-width desktop column and the break moved with
+              every viewport; splitting it pins the rhythm — product on one
+              line, audience on the next, accent on the audience.
+
+              Because the break is fixed, the type scale is set by the LONGER
+              line ("Built for Your Business", ~10.4em at this tracking) against
+              the column it sits in: full width up to md, then half of the
+              1320px grid minus the gap from lg up. Hence the step DOWN at lg —
+              that is where the second column appears, not a mistake.
+
+              The phone size is fluid rather than a fixed step. "Built for Your
+              Business" measures 10.8em, so it needs the viewport to give it
+              10.8 × the font size: 32px asks for 346px and a 375px phone only
+              offers 327px of column, which dropped "Business" onto a third
+              line by itself. `7.8vw` keeps the line just inside the column from
+              320px up and caps at the same 2rem once there is room for it.
+
+              ARABIC IS SIZED SEPARATELY, for two measured reasons:
+
+                • Width. The same line in Cairo Bold is "مصممة لأنشطتك
+                  التجارية" at 11.4em against Inter's 10.8em, so the Latin
+                  scale overflowed the desktop column and dropped "التجارية"
+                  onto a third line. Every `rtl:` step below is one notch down.
+                • Height. Cairo's natural line box is 1.87em — far taller than
+                  Inter's. At `leading-[1.12]` the ل and أ of line two ran
+                  straight into the descenders of line one, which is most of
+                  what made the Arabic read as broken. 1.34 clears the ink
+                  while still binding the two lines into one headline.
+
+              `tracking-tight` is Latin-only: negative letter-spacing pulls
+              Arabic's joined letterforms apart at the cursive joins, so RTL
+              keeps the font's own spacing.
+
+              Every size here is an arbitrary value, including the ones that
+              have a named equivalent (3.75rem IS text-6xl). Tailwind's named
+              font-size utilities ship a line-height as well, and a responsive
+              one is emitted AFTER the unprefixed `leading-*` at equal
+              specificity — `lg:text-4xl` was silently resetting the leading to
+              40px, which left the 44px xl headline at 0.91 with the two lines
+              nearly touching. Arbitrary sizes carry no line-height, so the two
+              `leading-*` rules below stay authoritative at every breakpoint. */}
           <h1
             style={step(1)}
-            className={`${REVEAL} text-4xl font-bold leading-[1.14] text-white sm:text-4xl md:text-6xl lg:text-5xl xl:text-6xl`}
+            className={`${REVEAL} text-[clamp(1.5rem,7.8vw,2rem)] font-bold leading-[1.12] tracking-tight text-white sm:text-[2.5rem] md:text-[3.75rem] lg:text-[2.25rem] xl:text-[2.75rem] 2xl:text-[3rem] rtl:text-[clamp(1.375rem,7.2vw,1.875rem)] rtl:leading-[1.34] rtl:tracking-normal rtl:sm:text-[2.25rem] rtl:md:text-[3.25rem] rtl:lg:text-[2.125rem] rtl:xl:text-[2.5rem] rtl:2xl:text-[2.75rem]`}
           >
-            {t.greeting} <span className="text-accent">{t.name}</span>
+            <span className="block">{t.headlineLineOne}</span>
+            <span className="block">
+              {t.headlineLineTwo}{" "}
+              <span className="text-accent">{t.headlineAccent}</span>
+            </span>
           </h1>
 
-          {/* ROLE */}
+          {/* ROLE — who is behind the offer. Stays clearly under the headline:
+              at every breakpoint it is roughly half its size.
+
+              The stack names live in their own dir="ltr" isolate. Without it
+              the bidi algorithm resolves "·" and "&" against whatever text
+              surrounds them, which is how mixed lines like this end up with
+              the separator on the wrong side; the isolate also gives the run a
+              real margin from the Arabic word instead of one bare space. */}
           <p
             style={step(2)}
-            className={`${REVEAL} mt-5 text-xl font-semibold text-secondary sm:text-2xl lg:text-3xl`}
+            className={`${REVEAL} mt-4 text-lg font-semibold text-secondary sm:text-xl xl:text-2xl`}
           >
             {t.role}
+            {/* Two spans, deliberately. `ms-2` is margin-inline-START, which
+                resolves against the element's OWN direction — put it on the
+                dir="ltr" span and in Arabic the gap lands on the far side of
+                the Latin run, leaving "مطور" welded to "Next.js". The outer
+                span inherits the page direction, so its inline-start is the
+                side actually facing the Arabic word; the inner one only
+                isolates the bidi run. */}
+            <span className="ms-2 inline-block">
+              <span dir="ltr">{t.roleTech}</span>
+            </span>
           </p>
 
-          {/* INTRO */}
+          {/* INTRO — Arabic gets a taller line box: Cairo's tall ascenders and
+              deep descenders make `leading-relaxed` read as cramped at body
+              size, where Inter looks settled. */}
           <p
             style={step(3)}
-            className={`${REVEAL} mt-5 max-w-[560px] text-base leading-relaxed text-gray-400 sm:text-lg lg:text-xl`}
+            className={`${REVEAL} mt-5 max-w-[560px] text-base leading-relaxed text-pretty text-gray-400 rtl:leading-[1.9] sm:text-[1.125rem]`}
           >
             {t.intro}
           </p>
 
-          {/* AVAILABILITY */}
+          {/* VALUE LINE — the four reasons to make contact, compressed to one
+              quiet line. Same muted grey as the paragraph above but two steps
+              smaller, so it reads as a caption to it rather than a second
+              claim competing with the headline or the CTA.
+
+              `tracking-wide` opens the Latin line up at this small size; on
+              Arabic the same rule would insert gaps inside cursive joins and
+              take the words apart, so RTL drops it. */}
           <p
             style={step(4)}
-            className={`${REVEAL} mt-5 max-w-[560px] text-base font-semibold text-white sm:text-lg lg:text-xl`}
+            className={`${REVEAL} mt-4 max-w-[560px] text-[13px] font-medium leading-relaxed tracking-wide text-gray-400 rtl:tracking-normal sm:text-[0.875rem]`}
           >
-            {t.availability}
+            {t.valueLine}
           </p>
 
           {/* BUTTONS */}
           <div
             style={step(5)}
-            className={`${REVEAL} mt-9 grid w-full max-w-[560px] grid-cols-2 gap-3`}
+            className={`${REVEAL} mt-8 grid w-full max-w-[560px] grid-cols-2 gap-3`}
           >
             <a
               href="#contact"
@@ -148,14 +231,14 @@ function Hero({ t }) {
 
             <a
               href="#projects"
-              className="flex items-center justify-center rounded-xl border border-white/20 px-4 py-3.5 text-center text-sm font-semibold text-white transition hover:border-accent/40 hover:bg-white/10 sm:px-6 sm:text-base"
+              className="flex items-center justify-center gap-2 rounded-xl border border-white/20 px-4 py-3.5 text-center text-sm font-semibold leading-tight text-white transition hover:border-accent/40 hover:bg-white/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/40 sm:px-6 sm:text-base"
             >
               {t.ctaProjects}
             </a>
           </div>
 
           {/* SOCIAL */}
-          <div style={step(6)} className={`${REVEAL} mt-8 flex gap-4`}>
+          <div style={step(6)} className={`${REVEAL} mt-6 flex gap-4`}>
             <a
               href={GITHUB_URL}
               target="_blank"
@@ -227,7 +310,10 @@ function Hero({ t }) {
               >
                 {/* Card top bar */}
                 <div className="flex items-center justify-between border-b border-white/10 px-4 py-3">
-                  <span className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-accent-soft">
+                  {/* `uppercase tracking-wider` is a Latin micro-label idiom
+                      and a no-op-plus-damage in Arabic: casing does nothing,
+                      and the tracking splits "مباشر" at its joins. */}
+                  <span className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-accent-soft rtl:tracking-normal">
                     <LiveDot />
                     {t.liveLabel}
                   </span>

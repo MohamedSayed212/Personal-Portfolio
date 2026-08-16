@@ -221,6 +221,17 @@ function Projects({ t, locale }) {
                       {copy.title}
                     </h3>
 
+                    {/* Who this was built for. Sits directly under the title so
+                        a visitor in that trade recognises themselves before
+                        reading anything else. Only the projects that map to a
+                        service carry one — the demo builds have no `audience`
+                        key and render nothing here. */}
+                    {copy.audience && (
+                      <p className="mt-3 inline-block rounded-full border border-accent/25 bg-accent/[0.07] px-3 py-1.5 text-xs font-medium text-accent-soft sm:text-sm">
+                        {copy.audience}
+                      </p>
+                    )}
+
                     {/* Plain-language value, for non-technical visitors. Sits
                         above the technical description so a freelance client gets
                         the point before hitting the stack list. */}
@@ -265,6 +276,35 @@ function Projects({ t, locale }) {
                         {t.github}
                       </a>
                     </div>
+
+                    {/* Sales prompt, on the four projects that correspond to a
+                        service someone can actually order (`client` in
+                        src/data/projects.js). Kept off the demo builds on
+                        purpose — a prompt under every single project stops
+                        being an invitation and turns into furniture.
+
+                        A text link, not a third button: the row above already
+                        has two, and a filled button here would compete with
+                        "Live Demo" instead of following it. */}
+                    {project.client && (
+                      <p className="mt-6 flex flex-wrap items-center gap-x-2 gap-y-1 text-sm text-gray-400 sm:text-base">
+                        {t.ctaPrompt}
+                        <a
+                          href="#contact"
+                          className="inline-flex items-center gap-1.5 font-semibold text-accent-soft transition hover:text-accent focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/70"
+                        >
+                          {t.ctaLabel}
+                          {/* Flipped in Arabic so the arrow points the way the
+                              text runs. */}
+                          <span
+                            aria-hidden="true"
+                            className="inline-block rtl:-scale-x-100"
+                          >
+                            →
+                          </span>
+                        </a>
+                      </p>
+                    )}
                   </div>
                 </motion.div>
               </Container>

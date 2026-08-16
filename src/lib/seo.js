@@ -37,6 +37,34 @@ const NAME_VARIANTS = [
 
 const OG_LOCALE = { en: "en_US", ar: "ar_EG" };
 
+// The countries the service is actually offered in. Used by the structured
+// data so the Gulf and Western markets are stated as data rather than being
+// stuffed into visible copy as city names.
+const AREA_SERVED = ["SA", "AE", "QA", "KW", "EG", "US", "GB"];
+
+// Service-intent terms, kept separate from the NAME_VARIANTS above because
+// they do a different job: those catch people looking for THIS person, these
+// catch people looking for someone who does this WORK. Both languages are
+// listed since the page serves Arabic and English from one URL.
+const SERVICE_KEYWORDS = [
+  "freelance web developer",
+  "freelance web developer Egypt",
+  "remote web developer",
+  "React developer",
+  "Next.js developer",
+  "website developer",
+  "ecommerce website developer",
+  "business website developer",
+  "مطور مواقع",
+  "تصميم مواقع",
+  "برمجة مواقع",
+  "مطور ويب",
+  "تصميم متجر إلكتروني",
+  "شركة تصميم مواقع",
+  "مطور مواقع السعودية",
+  "مطور مواقع الإمارات",
+];
+
 export function buildMetadata(locale, dict) {
   return {
     metadataBase: new URL(SITE_URL),
@@ -53,8 +81,7 @@ export function buildMetadata(locale, dict) {
       "Mohamed Elsayed Next.js Developer",
       "Mohamed Elsayed Portfolio",
       "Front-End Developer",
-      "React Developer",
-      "Next.js Developer",
+      ...SERVICE_KEYWORDS,
     ],
     authors: [{ name: "Mohamed Elsayed Ramdan", url: SITE_URL }],
     creator: "Mohamed ElSayed",
@@ -128,13 +155,29 @@ export function buildStructuredData(locale, dict) {
           "Front-End Developer specializing in React and Next.js, building clean, responsive, and modern web applications.",
         email: `mailto:${CONTACT_EMAIL}`,
         telephone: WHATSAPP_INTL,
+        knowsLanguage: ["ar", "en"],
         contactPoint: {
           "@type": "ContactPoint",
           telephone: WHATSAPP_INTL,
           contactType: "customer service",
-          areaServed: "Worldwide",
+          areaServed: AREA_SERVED,
           availableLanguage: ["Arabic", "English"],
         },
+        // The buyable services, taken straight from the dictionary so this can
+        // never drift out of sync with what the Services section shows. This is
+        // what tells a crawler the page offers work rather than just describing
+        // a person.
+        makesOffer: dict.services.items.map((item) => ({
+          "@type": "Offer",
+          itemOffered: {
+            "@type": "Service",
+            name: item.title,
+            description: item.body,
+            provider: { "@id": PERSON_ID },
+            areaServed: AREA_SERVED,
+            availableLanguage: ["Arabic", "English"],
+          },
+        })),
         knowsAbout: [
           "React",
           "Next.js",

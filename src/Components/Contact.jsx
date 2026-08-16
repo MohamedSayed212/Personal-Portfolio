@@ -68,10 +68,22 @@ function Contact({ t }) {
       {/* ================= CONTAINER ================= */}
       <Container>
         {/* ================= HEADER ================= */}
-        <div className="mb-4 max-w-2xl text-start sm:mb-6">
+        {/* The section used to open with the badge alone and go straight into
+            the cards, which left it as a list of contact details. The heading
+            and line under it give the visitor a reason to use them. Type scale
+            is copied from the Projects heading so the two sections match. */}
+        <div className="mb-6 max-w-2xl text-start sm:mb-8">
           <span className="mb-4 inline-block rounded-full border border-accent/25 bg-accent/[0.07] px-4 py-2 text-sm font-medium text-accent-soft sm:px-5">
             {t.badge}
           </span>
+
+          <h2 className="text-3xl font-bold leading-[1.3] text-white sm:text-4xl sm:leading-[1.25] md:text-5xl md:leading-[1.2]">
+            {t.title}
+          </h2>
+
+          <p className="mt-4 text-base leading-7 text-gray-400 sm:text-lg sm:leading-8">
+            {t.subtitle}
+          </p>
         </div>
 
         {/* ================= MAIN GRID ================= */}
@@ -186,7 +198,11 @@ function Contact({ t }) {
             />
 
             {/* REASON — one form serves both audiences instead of splitting the
-                site into separate "hire me" and "recruit me" flows.
+                site into separate "hire me" and "recruit me" flows. Client work
+                is listed first now, since that is who the page is written for;
+                the job option stays available further down the list.
+                The `value`s are unchanged so the existing EmailJS template keeps
+                working — only the labels and their order moved.
                 NOTE: the EmailJS template needs a {{reason}} variable added for
                 this value to appear in the delivered email. */}
             <select
@@ -199,8 +215,9 @@ function Contact({ t }) {
               <option value="" disabled>
                 {t.form.reasonLabel}
               </option>
-              <option value="job">{t.form.reasonJob}</option>
               <option value="freelance">{t.form.reasonFreelance}</option>
+              <option value="quote">{t.form.reasonQuote}</option>
+              <option value="job">{t.form.reasonJob}</option>
               <option value="other">{t.form.reasonOther}</option>
             </select>
 

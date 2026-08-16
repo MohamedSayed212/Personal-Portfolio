@@ -4,6 +4,7 @@ import { useEffect, useState } from "react";
 
 import Header from "./Header";
 import Hero from "./Hero";
+import Services from "./Services";
 import Projects from "./Projects";
 import Skills from "./Skills";
 import About from "./About";
@@ -50,6 +51,10 @@ function SiteShell() {
       <Header t={t} locale={locale} onLocaleChange={setLocale} />
       <main>
         <Hero t={t.hero} tickerItems={tickerItems} />
+        {/* Directly after the hero: the hero says what the visitor gets, this
+            says what they can order. Both sit on the page background, so the
+            hero's bottom dissolve still lands on the same colour. */}
+        <Services t={t.services} />
         <Projects t={t.projects} locale={locale} />
         <Skills t={t.skills} />
         <About t={t.about} />
