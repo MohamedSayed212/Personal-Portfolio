@@ -41,7 +41,7 @@ const en = {
 
     imageAlt: "Mohamed ElSayed (Mohamed Sayed), Front-End Developer",
     github: "Mohamed Elsayed on GitHub",
-    linkedin: "Mohamed Elsayed on LinkedIn",
+    linkedin: "Mohamed ElSayed on LinkedIn",
 
     liveLabel: "Live",
     liveCardTitle: "Mohamed Coding",
@@ -211,7 +211,7 @@ const en = {
     title:
       "Front-End Developer building modern, responsive websites for businesses.",
     intro:
-      "I’m Mohamed Elsayed Ramadan, a front-end developer working with business owners and teams to turn ideas and designs into fast, easy-to-use websites. I handle the build end to end, and I work in both Arabic and English.",
+      "I’m Mohamed ElSayed , a front-end developer working with business owners and teams to turn ideas and designs into fast, easy-to-use websites. I handle the build end to end, and I work in both Arabic and English.",
 
     cards: [
       {
@@ -266,8 +266,8 @@ const en = {
 
   footer: {
     brand: "Mohamed Coding",
-    brandSuffix: "— Mohamed Elsayed, Front-End Developer",
-    bio: "Mohamed Coding is the studio of Mohamed Elsayed, a front-end developer building business websites, e-commerce stores, and custom web applications with React, Next.js, and Tailwind CSS — remotely, for clients worldwide.",
+    brandSuffix: "— Mohamed ElSayed, Front-End Developer",
+    bio: "Mohamed Coding is the studio of Mohamed ElSayed, a front-end developer building business websites, e-commerce stores, and custom web applications with React, Next.js, and Tailwind CSS — remotely, for clients worldwide.",
     explore: "Explore",
     connect: "Connect",
     rights: "All rights reserved.",

@@ -15,10 +15,6 @@ function Testimonials({ t }) {
           <h2 className="max-w-3xl text-2xl font-bold leading-[1.4] text-white sm:text-3xl sm:leading-[1.35] md:text-4xl md:leading-[1.3]">
             {t.title}
           </h2>
-
-          <p className="mt-4 max-w-2xl text-base leading-7 text-gray-400 rtl:leading-[1.9] sm:text-lg sm:leading-8">
-            {t.subtitle}
-          </p>
         </div>
 
         <div className="mt-10 grid gap-4 sm:mt-12 sm:grid-cols-2 sm:gap-5">
