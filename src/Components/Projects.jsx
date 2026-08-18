@@ -139,7 +139,7 @@ function Projects({ t, locale }) {
                   custom={(imageLast ? 1 : -1) * rtl}
                   initial="hidden"
                   whileInView="show"
-                  viewport={{ once: true, amount: 0.35 }}
+                  viewport={{ once: true, amount: 0.2, margin: "0px 0px 20% 0px" }}
 
                   className={`grid w-full items-center gap-8 lg:gap-14 ${
                     imageLast

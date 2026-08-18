@@ -6,7 +6,8 @@ import Header from "./Header";
 import Hero from "./Hero";
 import Services from "./Services";
 import Projects from "./Projects";
-import Testimonials from "./Testimonials";
+import Process from "./Process";
+import WhyMe from "./WhyMe";
 import Skills from "./Skills";
 import About from "./About";
 import Contact from "./Contact";
@@ -41,7 +42,8 @@ function SiteShell() {
 
         <Services t={t.services} />
         <Projects t={t.projects} locale={locale} />
-        <Testimonials t={t.testimonials} />
+        <Process t={t.process} />
+        <WhyMe t={t.why} />
         <Skills t={t.skills} />
         <About t={t.about} />
         <Contact t={t.contact} />

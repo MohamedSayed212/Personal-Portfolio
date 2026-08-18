@@ -4,6 +4,7 @@ const en = {
   nav: {
     home: "Home",
     projects: "Projects",
+    process: "Process",
     skills: "Skills",
     about: "About",
     contact: "Start a Project",
@@ -161,38 +162,86 @@ const en = {
     },
   },
 
-  testimonials: {
-    badge: "Testimonials",
-    title: "Client Feedback",
-    subtitle: "What it’s like working with me.",
-    items: [
+  process: {
+    badge: "How It Works",
+    title: "A simple process, with a clear timeline",
+    subtitle:
+      "From your first message to launch, you always know what happens next — and when.",
+
+    steps: [
       {
-        id: "ahmed",
-        quote:
-          "From the first conversation it was clear he actually understood what I needed. I came in with a rough idea and he helped me shape it into something far better than what I had pictured. It looks great on a phone, and every change I asked for was handled without any back and forth.",
-        name: "Ahmed",
-        role: "Business owner",
+        id: "idea",
+        step: "01",
+        title: "Tell me your idea",
+        body: "Send me what you need on WhatsApp. We talk through your goals, pages, and style — no technical knowledge needed.",
       },
       {
-        id: "mahmoud",
-        quote:
-          "What mattered to me was a site that loads fast, looks professional, and is still easy for people to use. Mohamed kept me in the loop at every stage, and whenever something needed adjusting he sorted it out quickly.",
-        name: "Mahmoud",
-        role: "Store owner",
+        id: "build",
+        step: "02",
+        title: "I design & build",
+        body: "I turn it into a fast, responsive website and keep you updated at every stage, so nothing comes as a surprise.",
       },
       {
-        id: "karim",
-        quote:
-          "I wasn’t sure I needed a website at all — we had Instagram and customers were used to reaching us there. Seeing the design changed my mind. Everything sits in one place now, and the brand looks far more established.",
-        name: "Karim",
-        role: "Project owner",
+        id: "launch",
+        step: "03",
+        title: "Launch & handover",
+        body: "We go live, you get the full website and its code, with free revisions until you're happy.",
+      },
+    ],
+
+    timelineTitle: "Typical delivery time",
+    timelines: [
+      { id: "starter", label: "Landing / starter site", time: "3–5 days" },
+      {
+        id: "business",
+        label: "Business website (Arabic + English)",
+        time: "7–10 days",
+      },
+      { id: "store", label: "Online store or web app", time: "around 2 weeks" },
+    ],
+
+    guaranteesTitle: "What you can count on",
+    guarantees: [
+      "Free revisions until you're happy",
+      "Fast replies on WhatsApp",
+      "You own the full code on handover",
+      "Built mobile-first and tested on real phones",
+    ],
+
+    priceNote:
+      "Every project is different, so I quote after we talk — no fixed price on the page.",
+    ctaLabel: "Get a quote on WhatsApp",
+  },
+
+  why: {
+    badge: "Why Me",
+    title: "Why clients choose to work with me",
+    subtitle:
+      "No agency, no middlemen, no templates — just one developer who takes your project from idea to launch and stays until it's right.",
+
+    ctaPrompt: "Have a project in mind?",
+    ctaLabel: "Start a project",
+
+    reasons: [
+      {
+        id: "delivery",
+        title: "End-to-End Delivery",
+        body: "From initial concept and clean UI design to full development, testing, and live deployment — I handle the entire build so nothing gets lost in translation.",
       },
       {
-        id: "omar",
-        quote:
-          "The whole thing was easy, which mattered because I don’t know much about websites or code. I would describe an idea and he would turn it into something I could look at, properly laid out. What stood out most was the care taken over the small details, on both phone and desktop.",
-        name: "Omar",
-        role: "Project owner",
+        id: "performance",
+        title: "Speed & Mobile-First Performance",
+        body: "Built with modern frameworks like Next.js and Tailwind CSS to guarantee sub-second load times, responsive layouts across all screen sizes, and clean SEO foundations.",
+      },
+      {
+        id: "ownership",
+        title: "100% Code Ownership & Zero Lock-in",
+        body: "You receive full, production-ready source code with complete ownership. No monthly platform lock-ins, proprietary constraints, or hidden ongoing fees.",
+      },
+      {
+        id: "communication",
+        title: "Clear, Asynchronous Communication",
+        body: "Regular milestone updates and quick turnarounds through your preferred channel (WhatsApp, Email, or Slack) with dedicated post-launch support and free adjustments.",
       },
     ],
   },
