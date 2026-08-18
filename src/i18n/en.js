@@ -173,7 +173,7 @@ const en = {
         id: "idea",
         step: "01",
         title: "Tell me your idea",
-        body: "Send me what you need on WhatsApp. We talk through your goals, pages, and style — no technical knowledge needed.",
+        body: "Share your project goals, desired pages, or design references on WhatsApp, Email, or the contact form — no technical background needed.",
       },
       {
         id: "build",
@@ -185,27 +185,28 @@ const en = {
         id: "launch",
         step: "03",
         title: "Launch & handover",
-        body: "We go live, you get the full website and its code, with free revisions until you're happy.",
+        body: "We launch your site live, and you receive complete source code, deployment assets, and 14 days of post-launch warranty & support.",
       },
     ],
 
     timelineTitle: "Typical delivery time",
     timelines: [
-      { id: "starter", label: "Landing / starter site", time: "3–5 days" },
+      { id: "landing", label: "Landing page", time: "3–5 business days" },
       {
         id: "business",
-        label: "Business website (Arabic + English)",
-        time: "7–10 days",
+        label: "Business website (3–6 pages)",
+        time: "7–10 business days",
       },
-      { id: "store", label: "Online store or web app", time: "around 2 weeks" },
+      { id: "store", label: "E-commerce store", time: "2–3 weeks" },
+      { id: "app", label: "Custom web app", time: "Based on scope" },
     ],
 
     guaranteesTitle: "What you can count on",
     guarantees: [
-      "Free revisions until you're happy",
-      "Fast replies on WhatsApp",
-      "You own the full code on handover",
-      "Built mobile-first and tested on real phones",
+      "Reasonable revisions during the build",
+      "Direct communication & regular updates",
+      "Full code ownership on handover",
+      "Mobile-first development & real-device testing",
     ],
 
     priceNote:

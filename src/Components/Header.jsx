@@ -13,7 +13,6 @@ function Header({ t, locale, onLocaleChange }) {
   const navLinks = [
     { name: t.nav.home, href: "#home" },
     { name: t.nav.projects, href: "#projects" },
-    { name: t.nav.process, href: "#process" },
     { name: t.nav.skills, href: "#skills" },
     { name: t.nav.about, href: "#about" },
     { name: t.nav.contact, href: "#contact" },
@@ -32,12 +31,14 @@ function Header({ t, locale, onLocaleChange }) {
             <a
               href="#home"
               aria-label={t.nav.homeAria}
-
               className="min-w-0 truncate text-base font-bold tracking-wide text-secondary sm:text-lg lg:text-xl"
               dir="ltr"
             >
               Mohamed
-              <span className="text-neutral-300 max-[359px]:hidden"> Coding</span>
+              <span className="text-neutral-300 max-[359px]:hidden">
+                {" "}
+                Coding
+              </span>
             </a>
 
             <div className="flex shrink-0 items-center gap-2 md:hidden">

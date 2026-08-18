@@ -1,8 +1,7 @@
-import { FaWhatsapp, FaCheck } from "react-icons/fa";
+import { FaCheck } from "react-icons/fa";
 
 import SectionAnimation from "./SectionAnimation";
 import Container from "./Container";
-import { WHATSAPP_URL, WHATSAPP_ARIA } from "../constants/contact";
 
 function Process({ t }) {
   return (
@@ -64,12 +63,12 @@ function Process({ t }) {
                   key={row.id}
                   className="flex items-baseline justify-between gap-4 border-b border-white/10 py-3.5"
                 >
-                  <dt className="text-sm text-gray-300 sm:text-base">
+                  <dt className="min-w-0 text-sm text-gray-300 sm:text-base">
                     {row.label}
                   </dt>
                   <dd
                     dir="ltr"
-                    className="shrink-0 font-semibold text-white rtl:text-end"
+                    className="shrink-0 whitespace-nowrap text-sm font-semibold text-white sm:text-base rtl:text-end"
                   >
                     {row.time}
                   </dd>
@@ -93,23 +92,6 @@ function Process({ t }) {
               ))}
             </ul>
           </div>
-        </div>
-
-        <div className="mt-12 flex flex-col items-start gap-4 border-t border-white/10 pt-8 sm:flex-row sm:items-center sm:justify-between">
-          <p className="max-w-xl text-sm leading-6 text-gray-400 sm:text-base sm:leading-7">
-            {t.priceNote}
-          </p>
-
-          <a
-            href={WHATSAPP_URL}
-            target="_blank"
-            rel="noreferrer"
-            aria-label={WHATSAPP_ARIA}
-            className="inline-flex shrink-0 items-center gap-2 rounded-xl bg-accent px-6 py-3 text-sm font-semibold text-[#0e1116] transition hover:opacity-90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/70 sm:text-base"
-          >
-            <FaWhatsapp size={18} />
-            {t.ctaLabel}
-          </a>
         </div>
       </Container>
     </SectionAnimation>
