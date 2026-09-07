@@ -23,11 +23,11 @@ export function stagger(staggerChildren = 0.08, delayChildren = 0.1) {
   };
 }
 
-// Slide in from the START edge — right in Arabic, left in English.
-// Pass `dirMultiplier(locale)` from src/i18n/config.js.
+// Slide in from the start edge.
 export function slideInFromStart(multiplier = 1) {
   return {
     hidden: { opacity: 0, x: -28 * multiplier },
     show: { opacity: 1, x: 0, transition: { duration: 0.5, ease: "easeOut" } },
   };
 }
+

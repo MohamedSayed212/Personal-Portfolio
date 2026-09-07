@@ -3,15 +3,9 @@
 // human-readable spacing and is set manually.
 const RAW_NUMBER = "201034082107"; // country code + number, no "+", for wa.me / tel
 
-// Pre-filled opener so clients don't have to write the first message. Written as
-// readable text (Arabic first, then English) and URL-encoded at load — edit the
-// wording freely below; newlines and Arabic are encoded automatically.
+// Pre-filled opener so clients don't have to write the first message.
 const PREFILLED_TEXT = encodeURIComponent(
-  `السلام عليكم محمد،
-شفت معرض أعمالك وحابب أتواصل معاك بخصوص مشروع.
-
-Hi Mohamed,
-I saw your portfolio and I'd like to discuss a project.`,
+  "Hi Mohamed, I saw your portfolio and I'd like to discuss a project."
 ).replace(/'/g, "%27"); // encode the apostrophe too, so the URL stays fully percent-encoded
 
 export const WHATSAPP_INTL = `+${RAW_NUMBER}`; // +201034082107

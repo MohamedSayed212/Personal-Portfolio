@@ -1,226 +1,176 @@
+"use client";
+
 import Image from "next/image";
+import { motion, useReducedMotion } from "framer-motion";
 import { FaGithub, FaLinkedin } from "react-icons/fa";
 
 import heroImage from "../assets/hero-image.png";
 import Container from "./Container";
-import ProjectTicker from "./ProjectTicker";
-import BackgroundGrid from "./BackgroundGrid";
-import ParticleField from "./ParticleField";
 
 const GITHUB_URL = "https://github.com/MohamedSayed212";
 const LINKEDIN_URL = "https://www.linkedin.com/in/mohamed-sayed-dev/";
 
-// Stagger: each hero element starts 70ms after the previous one.
-const step = (index) => ({ animationDelay: `${index * 70}ms` });
-const REVEAL = "animate-reveal motion-reduce:animate-none";
+function Hero() {
+  const shouldReduceMotion = useReducedMotion();
 
-// A small breathing dot. The ring is a separate absolutely-positioned span so
-// the dot itself stays a crisp, constant size while the halo expands.
-function LiveDot({ className = "" }) {
-  return (
-    <span className={`relative flex h-2.5 w-2.5 ${className}`}>
-      <span className="absolute inline-flex h-full w-full rounded-full bg-accent-soft animate-pulse-ring motion-reduce:animate-none" />
-      <span className="relative inline-flex h-2.5 w-2.5 rounded-full bg-accent-soft" />
-    </span>
-  );
-}
+  const getTransition = (delay = 0, duration = 0.75) =>
+    shouldReduceMotion
+      ? { duration: 0.2 }
+      : { duration, delay, ease: [0.16, 1, 0.3, 1] };
 
-function Hero({ t, tickerItems }) {
+  const getInitial = (yOffset = 20, scale = 1) =>
+    shouldReduceMotion
+      ? { opacity: 0 }
+      : { opacity: 0, y: yOffset, scale };
+
+  const animateVisible = { opacity: 1, y: 0, scale: 1 };
+
   return (
     <section
       id="home"
-      className="relative overflow-hidden pt-[140px] pb-16 sm:pt-[160px] md:pt-[180px] lg:pt-[210px]"
+      className="relative flex min-h-[calc(100svh-80px)] lg:min-h-[90vh] items-center overflow-hidden bg-[#0B0B0C] pt-24 pb-16 sm:pt-28 sm:pb-20 lg:py-20"
     >
-      <BackgroundGrid />
-
-      <ParticleField />
-
+      {/* Subtle Background Ambience - Low Opacity, Non-Distracting */}
       <div
         aria-hidden="true"
         className="pointer-events-none absolute inset-0 overflow-hidden"
       >
-        <div className="absolute -top-52 start-1/2 h-[560px] w-[860px] -translate-x-1/2 rounded-full bg-[radial-gradient(ellipse,#7aa2f7_0%,transparent_68%)] opacity-[0.07] blur-[120px]" />
+        {/* Very soft warm/dark radial glow */}
+        <div className="absolute top-1/4 left-1/2 -translate-x-1/2 w-[800px] h-[500px] bg-[radial-gradient(ellipse_at_center,rgba(216,180,90,0.035)_0%,rgba(255,255,255,0.01)_40%,transparent_70%)] blur-[120px]" />
       </div>
 
-      <Container className="relative grid items-center gap-10 lg:grid-cols-2 lg:gap-16">
-        {/* ================= LEFT: COPY ================= */}
-        <div className="order-2 w-full max-w-2xl text-start lg:order-1">
-          {/* STATUS BADGE */}
-          <div
-            style={step(0)}
-            className={`${REVEAL} mb-7 inline-flex flex-wrap items-center gap-x-3 gap-y-1 rounded-full border border-accent/25 bg-accent/[0.07] px-4 py-2`}
+      <Container className="relative z-10 grid items-center gap-12 lg:grid-cols-12 lg:gap-8 xl:gap-14">
+        {/* ================= LEFT: IDENTITY, HEADLINE & CTAs ================= */}
+        <div className="flex flex-col items-start justify-center text-start lg:col-span-7 xl:col-span-7">
+          {/* 1. EYEBROW LABEL */}
+          <motion.div
+            initial={getInitial(12)}
+            animate={animateVisible}
+            transition={getTransition(0)}
+            className="mb-4 inline-flex items-center gap-2"
           >
-            <span className="inline-flex items-center gap-2 text-sm font-semibold text-accent-soft">
-              <LiveDot />
-              {t.status}
+            <span className="h-1.5 w-1.5 rounded-full bg-[#D8B45A]" />
+            <span className="text-xs font-semibold uppercase tracking-[0.22em] text-[#D8B45A]">
+              Frontend Developer
             </span>
-            <span className="text-sm text-gray-400">{t.statusDetail}</span>
-          </div>
+          </motion.div>
 
-          {/* TITLE */}
-          <h1
-            style={step(1)}
-            className={`${REVEAL} text-4xl font-bold leading-[1.14] text-white sm:text-5xl md:text-6xl lg:text-6xl xl:text-7xl`}
+          {/* 2. MAIN IDENTITY / NAME (Visual Focal Point) */}
+          <motion.h1
+            initial={getInitial(20)}
+            animate={animateVisible}
+            transition={getTransition(0.1)}
+            className="text-4xl font-bold tracking-tight text-[#F3F1ED] sm:text-5xl md:text-6xl lg:text-[54px] xl:text-[62px] leading-[1.08]"
           >
-            {t.greeting} <span className="text-accent">{t.name}</span>
-          </h1>
+            Mohamed Elsayed
+          </motion.h1>
 
-          {/* ROLE */}
-          <p
-            style={step(2)}
-            className={`${REVEAL} mt-5 text-xl font-semibold text-secondary sm:text-2xl lg:text-3xl`}
+          {/* 3. EDITORIAL STATEMENT */}
+          <motion.p
+            initial={getInitial(20)}
+            animate={animateVisible}
+            transition={getTransition(0.18)}
+            className="mt-6 text-2xl font-light leading-[1.28] tracking-tight text-[#F3F1ED]/90 sm:text-3xl md:text-4xl lg:text-[38px] xl:text-[42px]"
           >
-            {t.role}
-          </p>
+            I build digital experiences that feel{" "}
+            <span className="font-serif italic font-normal text-[#D8B45A]">
+              intentional.
+            </span>
+          </motion.p>
 
-          {/* INTRO */}
-          <p
-            style={step(3)}
-            className={`${REVEAL} mt-5 max-w-[560px] text-base leading-relaxed text-gray-400 sm:text-lg lg:text-xl`}
+          {/* 4. SHORT DESCRIPTION */}
+          <motion.p
+            initial={getInitial(15)}
+            animate={animateVisible}
+            transition={getTransition(0.28)}
+            className="mt-5 max-w-xl text-base font-normal leading-relaxed text-[#9A9997] sm:text-lg sm:leading-relaxed"
           >
-            {t.intro}
-          </p>
+            Frontend Developer specializing in React, Next.js, and TypeScript,
+            focused on building responsive, polished, and high-performance web
+            experiences.
+          </motion.p>
 
-          {/* AVAILABILITY */}
-          <p
-            style={step(4)}
-            className={`${REVEAL} mt-5 max-w-[560px] text-base font-semibold text-white sm:text-lg lg:text-xl`}
-          >
-            {t.availability}
-          </p>
-
-          {/* BUTTONS */}
-          <div
-            style={step(5)}
-            className={`${REVEAL} mt-9 grid w-full max-w-[560px] grid-cols-2 gap-3`}
+          {/* 5. CTAs & SOCIAL LINKS */}
+          <motion.div
+            initial={getInitial(15)}
+            animate={animateVisible}
+            transition={getTransition(0.36)}
+            className="mt-8 flex flex-wrap items-center gap-4 sm:mt-10"
           >
             <a
               href="#contact"
-              rel="noopener noreferrer"
-              className="flex items-center justify-center gap-2 rounded-xl bg-accent px-4 py-3.5 text-center text-sm font-semibold leading-tight text-[#0e1116] transition hover:opacity-90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/70 sm:px-6 sm:text-base"
+              className="inline-flex items-center justify-center rounded-full bg-[#D8B45A] px-7 py-3.5 text-sm font-semibold tracking-wide text-[#0B0B0C] transition-all duration-200 hover:bg-[#E5C368] hover:shadow-[0_4px_20px_rgba(216,180,90,0.25)] hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#D8B45A] sm:px-8 sm:py-4 sm:text-[15px]"
             >
-              {t.ctaWork}
+              GET IN TOUCH
             </a>
 
             <a
               href="#projects"
-              className="flex items-center justify-center rounded-xl border border-white/20 px-4 py-3.5 text-center text-sm font-semibold text-white transition hover:border-accent/40 hover:bg-white/10 sm:px-6 sm:text-base"
+              className="inline-flex items-center justify-center rounded-full border border-[#29292A] bg-transparent px-7 py-3.5 text-sm font-medium tracking-wide text-[#F3F1ED] transition-all duration-200 hover:border-[#D8B45A]/50 hover:bg-white/[0.04] hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/40 sm:px-8 sm:py-4 sm:text-[15px]"
             >
-              {t.ctaProjects}
-            </a>
-          </div>
-
-          {/* SOCIAL */}
-          <div style={step(6)} className={`${REVEAL} mt-8 flex gap-4`}>
-            <a
-              href={GITHUB_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label={t.github}
-              title="GitHub"
-              className="flex h-12 w-12 items-center justify-center rounded-full border border-white/10 bg-white/5 text-gray-400 transition hover:border-accent/40 hover:bg-white/10 hover:text-accent-soft"
-            >
-              <FaGithub size={23} aria-hidden="true" />
+              VIEW MY WORK
             </a>
 
-            <a
-              href={LINKEDIN_URL}
-              target="_blank"
-              rel="noopener noreferrer"
-              aria-label={t.linkedin}
-              title="LinkedIn"
-              className="flex h-12 w-12 items-center justify-center rounded-full border border-white/10 bg-white/5 text-gray-400 transition hover:border-accent/40 hover:bg-white/10 hover:text-accent-soft"
-            >
-              <FaLinkedin size={23} aria-hidden="true" />
-            </a>
-          </div>
-        </div>
+            {/* Subtle Social Links */}
+            <div className="flex items-center gap-3 sm:ml-3">
+              <a
+                href={GITHUB_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Mohamed Elsayed on GitHub"
+                title="GitHub"
+                className="flex h-11 w-11 items-center justify-center rounded-full border border-[#29292A] bg-transparent text-[#9A9997] transition-all duration-200 hover:border-[#D8B45A]/40 hover:text-[#F3F1ED] hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#D8B45A]"
+              >
+                <FaGithub size={18} aria-hidden="true" />
+              </a>
 
-        {/* ================= RIGHT: LIVE CARD ================= */}
-        <div
-          style={step(2)}
-          className={`${REVEAL} order-1 mx-auto w-full max-w-[420px] lg:order-2 lg:max-w-none`}
-        >
-          <div className="group relative">
-            {/* Light behind the portrait, in two layers.
-                A wide coloured spill sets the ambience, and a tighter, nearly
-                white core sits right behind the figure — one flat blur reads as
-                fog, whereas a bright centre falling off into colour reads as an
-                actual light source. Both lift on hover. */}
-            <div
-              aria-hidden="true"
-              className="pointer-events-none absolute -inset-10 rounded-[52px] bg-[radial-gradient(circle_at_50%_38%,#7aa2f7_0%,#7aa2f7_28%,transparent_70%)] opacity-[0.26] blur-[90px] transition-opacity duration-500 group-hover:opacity-[0.38]"
-            />
-            <div
-              aria-hidden="true"
-              className="pointer-events-none absolute inset-x-[12%] top-[8%] h-[46%] rounded-full bg-[radial-gradient(ellipse,#dce8ff_0%,#7aa2f7_45%,transparent_72%)] opacity-[0.22] blur-[70px] transition-opacity duration-500 group-hover:opacity-[0.32]"
-            />
-
-            {/* Plain hairline border. A glowing gradient edge was the most
-                obviously synthetic detail on the page. */}
-            <div className="relative rounded-[30px] border border-white/10 shadow-[0_30px_60px_-28px_rgba(0,0,0,0.9)]">
-              {/* Inner surface is near-black to match the photo's own
-                  background, so the cut-out figure has no visible seam. */}
-              <div className="overflow-hidden rounded-[30px] bg-[#0e0e0e]">
-                {/* Card top bar */}
-                <div className="flex items-center justify-between border-b border-white/10 px-4 py-3">
-                  <span className="inline-flex items-center gap-2 text-xs font-semibold uppercase tracking-wider text-accent-soft">
-                    <LiveDot />
-                    {t.liveLabel}
-                  </span>
-                  <span
-                    dir="ltr"
-                    className="text-xs font-semibold tracking-wide text-gray-400"
-                  >
-                    {t.liveCardTitle}
-                  </span>
-                </div>
-
-                {/* Portrait.
-                    The source is a near-full-body cut-out with roughly a fifth
-                    of the frame empty above the head, so the crop has to zoom
-                    past that dead space to land on head-and-torso.
-
-                    That zoom is done with LAYOUT (an inner box 145% wider than
-                    the frame) rather than `scale()`. A CSS transform scales the
-                    already-rasterised element, so the browser was painting at
-                    the 628px layout width and then stretching those pixels to
-                    ~910px — the single biggest cause of the softness. Sizing
-                    the element up instead makes the browser lay it out, request
-                    it, and rasterise it at the real displayed size. */}
-                <div className="relative h-[340px] overflow-hidden sm:h-[400px] lg:h-[460px]">
-                  <div className="absolute inset-y-0 left-[-22.5%] w-[145%] transition-transform duration-700 ease-out group-hover:scale-[1.05] motion-reduce:transition-none motion-reduce:group-hover:scale-100">
-                    <Image
-                      src={heroImage}
-                      alt={t.imageAlt}
-                      fill
-                      priority
-                      quality={100}
-                      // Sized so the browser lands on the largest variant the
-                      // source can produce (1940px) at every common DPR, rather
-                      // than settling for 1080 on a 1x desktop.
-                      sizes="(max-width: 992px) 768px, 1100px"
-                      className="object-cover object-[50%_44%]"
-                    />
-                  </div>
-
-                  {/* Fades the photo into the ticker strip below it. */}
-                  <div
-                    aria-hidden="true"
-                    className="pointer-events-none absolute inset-x-0 bottom-0 h-24 bg-gradient-to-t from-[#0e0e0e] via-[#0e0e0e]/70 to-transparent"
-                  />
-                </div>
-
-                {/* Live ticker — cycles the same six projects listed below. */}
-                <ProjectTicker items={tickerItems} />
-              </div>
+              <a
+                href={LINKEDIN_URL}
+                target="_blank"
+                rel="noopener noreferrer"
+                aria-label="Mohamed Elsayed on LinkedIn"
+                title="LinkedIn"
+                className="flex h-11 w-11 items-center justify-center rounded-full border border-[#29292A] bg-transparent text-[#9A9997] transition-all duration-200 hover:border-[#D8B45A]/40 hover:text-[#F3F1ED] hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#D8B45A]"
+              >
+                <FaLinkedin size={18} aria-hidden="true" />
+              </a>
             </div>
-          </div>
-
+          </motion.div>
         </div>
+
+        {/* ================= RIGHT: EDITORIAL BORDERLESS PORTRAIT ================= */}
+        <motion.div
+          initial={getInitial(15, 0.96)}
+          animate={animateVisible}
+          transition={getTransition(0.15, 0.9)}
+          className="relative flex w-full items-center justify-center lg:col-span-5 xl:col-span-5 lg:justify-end"
+        >
+          {/* Very Subtle Ambient Spotlight Behind Portrait */}
+          <div
+            aria-hidden="true"
+            className="pointer-events-none absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 h-[340px] w-[340px] sm:h-[440px] sm:w-[440px] lg:h-[500px] lg:w-[500px] rounded-full bg-[radial-gradient(circle,rgba(216,180,90,0.06)_0%,rgba(255,255,255,0.01)_50%,transparent_72%)] blur-2xl"
+          />
+
+          {/* Portrait Container - Large, Borderless, Editorial */}
+          <div className="group relative w-full max-w-[360px] sm:max-w-[440px] md:max-w-[480px] lg:max-w-[520px] xl:max-w-[560px]">
+            <Image
+              src={heroImage}
+              alt="Mohamed Elsayed — Frontend Developer"
+              width={1478}
+              height={1548}
+              priority
+              quality={100}
+              sizes="(max-width: 640px) 360px, (max-width: 1024px) 480px, 560px"
+              className="h-auto w-full object-contain select-none pointer-events-none transition-transform duration-700 ease-out group-hover:scale-[1.015] motion-reduce:transition-none motion-reduce:group-hover:scale-100"
+            />
+          </div>
+        </motion.div>
       </Container>
     </section>
   );
 }
 
 export default Hero;
+
+
+

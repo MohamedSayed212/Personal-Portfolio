@@ -6,18 +6,16 @@ const CONTACT_EMAIL = "mohamedsayed.dev01@gmail.com";
 const GITHUB_URL = "https://github.com/MohamedSayed212";
 const LINKEDIN_URL = "https://www.linkedin.com/in/mohamed-sayed-dev/";
 
-function Footer({ t }) {
-  const year = new Date().getFullYear();
+const navLinks = [
+  { name: "Home", href: "#home" },
+  { name: "Projects", href: "#projects" },
+  { name: "Skills", href: "#skills" },
+  { name: "About", href: "#about" },
+  { name: "Contact", href: "#contact" },
+];
 
-  // In-page anchors, mirrored from the header, so every section is reachable
-  // from the bottom of the document too (internal linking + crawlability).
-  const navLinks = [
-    { name: t.nav.home, href: "#home" },
-    { name: t.nav.projects, href: "#projects" },
-    { name: t.nav.skills, href: "#skills" },
-    { name: t.nav.about, href: "#about" },
-    { name: t.nav.contact, href: "#contact" },
-  ];
+function Footer() {
+  const year = new Date().getFullYear();
 
   return (
     <footer className="mt-10 border-t border-white/10 bg-white/[0.02]">
@@ -26,18 +24,18 @@ function Footer({ t }) {
           {/* Brand + short bio */}
           <div className="max-w-sm">
             <p className="text-lg font-bold text-white">
-              <span dir="ltr">{t.footer.brand}</span>
-              <span className="text-neutral-400"> {t.footer.brandSuffix}</span>
+              <span>Mohamed Coding</span>
+              <span className="text-neutral-400"> — Mohamed Elsayed, Front-End Developer</span>
             </p>
             <p className="mt-3 text-sm leading-6 text-gray-400">
-              {t.footer.bio}
+              Mohamed Coding is the portfolio of Mohamed Elsayed, a front-end developer specializing in React, Next.js, and Tailwind CSS, building clean, responsive, and modern web applications.
             </p>
           </div>
 
           {/* Section navigation */}
-          <nav aria-label={t.footer.explore} className="md:text-end">
+          <nav aria-label="Explore" className="md:text-end">
             <h2 className="mb-3 text-sm font-semibold uppercase tracking-wide text-white">
-              {t.footer.explore}
+              Explore
             </h2>
             <ul className="space-y-2">
               {navLinks.map((link) => (
@@ -56,7 +54,7 @@ function Footer({ t }) {
           {/* Contact / social */}
           <div className="md:text-end">
             <h2 className="mb-3 text-sm font-semibold uppercase tracking-wide text-white">
-              {t.footer.connect}
+              Connect
             </h2>
             <div className="flex gap-3 md:justify-end">
               <a
@@ -73,7 +71,7 @@ function Footer({ t }) {
                 href={GITHUB_URL}
                 target="_blank"
                 rel="noopener noreferrer"
-                aria-label={t.hero.github}
+                aria-label="GitHub"
                 title="GitHub"
                 className="flex h-11 w-11 items-center justify-center rounded-full border border-white/10 bg-white/5 text-gray-400 transition hover:bg-white/10 hover:text-white"
               >
@@ -83,7 +81,7 @@ function Footer({ t }) {
                 href={LINKEDIN_URL}
                 target="_blank"
                 rel="noopener noreferrer"
-                aria-label={t.hero.linkedin}
+                aria-label="LinkedIn"
                 title="LinkedIn"
                 className="flex h-11 w-11 items-center justify-center rounded-full border border-white/10 bg-white/5 text-gray-400 transition hover:bg-white/10 hover:text-white"
               >
@@ -91,8 +89,8 @@ function Footer({ t }) {
               </a>
               <a
                 href={`mailto:${CONTACT_EMAIL}`}
-                aria-label={t.contact.emailLabel}
-                title={t.contact.emailLabel}
+                aria-label="Email"
+                title="Email"
                 className="flex h-11 w-11 items-center justify-center rounded-full border border-white/10 bg-white/5 text-gray-400 transition hover:bg-white/10 hover:text-white"
               >
                 <FaEnvelope size={19} aria-hidden="true" />
@@ -102,8 +100,7 @@ function Footer({ t }) {
         </div>
 
         <div className="mt-10 border-t border-white/10 pt-6 text-center text-sm text-gray-500 md:text-start">
-          © {year} Mohamed Elsayed (Mohamed Sayed). {t.footer.rights}{" "}
-          {t.footer.builtWith}
+          © {year} Mohamed Elsayed (Mohamed Sayed). All rights reserved. Built with Next.js & Tailwind CSS.
         </div>
       </Container>
     </footer>
@@ -111,3 +108,4 @@ function Footer({ t }) {
 }
 
 export default Footer;
+

@@ -30,7 +30,7 @@ const EMAILJS_PUBLIC_KEY = "YJwhF4O0_KFjgmmxV";
 const FIELD_CLASS =
   "w-full rounded-xl border border-white/10 bg-black/20 px-4 py-4 text-white placeholder:text-gray-500 focus:border-accent/50 focus:outline-none focus:ring-1 focus:ring-accent/40";
 
-function Contact({ t }) {
+function Contact() {
   const formRef = useRef(null);
 
   const [status, setStatus] = useState("");
@@ -50,12 +50,12 @@ function Contact({ t }) {
         EMAILJS_PUBLIC_KEY,
       )
       .then(() => {
-        setStatus(t.form.success);
+        setStatus("Message sent successfully ✅");
         setIsSending(false);
         formRef.current.reset();
       })
       .catch(() => {
-        setStatus(t.form.error);
+        setStatus("Something went wrong. Please try again ❌");
         setIsSending(false);
       });
   };
@@ -70,7 +70,7 @@ function Contact({ t }) {
         {/* ================= HEADER ================= */}
         <div className="mb-4 max-w-2xl text-start sm:mb-6">
           <span className="mb-4 inline-block rounded-full border border-accent/25 bg-accent/[0.07] px-4 py-2 text-sm font-medium text-accent-soft sm:px-5">
-            {t.badge}
+            Contact
           </span>
         </div>
 
@@ -78,9 +78,9 @@ function Contact({ t }) {
         <div className="grid gap-6 md:gap-8 lg:grid-cols-2">
           {/* ================= LEFT SIDE ================= */}
           <div className="space-y-5">
-            {/* WHATSAPP CARD — fastest path, shown before everything else */}
+            {/* WHATSAPP CARD */}
             <div className="rounded-2xl border border-white/10 bg-white/5 p-5">
-              <p className="text-sm text-gray-400">{t.whatsappLabel}</p>
+              <p className="text-sm text-gray-400">WhatsApp</p>
 
               <a
                 href={WHATSAPP_URL}
@@ -90,19 +90,13 @@ function Contact({ t }) {
                 className="mt-3 flex items-center justify-center gap-2 rounded-xl bg-accent px-4 py-3 text-sm font-semibold text-[#0e1116] transition hover:opacity-90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/70 sm:text-base"
               >
                 <FaWhatsapp size={20} aria-hidden="true" className="shrink-0" />
-                {t.whatsappCta}
+                Message on WhatsApp
               </a>
 
-              {/* Phone numbers are always read left-to-right, even in Arabic. */}
               <a
                 href={WHATSAPP_TEL}
-                dir="ltr"
-                className="mt-3 flex items-center gap-3 rounded text-base font-semibold text-white hover:text-gray-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/70 rtl:justify-end"
+                className="mt-3 flex items-center gap-3 rounded text-base font-semibold text-white hover:text-gray-300 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/70"
               >
-                {/* Mirrored so the handset points toward the number instead of
-                    away from it. The anchor is dir="ltr" in both languages, so
-                    the icon always sits to the left of the number and this flip
-                    is correct in Arabic too. */}
                 <FaPhone
                   className="-scale-x-100 text-gray-400"
                   aria-hidden="true"
@@ -110,17 +104,16 @@ function Contact({ t }) {
                 {WHATSAPP_DISPLAY}
               </a>
 
-              <p className="mt-2 text-xs text-gray-500">{t.whatsappNote}</p>
+              <p className="mt-2 text-xs text-gray-500">Fastest way to reach me</p>
             </div>
 
             {/* EMAIL CARD */}
             <div className="rounded-2xl border border-white/10 bg-white/5 p-5">
-              <p className="text-sm text-gray-400">{t.emailLabel}</p>
+              <p className="text-sm text-gray-400">Email</p>
 
               <a
                 href={`mailto:${CONTACT_EMAIL}`}
-                dir="ltr"
-                className="mt-3 flex items-center gap-3 break-all text-base font-semibold text-white hover:text-gray-300 rtl:justify-end"
+                className="mt-3 flex items-center gap-3 break-all text-base font-semibold text-white hover:text-gray-300"
               >
                 <FaEnvelope className="text-gray-400" aria-hidden="true" />
                 {CONTACT_EMAIL}
@@ -129,11 +122,11 @@ function Contact({ t }) {
 
             {/* LOCATION CARD */}
             <div className="rounded-2xl border border-white/10 bg-white/5 p-5">
-              <p className="text-sm text-gray-400">{t.locationLabel}</p>
+              <p className="text-sm text-gray-400">Location</p>
 
               <p className="mt-3 flex items-center gap-3 text-base font-semibold text-white">
                 <FaLocationDot className="text-gray-400" aria-hidden="true" />
-                {t.locationValue}
+                Cairo, Egypt | Remote Ready
               </p>
             </div>
 
@@ -146,7 +139,7 @@ function Contact({ t }) {
                 className="flex items-center justify-center gap-2 rounded-2xl border border-white/10 bg-white/5 px-4 py-4 text-white transition hover:-translate-y-[1px] hover:bg-white/10"
               >
                 <FaGithub aria-hidden="true" />
-                {t.github}
+                GitHub
               </a>
 
               <a
@@ -156,7 +149,7 @@ function Contact({ t }) {
                 className="flex items-center justify-center gap-2 rounded-2xl border border-white/10 bg-white/5 px-4 py-4 text-white transition hover:-translate-y-[1px] hover:bg-white/10"
               >
                 <FaLinkedin aria-hidden="true" />
-                {t.linkedin}
+                LinkedIn
               </a>
             </div>
           </div>
@@ -171,7 +164,7 @@ function Contact({ t }) {
             <input
               type="text"
               name="user_name"
-              placeholder={t.form.name}
+              placeholder="Your Name"
               required
               className={FIELD_CLASS}
             />
@@ -180,35 +173,32 @@ function Contact({ t }) {
             <input
               type="email"
               name="user_email"
-              placeholder={t.form.email}
+              placeholder="Your Email"
               required
               className={FIELD_CLASS}
             />
 
-            {/* REASON — one form serves both audiences instead of splitting the
-                site into separate "hire me" and "recruit me" flows.
-                NOTE: the EmailJS template needs a {{reason}} variable added for
-                this value to appear in the delivered email. */}
+            {/* REASON */}
             <select
               name="reason"
               required
               defaultValue=""
-              aria-label={t.form.reasonLabel}
+              aria-label="What’s this about?"
               className={`${FIELD_CLASS} appearance-none`}
             >
               <option value="" disabled>
-                {t.form.reasonLabel}
+                What’s this about?
               </option>
-              <option value="job">{t.form.reasonJob}</option>
-              <option value="freelance">{t.form.reasonFreelance}</option>
-              <option value="other">{t.form.reasonOther}</option>
+              <option value="job">Job opportunity</option>
+              <option value="freelance">Freelance project</option>
+              <option value="other">Something else</option>
             </select>
 
             {/* MESSAGE */}
             <textarea
               name="message"
               rows="5"
-              placeholder={t.form.message}
+              placeholder="Your Message"
               required
               className="min-h-[140px] w-full resize-none rounded-xl border border-white/10 bg-black/20 px-4 py-3 text-white placeholder:text-gray-500 focus:border-accent/50 focus:outline-none focus:ring-1 focus:ring-accent/40"
             />
@@ -219,7 +209,7 @@ function Contact({ t }) {
               disabled={isSending}
               className="w-full rounded-xl bg-accent px-6 py-3 font-semibold text-[#0e1116] transition hover:opacity-90 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-accent/70 disabled:opacity-60"
             >
-              {isSending ? t.form.sending : t.form.send}
+              {isSending ? "Sending..." : "Send Message"}
             </button>
 
             {/* STATUS */}
@@ -234,3 +224,4 @@ function Contact({ t }) {
 }
 
 export default Contact;
+

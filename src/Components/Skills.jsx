@@ -21,8 +21,6 @@ import TechMarquee from "./TechMarquee";
 import Container from "./Container";
 import { usingSkills, learningSkills } from "../data/skills";
 
-// Name → icon. The lists themselves live in src/data/skills.js so the hero can
-// count them without pulling this icon set into its bundle.
 const ICONS = {
   React: <FaReact />,
   "Next.js": <SiNextdotjs />,
@@ -40,14 +38,7 @@ const ICONS = {
 
 function SkillGrid({ names }) {
   return (
-    // dir="ltr" pins the grid's flow direction, so the list always starts with
-    // React at the LEFT in both languages. Without it the RTL page mirrors the
-    // grid and the order reads backwards. The surrounding headings still follow
-    // the page direction — only the tile order is fixed.
-    <div
-      dir="ltr"
-      className="grid grid-cols-2 gap-3 sm:grid-cols-3 sm:gap-4 md:grid-cols-4 xl:grid-cols-6"
-    >
+    <div className="grid grid-cols-2 gap-3 sm:grid-cols-3 sm:gap-4 md:grid-cols-4 xl:grid-cols-6">
       {names.map((name) => (
         <div
           key={name}
@@ -56,9 +47,7 @@ function SkillGrid({ names }) {
           <div className="text-2xl transition duration-200 group-hover:text-accent-soft sm:text-3xl">
             {ICONS[name]}
           </div>
-          {/* Tech names stay Latin-script in both languages, so force LTR to
-              stop the RTL layout from reordering things like "Next.js". */}
-          <p dir="ltr" className="text-sm font-semibold sm:text-lg">
+          <p className="text-sm font-semibold sm:text-lg">
             {name}
           </p>
         </div>
@@ -67,7 +56,7 @@ function SkillGrid({ names }) {
   );
 }
 
-function Skills({ t }) {
+function Skills() {
   return (
     <SectionAnimation
       id="skills"
@@ -76,33 +65,30 @@ function Skills({ t }) {
       <Container>
         <div className="mb-8 text-start">
           <span className="mb-4 inline-block rounded-full border border-accent/25 bg-accent/[0.07] px-4 py-2 text-sm font-medium text-accent-soft sm:mb-6 sm:px-5 sm:text-base">
-            {t.badge}
+            My Skills
           </span>
 
           <h2 className="text-3xl font-bold text-white sm:text-4xl md:text-5xl">
-            {t.title}
+            Technologies I Use
           </h2>
 
           <p className="mx-auto mt-4 max-w-2xl text-base leading-7 text-gray-400 md:mx-0">
-            {t.subtitle}
+            Tools and technologies I use to build modern web applications.
           </p>
         </div>
 
-        {/* Moving strip first (the flourish), scannable grid below (the part a
-            recruiter actually reads). */}
+        {/* Moving strip first, scannable grid below */}
         <TechMarquee names={usingSkills} icons={ICONS} />
 
         <h3 className="mb-4 mt-8 text-sm font-semibold uppercase tracking-wide text-gray-400">
-          {t.usingLabel}
+          Working with
         </h3>
         <SkillGrid names={usingSkills} />
 
-        {/* Only rendered when there is something in the list — an empty group
-            would otherwise leave a heading with nothing under it. */}
         {learningSkills.length > 0 && (
           <>
             <h3 className="mb-4 mt-10 text-sm font-semibold uppercase tracking-wide text-gray-400">
-              {t.learningLabel}
+              Currently learning
             </h3>
             <SkillGrid names={learningSkills} />
           </>
@@ -113,3 +99,4 @@ function Skills({ t }) {
 }
 
 export default Skills;
+

@@ -1,143 +1,115 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { FaBars, FaTimes } from "react-icons/fa";
-import LanguageSwitcher from "./LanguageSwitcher";
 import Container from "./Container";
 
 const CV_URL = "/Mohamed-Sayed-Frontend-Developer-Resume.pdf";
 
-function Header({ t, locale, onLocaleChange }) {
-  // ================= STATE =================
-  // Controls mobile menu open/close
+const navLinks = [
+  { name: "Home", href: "#home" },
+  { name: "Projects", href: "#projects" },
+  { name: "Skills", href: "#skills" },
+  { name: "About", href: "#about" },
+  { name: "Contact", href: "#contact" },
+];
+
+function Header() {
+  const [isScrolled, setIsScrolled] = useState(false);
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-  // ================= NAV LINKS =================
-  // hrefs are section anchors, so they are the same in both languages — only
-  // the visible label comes from the dictionary.
-  const navLinks = [
-    { name: t.nav.home, href: "#home" },
-    { name: t.nav.projects, href: "#projects" },
-    { name: t.nav.skills, href: "#skills" },
-    { name: t.nav.about, href: "#about" },
-    { name: t.nav.contact, href: "#contact" },
-  ];
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 20);
+    };
+
+    handleScroll();
+    window.addEventListener("scroll", handleScroll, { passive: true });
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   return (
-    // ================= WRAPPER =================
-    // `start-0` (not `left-0`) so the bar anchors correctly in RTL too.
-    <div className="fixed start-0 top-3 z-50 w-full sm:top-4 lg:top-5">
-      <Container>
-        <header
-          className="w-full rounded-2xl bg-primary p-3 shadow-lg
-          sm:rounded-[28px] sm:p-4
-          md:flex md:h-[76px] md:items-center md:justify-between md:rounded-[34px] md:px-5 md:py-0
-          lg:h-[80px] lg:px-7"
+    <header
+      className={`fixed top-0 left-0 right-0 z-50 w-full transition-all duration-300 ${
+        isScrolled
+          ? "border-b border-white/[0.06] bg-[#121214]/80 shadow-sm shadow-black/20 backdrop-blur-md"
+          : "border-b border-transparent bg-transparent"
+      }`}
+    >
+      <Container className="flex h-16 items-center justify-between sm:h-20">
+        {/* Logo / Brand */}
+        <a
+          href="#home"
+          aria-label="Mohamed Coding — home"
+          className="shrink-0 text-base font-bold tracking-tight text-white transition-opacity hover:opacity-90 sm:text-lg lg:text-xl"
         >
-          {/* ================= LEFT SIDE ================= */}
-          <div className="flex items-center justify-between gap-3">
-            {/* Logo / Brand — matches the domain (mohamedcoding.com) so the brand
-              name exists as real, crawlable text, not just in metadata. Kept in
-              Latin script in both languages because it is the brand name. */}
+          Mohamed<span className="text-accent font-semibold"> Coding</span>
+        </a>
+
+        {/* Desktop Navigation */}
+        <nav className="hidden items-center md:flex md:gap-1 lg:gap-2">
+          {navLinks.map((link) => (
             <a
-              href="#home"
-              aria-label={t.nav.homeAria}
-              className="shrink-0 text-base font-bold tracking-wide text-secondary sm:text-lg lg:text-xl"
-              dir="ltr"
+              href={link.href}
+              key={link.href}
+              className="rounded-lg px-3 py-2 text-sm font-medium text-gray-300 transition-colors duration-150 hover:bg-white/[0.06] hover:text-white lg:px-4 lg:text-[15px]"
             >
-              Mohamed<span className="text-neutral-300"> Coding</span>
+              {link.name}
             </a>
+          ))}
+        </nav>
 
-            {/* ================= MOBILE ACTIONS ================= */}
-            {/* Language switcher stays visible in the collapsed bar — a visitor on
-              the wrong language shouldn't have to open a menu to fix that. */}
-            <div className="flex items-center gap-2 md:hidden">
-              <LanguageSwitcher
-                t={t.language}
-                locale={locale}
-                onLocaleChange={onLocaleChange}
-              />
+        {/* Desktop Actions */}
+        <div className="hidden items-center gap-3 md:flex">
+          <a
+            href={CV_URL}
+            download
+            className="inline-flex items-center justify-center rounded-xl border border-white/15 bg-white/[0.04] px-4 py-2 text-sm font-medium text-white transition-all duration-200 hover:border-accent/40 hover:bg-white/[0.08] hover:text-white"
+          >
+            Download CV
+          </a>
+        </div>
 
-              <button
-                type="button"
-                aria-label={t.nav.menuToggle}
-                aria-expanded={isMenuOpen}
-                onClick={() => setIsMenuOpen((open) => !open)}
-                className="element-center h-11 w-11 rounded-xl border border-neutral-600 text-secondary
-              transition duration-200 hover:bg-white/10 hover:text-white"
-              >
-                {/* Toggle icon */}
-                {isMenuOpen ? <FaTimes /> : <FaBars />}
-              </button>
-            </div>
-          </div>
+        {/* Mobile Menu Toggle */}
+        <div className="flex items-center md:hidden">
+          <button
+            type="button"
+            aria-label="Toggle navigation menu"
+            aria-expanded={isMenuOpen}
+            onClick={() => setIsMenuOpen((open) => !open)}
+            className="flex h-10 w-10 items-center justify-center rounded-lg border border-white/10 text-gray-300 transition hover:bg-white/10 hover:text-white"
+          >
+            {isMenuOpen ? <FaTimes size={18} /> : <FaBars size={18} />}
+          </button>
+        </div>
+      </Container>
 
-          {/* ================= DESKTOP NAVIGATION ================= */}
-          {/* Hidden on mobile, visible from md and above */}
-          <nav className="ms-1 hidden items-center md:flex md:gap-1 lg:gap-2">
+      {/* Mobile Menu Dropdown */}
+      {isMenuOpen && (
+        <div className="border-b border-white/[0.08] bg-[#121214]/95 px-6 py-5 backdrop-blur-xl md:hidden">
+          <nav className="flex flex-col gap-2">
             {navLinks.map((link) => (
               <a
                 href={link.href}
                 key={link.href}
-                className="rounded-xl px-2 py-2 text-sm text-secondary
-              transition duration-200 hover:bg-neutral-600
-              lg:px-4 lg:py-3 lg:text-base"
+                onClick={() => setIsMenuOpen(false)}
+                className="rounded-lg px-3 py-2.5 text-base font-medium text-gray-300 transition hover:bg-white/[0.06] hover:text-white"
               >
                 {link.name}
               </a>
             ))}
-          </nav>
-
-          {/* ================= DESKTOP ACTIONS ================= */}
-          <div className="hidden items-center gap-3 md:flex">
-            <LanguageSwitcher
-              t={t.language}
-              locale={locale}
-              onLocaleChange={onLocaleChange}
-            />
-
             <a
               href={CV_URL}
               download
-              className="rounded-2xl border border-neutral-600 px-3 py-2 text-sm text-secondary
-            transition duration-200 hover:bg-white/20 hover:text-white lg:px-4 lg:text-base"
+              onClick={() => setIsMenuOpen(false)}
+              className="mt-2 inline-flex items-center justify-center rounded-xl border border-white/15 bg-white/[0.04] px-4 py-3 text-center text-sm font-semibold text-white transition hover:bg-white/[0.08]"
             >
-              {t.nav.downloadCv}
+              Download CV
             </a>
-          </div>
-
-          {/* ================= MOBILE NAVIGATION ================= */}
-          {/* Only shown when menu is open */}
-          {isMenuOpen && (
-            <nav className="mt-3 grid gap-2 border-t border-white/10 pt-3 md:hidden">
-              {/* Links */}
-              {navLinks.map((link) => (
-                <a
-                  href={link.href}
-                  key={link.href}
-                  onClick={() => setIsMenuOpen(false)} // close menu on click
-                  className="rounded-xl px-3 py-3 text-sm font-medium text-secondary
-                transition duration-200 hover:bg-neutral-600 hover:text-white"
-                >
-                  {link.name}
-                </a>
-              ))}
-
-              {/* CV button (mobile) */}
-              <a
-                href={CV_URL}
-                download
-                onClick={() => setIsMenuOpen(false)}
-                className="mt-1 rounded-xl border border-neutral-600 px-3 py-3 text-center text-sm font-semibold text-secondary
-              transition duration-200 hover:bg-white/20 hover:text-white"
-              >
-                {t.nav.downloadCv}
-              </a>
-            </nav>
-          )}
-        </header>
-      </Container>
-    </div>
+          </nav>
+        </div>
+      )}
+    </header>
   );
 }
 

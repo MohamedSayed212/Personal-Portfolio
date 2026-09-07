@@ -7,7 +7,7 @@ import { WHATSAPP_URL, WHATSAPP_ARIA } from "../constants/contact";
 
 // Floating WhatsApp action, mobile-focused. Appears once the user scrolls past
 // the hero, and hides while the Contact section is on screen (redundant there).
-function WhatsAppFloat({ label }) {
+function WhatsAppFloat({ label = WHATSAPP_ARIA }) {
   const reduceMotion = useReducedMotion();
   const [scrolledPastHero, setScrolledPastHero] = useState(false);
   const [contactInView, setContactInView] = useState(false);
