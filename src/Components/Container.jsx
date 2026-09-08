@@ -4,7 +4,7 @@
 function Container({ children, className = "" }) {
   return (
     <div
-      className={`mx-auto w-full max-w-[1320px] px-6  md:px-8 ${className}`.trim()}
+      className={`mx-auto w-full  px-6 max-w-[2000px]  md:px-8 2xl:px-32 ${className}`.trim()}
     >
       {children}
     </div>

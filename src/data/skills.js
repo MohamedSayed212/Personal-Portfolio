@@ -1,25 +1,49 @@
-// Skill NAMES only — no icons here, so files that just need a count (the hero
-// stats) don't pull the whole react-icons set into their bundle. Skills.jsx
-// maps these names to icons.
-//
-// `usingSkills` also drives the hero "Technologies" stat and the marquee, so
-// adding a name here updates all three places at once.
-
-export const usingSkills = [
-  "React",
-  "Next.js",
-  "Redux Toolkit",
-  "JavaScript",
-  "TypeScript",
-  "HTML",
-  "CSS",
-  "Supabase",
-  "Tailwind CSS",
-  "Framer Motion",
-  "Git",
-  "GitHub",
+// Categorized skills structure
+export const skillCategories = [
+  {
+    id: "frontend",
+    title: "Frontend Development",
+    description: "Building responsive, accessible, and high-performance user interfaces.",
+    skills: [
+      "React",
+      "Next.js",
+      "TypeScript",
+      "JavaScript",
+      "Tailwind CSS",
+      "Redux Toolkit",
+      "Framer Motion",
+      "HTML5",
+      "CSS3",
+    ],
+  },
+  {
+    id: "backend",
+    title: "Backend & Database",
+    description: "Architecting reliable APIs, secure authentication, and scalable databases.",
+    skills: [
+      "Node.js",
+      "Express.js",
+      "PostgreSQL",
+      "Supabase",
+      "RESTful APIs",
+    ],
+  },
+  {
+    id: "tools",
+    title: "Tools & Platforms",
+    description: "Modern development workflows, version control, and cloud deployment.",
+    skills: [
+      "Git",
+      "GitHub",
+      "Vite",
+      "Vercel",
+      "Postman",
+      "Figma",
+    ],
+  },
 ];
 
-// Empty for now. The "Currently learning" block in Skills.jsx only renders when
-// this has entries, so leaving it empty simply hides that group.
+// Flat array of all skill names for stats / counters
+export const usingSkills = skillCategories.flatMap((category) => category.skills);
+
 export const learningSkills = [];

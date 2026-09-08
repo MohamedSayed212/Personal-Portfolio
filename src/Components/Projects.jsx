@@ -74,7 +74,7 @@ function Projects() {
   return (
     <section id="projects">
       {/* Intro */}
-      <Container className="pt-10 text-start sm:pt-16 lg:pt-24">
+      <Container className="pt-10 text-start sm:pt-16 lg:pt-20">
         <span className="mb-4 inline-block rounded-full border border-accent/25 bg-accent/[0.07] px-4 py-2 text-sm font-medium text-accent-soft sm:px-5 sm:text-base">
           My Projects
         </span>
@@ -84,7 +84,8 @@ function Projects() {
         </h2>
 
         <p className="mt-4 max-w-2xl text-base leading-7 text-gray-400 sm:text-lg sm:leading-8">
-          Here are some of my React projects focused on clean UI, responsive design, and real-world functionality.
+          Here are some of my React projects focused on clean UI, responsive
+          design, and real-world functionality.
         </p>
       </Container>
 
@@ -220,4 +221,3 @@ function Projects() {
 }
 
 export default Projects;
-
