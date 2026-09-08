@@ -19,9 +19,7 @@ function Hero() {
       : { duration, delay, ease: [0.16, 1, 0.3, 1] };
 
   const getInitial = (yOffset = 20, scale = 1) =>
-    shouldReduceMotion
-      ? { opacity: 0 }
-      : { opacity: 0, y: yOffset, scale };
+    shouldReduceMotion ? { opacity: 0 } : { opacity: 0, y: yOffset, scale };
 
   const animateVisible = { opacity: 1, y: 0, scale: 1 };
 
@@ -95,31 +93,33 @@ function Hero() {
             initial={getInitial(15)}
             animate={animateVisible}
             transition={getTransition(0.36)}
-            className="mt-8 flex flex-wrap items-center gap-4 sm:mt-10"
+            className="mt-8 flex flex-col flex-wrap  gap-4 sm:mt-10"
           >
-            <a
-              href="#contact"
-              className="inline-flex items-center justify-center rounded-full bg-[#D8B45A] px-7 py-3.5 text-sm font-semibold tracking-wide text-[#0B0B0C] transition-all duration-200 hover:bg-[#E5C368] hover:shadow-[0_4px_20px_rgba(216,180,90,0.25)] hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#D8B45A] sm:px-8 sm:py-4 sm:text-[15px]"
-            >
-              GET IN TOUCH
-            </a>
+            <div>
+              <a
+                href="#contact"
+                className="inline-flex items-center justify-center rounded-full bg-[#D8B45A] px-7 py-3.5 text-sm font-semibold tracking-wide text-[#0B0B0C] transition-all duration-200 hover:bg-[#E5C368] hover:shadow-[0_4px_20px_rgba(216,180,90,0.25)]  focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#D8B45A] sm:px-8 sm:py-4 sm:text-[15px]"
+              >
+                GET IN TOUCH
+              </a>
 
-            <a
-              href="#projects"
-              className="inline-flex items-center justify-center rounded-full border border-[#29292A] bg-transparent px-7 py-3.5 text-sm font-medium tracking-wide text-[#F3F1ED] transition-all duration-200 hover:border-[#D8B45A]/50 hover:bg-white/[0.04] hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/40 sm:px-8 sm:py-4 sm:text-[15px]"
-            >
-              VIEW MY WORK
-            </a>
+              <a
+                href="#projects"
+                className="inline-flex items-center justify-center rounded-full border border-[#29292A] bg-transparent px-7 py-3.5 text-sm font-medium tracking-wide text-[#F3F1ED] transition-all duration-200 hover:border-[#D8B45A]/50 hover:bg-white/[0.04]  focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-white/40 sm:px-8 sm:py-4 sm:text-[15px]"
+              >
+                VIEW MY WORK
+              </a>
+            </div>
 
             {/* Subtle Social Links */}
-            <div className="flex items-center gap-3 sm:ml-3">
+            <div className="flex items-center mt-2 gap-3 sm:ml-3">
               <a
                 href={GITHUB_URL}
                 target="_blank"
                 rel="noopener noreferrer"
                 aria-label="Mohamed Elsayed on GitHub"
                 title="GitHub"
-                className="flex h-11 w-11 items-center justify-center rounded-full border border-[#29292A] bg-transparent text-[#9A9997] transition-all duration-200 hover:border-[#D8B45A]/40 hover:text-[#F3F1ED] hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#D8B45A]"
+                className="flex h-11 w-11 items-center justify-center rounded-full border border-[#29292A] bg-transparent text-[#9A9997] transition-all duration-200 hover:border-[#D8B45A]/40 hover:text-[#F3F1ED]  focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#D8B45A]"
               >
                 <FaGithub size={18} aria-hidden="true" />
               </a>
@@ -130,7 +130,7 @@ function Hero() {
                 rel="noopener noreferrer"
                 aria-label="Mohamed Elsayed on LinkedIn"
                 title="LinkedIn"
-                className="flex h-11 w-11 items-center justify-center rounded-full border border-[#29292A] bg-transparent text-[#9A9997] transition-all duration-200 hover:border-[#D8B45A]/40 hover:text-[#F3F1ED] hover:-translate-y-0.5 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#D8B45A]"
+                className="flex h-11 w-11 items-center justify-center rounded-full border border-[#29292A] bg-transparent text-[#9A9997] transition-all duration-200 hover:border-[#D8B45A]/40 hover:text-[#F3F1ED] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#D8B45A]"
               >
                 <FaLinkedin size={18} aria-hidden="true" />
               </a>
@@ -171,6 +171,3 @@ function Hero() {
 }
 
 export default Hero;
-
-
-
