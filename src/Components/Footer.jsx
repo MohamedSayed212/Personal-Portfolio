@@ -25,10 +25,10 @@ function Footer() {
           <div className="max-w-sm">
             <p className="text-lg font-bold text-white">
               <span>Mohamed Coding</span>
-              <span className="text-neutral-400"> — Mohamed Elsayed, Front-End Developer</span>
+              <span className="text-neutral-400"> — Mohamed Sayed, Front-End Developer</span>
             </p>
             <p className="mt-3 text-sm leading-6 text-gray-400">
-              Mohamed Coding is the portfolio of Mohamed Elsayed, a front-end developer specializing in React, Next.js, and Tailwind CSS, building clean, responsive, and modern web applications.
+              Mohamed Coding is the portfolio of Mohamed Sayed, a front-end developer specializing in React, Next.js, and Tailwind CSS, building clean, responsive, and modern web applications.
             </p>
           </div>
 
@@ -100,7 +100,7 @@ function Footer() {
         </div>
 
         <div className="mt-10 border-t border-white/10 pt-6 text-center text-sm text-gray-500 md:text-start">
-          © {year} Mohamed Elsayed (Mohamed Sayed). All rights reserved. Built with Next.js & Tailwind CSS.
+          © {year} Mohamed Sayed. All rights reserved. Built with Next.js & Tailwind CSS.
         </div>
       </Container>
     </footer>

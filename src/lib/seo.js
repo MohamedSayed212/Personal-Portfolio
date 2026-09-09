@@ -9,22 +9,19 @@ const WEBSITE_ID = `${SITE_URL}/#website`;
 const PROFILE_ID = `${SITE_URL}/#profilepage`;
 
 const NAME_VARIANTS = [
+  "Mohamed Sayed",
   "Mohamed Elsayed",
   "Mohamed El Sayed",
   "Mohamed ElSayed",
-  "Mohamed Sayed",
-  "Mohamed El Sayed Ramdan",
-  "Mohamed Elsayed Ramdan",
-  "Mohamed ElSayed Ramdan",
-  "Mohamed Ramdan",
+  "Mohamed Sayed Frontend Developer",
   "Mohamed Coding",
 ];
 
-const META_TITLE = "Mohamed ElSayed — Front-End Developer";
-const META_TITLE_TEMPLATE = "%s | Mohamed ElSayed";
+const META_TITLE = "Mohamed Sayed — Front-End Developer";
+const META_TITLE_TEMPLATE = "%s | Mohamed Sayed";
 const META_DESCRIPTION =
-  "Portfolio of Mohamed ElSayed, a front-end developer specializing in React, Next.js, and Tailwind CSS — building clean, responsive, and modern web applications. Available for remote roles and freelance projects.";
-const OG_TITLE = "Mohamed ElSayed — Web Developer";
+  "Portfolio of Mohamed Sayed, a front-end developer specializing in React, Next.js, and Tailwind CSS — building clean, responsive, and modern web applications. Available for remote roles and freelance projects.";
+const OG_TITLE = "Mohamed Sayed — Front-End Developer";
 
 export const metadata = {
   metadataBase: new URL(SITE_URL),
@@ -36,17 +33,17 @@ export const metadata = {
   description: META_DESCRIPTION,
   keywords: [
     ...NAME_VARIANTS,
-    "Mohamed Elsayed Frontend Developer",
-    "Mohamed Elsayed React Developer",
-    "Mohamed Elsayed Next.js Developer",
-    "Mohamed Elsayed Portfolio",
+    "Mohamed Sayed Frontend Developer",
+    "Mohamed Sayed React Developer",
+    "Mohamed Sayed Next.js Developer",
+    "Mohamed Sayed Portfolio",
     "Front-End Developer",
     "React Developer",
     "Next.js Developer",
   ],
-  authors: [{ name: "Mohamed Elsayed Ramdan", url: SITE_URL }],
-  creator: "Mohamed ElSayed",
-  publisher: "Mohamed ElSayed",
+  authors: [{ name: "Mohamed Sayed", url: SITE_URL }],
+  creator: "Mohamed Sayed",
+  publisher: "Mohamed Sayed",
   category: "technology",
   alternates: {
     canonical: "/",
@@ -77,7 +74,7 @@ export const metadata = {
         url: portrait.src,
         width: portrait.width,
         height: portrait.height,
-        alt: "Mohamed ElSayed (Mohamed Sayed), Front-End Developer",
+        alt: "Mohamed Sayed, Front-End Developer",
       },
     ],
   },
@@ -95,7 +92,7 @@ export const structuredData = {
     {
       "@type": "Person",
       "@id": PERSON_ID,
-      name: "Mohamed Elsayed Ramdan",
+      name: "Mohamed Sayed",
       alternateName: NAME_VARIANTS,
       url: SITE_URL,
       image: new URL(portrait.src, SITE_URL).toString(),
@@ -137,7 +134,7 @@ export const structuredData = {
       "@id": WEBSITE_ID,
       url: SITE_URL,
       name: SITE_NAME,
-      alternateName: "Mohamed Elsayed Portfolio",
+      alternateName: "Mohamed Sayed Portfolio",
       description: META_DESCRIPTION,
       inLanguage: "en",
       publisher: { "@id": PERSON_ID },

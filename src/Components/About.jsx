@@ -41,7 +41,10 @@ function About() {
           </h2>
 
           <p className="mt-5 max-w-3xl text-base leading-7 text-gray-400 sm:text-lg sm:leading-8">
-            I’m Mohamed Elsayed Ramadan, a front-end developer focused on building clean, responsive interfaces and real-world web applications. I enjoy turning ideas and designs into fast, intuitive products that work smoothly across devices.
+            I’m Mohamed Sayed, a front-end developer focused on building clean,
+            responsive interfaces and real-world web applications. I enjoy
+            turning ideas and designs into fast, intuitive products that work
+            smoothly across devices.
           </p>
         </div>
 
@@ -87,4 +90,3 @@ function About() {
 }
 
 export default About;
-

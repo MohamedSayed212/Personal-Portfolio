@@ -74,7 +74,7 @@ function Projects() {
   return (
     <section id="projects">
       {/* Intro */}
-      <Container className="pt-10 text-start sm:pt-16 lg:pt-20">
+      <Container className="pt-6 text-start sm:pt-10 lg:pt-12">
         <span className="mb-4 inline-block rounded-full border border-accent/25 bg-accent/[0.07] px-4 py-2 text-sm font-medium text-accent-soft sm:px-5 sm:text-base">
           My Projects
         </span>

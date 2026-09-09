@@ -14,4 +14,4 @@ export const WHATSAPP_TEL = `tel:+${RAW_NUMBER}`; // tel:+201034082107
 export const WHATSAPP_URL = `https://wa.me/${RAW_NUMBER}?text=${PREFILLED_TEXT}`;
 
 // Reused as the aria-label on every WhatsApp link for a consistent accessible name.
-export const WHATSAPP_ARIA = "Message Mohamed ElSayed on WhatsApp";
+export const WHATSAPP_ARIA = "Message Mohamed Sayed on WhatsApp";
